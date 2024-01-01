@@ -323,7 +323,7 @@ class JobsTableSeeder extends Seeder
                 'updated_at' => date('Y-m-d H:i:s', time())
             ],
             [
-                'id' => 44,
+                'id' => 45,
                 'jobs_text' => 'Data Processing',
                 'categories_id' => 6,
                 'created_at' => date('Y-m-d H:i:s', time()),

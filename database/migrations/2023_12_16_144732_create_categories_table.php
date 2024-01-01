@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('category_text','255');
             $table->string('description', '255');
+            $table->binary('images');
             $table->timestamps();
             $table->softDeletes();
         });

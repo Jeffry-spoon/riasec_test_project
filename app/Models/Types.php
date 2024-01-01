@@ -15,4 +15,9 @@ class Types extends Model
         'is_active',
     ];
 
+   public function questions()
+    {
+        return $this->hasMany(Questions::class, 'types_id', 'id');
+    }
+
 }

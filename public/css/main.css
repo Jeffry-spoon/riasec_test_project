@@ -1,629 +1,664 @@
 * {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-  font-family: "Poppins", sans-serif;
-  color: #000;
-  font-size: 15px;
-  line-height: 1.5;
-  background: url("../images/background-desktop.png");
-  min-height: 100vh;
-  width: 100%;
-  background-position: 50%;
-  background-repeat: no-repeat;
-  background-size: cover;
+    font-family: "Poppins", sans-serif;
+    color: #000;
+    font-size: 15px;
+    line-height: 1.5;
+    background: url("../images/background-desktop.png");
+    min-height: 100vh;
+    width: 100%;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0;
+    -webkit-animation: fadeIn 1s ease-in both;
+    animation: fadeIn 1s ease-in both;
 }
 
-a {
-  color: #ffffff;
-  text-decoration: none;
+@-webkit-keyframes fadeIn {
+    from {
+        opacity: 0;
+        -webkit-transform: translate3d(0, -20%, 0);
+        transform: translate3d(0, -20%, 0);
+    }
+    to {
+        opacity: 1;
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
 }
 
-ul {
-  list-style: none;
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        -webkit-transform: translate3d(0, -20%, 0);
+        transform: translate3d(0, -20%, 0);
+    }
+    to {
+        opacity: 1;
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
 }
 
 .container {
-  width: 90%;
-  max-width: 1100px;
-  margin: auto;
+    width: 90%;
+    max-width: 1100px;
+    margin: auto;
 }
 
 /* Nav */
 .main-nav {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  height: 100px;
-  padding: 20px 0;
-  font-size: 16px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    height: 100px;
+    padding: 20px 0;
+    font-size: 16px;
 }
 
 .main-nav .logo {
-  width: 280px;
-  padding: 12px 16px;
-  background: rgba(202, 202, 202, 0.2);
-  -webkit-box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-          box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  top: 0;
+    width: 280px;
+    padding: 12px 16px;
+  /* From https://css.glass */
+    background: rgba(0, 0, 0, 0.22);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(9.2px);
+    -webkit-backdrop-filter: blur(9.2px);
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    top: 0;
 }
 
 .menu-btn {
-  cursor: pointer;
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  z-index: 2;
-  display: none;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    z-index: 2;
+    display: none;
 }
 
 .custom-btn {
-  width: 20%;
-  margin: 36px 0 0 0;
-  text-align: center;
-  cursor: pointer;
-  display: inline-block;
-  border: 0;
-  border-radius: 8px;
-  font-weight: 500;
-  padding: 12px 36px;
-  background: #f72585;
-  color: #fff;
-  font-size: 20px;
-  -webkit-border-radius: 8px;
-  -moz-border-radius: 8px;
-  -ms-border-radius: 8px;
-  -o-border-radius: 8px;
-  transition: 0.5s;
-  -webkit-transition: 0.5s;
-  -moz-transition: 0.5s;
-  -ms-transition: 0.5s;
-  -o-transition: 0.5s;
+    width: 20%;
+    margin: 36px 0 0 0;
+    text-align: center;
+    cursor: pointer;
+    display: inline-block;
+    border: 0;
+    border-radius: 8px;
+    font-weight: 500;
+    padding: 12px 36px;
+    background: #f72585;
+    color: #fff;
+    font-size: 20px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    transition: 0.5s;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -o-transition: 0.5s;
 }
 
 .btn:hover {
-  background-color: #2d00f7 !important;
+    background-color: #2d00f7 !important;
 }
 
 .btn-start {
-  width: 100%;
-  margin: 36px 0 0 0;
-  text-align: center;
-  cursor: pointer;
-  display: inline-block;
-  border: 0;
-  border-radius: 8px;
-  font-weight: 500;
-  background: #f72585;
-  color: #fff;
-  font-size: 20px;
+    width: 100%;
+    margin: 36px 0 0 0;
+    text-align: center;
+    cursor: pointer;
+    display: inline-block;
+    border: 0;
+    border-radius: 8px;
+    font-weight: 500;
+    background: #f72585;
+    color: #fff;
+    font-size: 20px;
 }
 
 .btn-start:hover {
-  background-color: #2d00f7 !important;
-  color: #ffffff;
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
+    background-color: #2d00f7 !important;
+    color: #ffffff;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
 }
 
 /* Showcase */
 .showcase {
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  text-align: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  padding-bottom: 50px;
-  margin-bottom: 100px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+    width: 100%;
+    margin-top: 120px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    text-align: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    padding-bottom: 50px;
+    margin-bottom: 100px;
 }
 
 .showcase h2 {
-  font-size: 42px;
-  color: #ffffff;
+    font-size: 42px;
+    color: #ffffff;
 }
 
 .showcase p {
-  font-size: 18px;
-  color: #ffffff;
-  margin-bottom: 48px;
+    font-size: 18px;
+    color: #ffffff;
+    margin-bottom: 48px;
 }
 
 .showcase .btn {
-  margin-top: 20px;
+    margin-top: 20px;
 }
 
 /* Footer */
 .footer {
-  position: fixed;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  margin-bottom: 24px;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  text-align: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    margin-bottom: 24px;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    margin-top: 240px;
 }
 
 /* Register */
 .wrapper {
-  margin-top: 80px;
-  margin-bottom: 80px;
+    margin-top: 80px;
+    margin-bottom: 80px;
 }
 
 .form-signin {
-  max-width: 380px;
-  padding: 15px 35px 45px;
-  margin: 0 auto;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+    max-width: 380px;
+    padding: 15px 35px 45px;
+    margin: 0 auto;
+    border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .form-signin-heading,
 .checkbox {
-  margin-bottom: 30px;
+    margin-bottom: 30px;
 }
 
 .checkbox {
-  font-weight: normal;
+    font-weight: normal;
 }
 
 .form-control {
-  position: relative;
-  font-size: 16px;
-  height: auto;
-  padding: 10px;
-}
-
-input[type="text"] {
-  margin-bottom: -1px;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
+    background-color: none !important;
 }
 
 input[type="password"] {
-  margin-bottom: 20px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
+    margin-bottom: 20px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
 }
 
 /* Form */
 *,
 *:before,
 *:after {
-  padding: 0;
-  margin: 0;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 body {
-  background-color: #080710;
+    background-color: #080710;
 }
 
 form {
-  height: auto;
-  background-color: rgba(255, 255, 255, 0.13);
-  position: absolute;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  top: 50%;
-  left: 50%;
-  background: rgba(202, 202, 202, 0.2);
-  -webkit-box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-          box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  padding: 42px 24px;
+    height: auto;
+    background-color: rgba(255, 255, 255, 0.13);
+    margin: 18px auto;
+    max-width: 70vh;
+    background: rgba(126, 126, 126, 0.19);
+    /* From https://css.glass */
+    background: rgba(0, 0, 0, 0.22);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(9.2px);
+    -webkit-backdrop-filter: blur(9.2px);
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    padding: 42px 24px;
 }
 
 form * {
-  color: #ffffff;
-  outline: none;
-}
-
-#register-label {
-  display: block;
-  margin-top: 30px;
-  font-size: 16px;
-  font-weight: 500;
+    color: #ffffff;
+    outline: none;
 }
 
 input {
-  display: block;
-  height: 50px;
-  width: 100%;
-  background-color: rgba(255, 255, 255, 0.07);
-  border-radius: 3px;
-  padding: 0 10px;
-  margin-top: 8px;
-  font-size: 14px;
-  font-weight: 300;
-  border: solid 1px #ffffff;
+    display: block;
+    height: 50px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.07);
+    border-radius: 3px;
+    padding: 0 10px;
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 300;
+    border: solid 1px #ffffff;
 }
 
 ::-webkit-input-placeholder {
-  color: #e5e5e5;
+    color: #e5e5e5;
 }
 
 :-ms-input-placeholder {
-  color: #e5e5e5;
+    color: #e5e5e5;
 }
 
 ::-ms-input-placeholder {
-  color: #e5e5e5;
+    color: #e5e5e5;
 }
 
 ::placeholder {
-  color: #e5e5e5;
+    color: #e5e5e5;
 }
 
 button {
-  margin-top: 50px;
-  width: 100%;
-  padding: 15px 0;
-  font-size: 18px;
-  font-weight: 600;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-/* Radio */
-#form-wrapper {
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.test-form {
-  width: 90%;
-  max-width: 500px;
-}
-
-.test-form #form-title {
-  margin-top: 0;
-  font-weight: 400;
-  text-align: center;
-}
-
-.test-form #debt-amount-slider {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -ms-flex-line-pack: stretch;
-      align-content: stretch;
-  position: relative;
-  width: 100%;
-  height: 50px;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-}
-
-.test-form #debt-amount-slider::before {
-  content: " ";
-  position: absolute;
-  height: 2px;
-  width: 100%;
-  width: calc(100% * (4 / 5));
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  background: #fff;
-}
-
-.test-form #debt-amount-slider input,
-.test-form #debt-amount-slider label {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  cursor: pointer;
-}
-
-.test-form #debt-amount-slider label {
-  display: inline-block;
-  position: relative;
-  width: 20%;
-  height: 100%;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-}
-
-.test-form #debt-amount-slider label::before {
-  content: attr(data-debt-amount);
-  position: absolute;
-  left: 50%;
-  padding-top: 10px;
-  -webkit-transform: translate(-50%, 45px);
-          transform: translate(-50%, 45px);
-  font-size: 14px;
-  letter-spacing: 0.4px;
-  font-weight: 400;
-  white-space: nowrap;
-  opacity: 0.85;
-  -webkit-transition: all 0.15s ease-in-out;
-  transition: all 0.15s ease-in-out;
-}
-
-.test-form #debt-amount-slider label::after {
-  content: " ";
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  width: 30px;
-  height: 30px;
-  border: 2px solid #7209b7;
-  background: #fff;
-  border-radius: 50%;
-  pointer-events: none;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  z-index: 1;
-  cursor: pointer;
-  -webkit-transition: all 0.15s ease-in-out;
-  transition: all 0.15s ease-in-out;
-}
-
-.test-form #debt-amount-slider label:hover::after {
-  -webkit-transform: translate(-50%, -50%) scale(1.25);
-          transform: translate(-50%, -50%) scale(1.25);
-}
-
-.test-form #debt-amount-slider input {
-  display: none;
-}
-
-.test-form #debt-amount-slider input:checked + label::before {
-  font-weight: 800;
-  opacity: 1;
-}
-
-.test-form #debt-amount-slider input:checked + label::after {
-  border-width: 4px;
-  -webkit-transform: translate(-50%, -50%) scale(0.75);
-          transform: translate(-50%, -50%) scale(0.75);
-}
-
-.test-form #debt-amount-slider input:checked ~ #debt-amount-pos {
-  opacity: 1;
-}
-
-.test-form #debt-amount-slider input:checked:nth-child(1) ~ #debt-amount-pos {
-  left: 10%;
-}
-
-.test-form #debt-amount-slider input:checked:nth-child(3) ~ #debt-amount-pos {
-  left: 30%;
-}
-
-.test-form #debt-amount-slider input:checked:nth-child(5) ~ #debt-amount-pos {
-  left: 50%;
-}
-
-.test-form #debt-amount-slider input:checked:nth-child(7) ~ #debt-amount-pos {
-  left: 70%;
-}
-
-.test-form #debt-amount-slider input:checked:nth-child(9) ~ #debt-amount-pos {
-  left: 90%;
-}
-
-.test-form #debt-amount-slider #debt-amount-pos {
-  display: block;
-  position: absolute;
-  top: 50%;
-  width: 12px;
-  height: 12px;
-  background: #7209b7;
-  border-radius: 50%;
-  -webkit-transition: all 0.15s ease-in-out;
-  transition: all 0.15s ease-in-out;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  border: 2px solid #fff;
-  opacity: 0;
-  z-index: 2;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  -ms-border-radius: 50%;
-  -o-border-radius: 50%;
-}
-
-.test-form:valid #debt-amount-slider input + label::before {
-  transform: translate(-50%, 45px) scale(0.9);
-  -webkit-transition: all 0.15s linear;
-  transition: all 0.15s linear;
-  -webkit-transform: translate(-50%, 45px) scale(0.9);
-  -moz-transform: translate(-50%, 45px) scale(0.9);
-  -ms-transform: translate(-50%, 45px) scale(0.9);
-  -o-transform: translate(-50%, 45px) scale(0.9);
-}
-
-.test-form:valid #debt-amount-slider input:checked + label::before {
-  -webkit-transform: translate(-50%, 45px) scale(1.1);
-          transform: translate(-50%, 45px) scale(1.1);
-  -webkit-transition: all 0.15s linear;
-  transition: all 0.15s linear;
-}
-
-@media (max-width: 700px) {
-  body {
-    background-image: url("/Assets/background-mobile.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    min-height: 100vh;
+    margin-top: 50px;
     width: 100%;
-  }
-  /* Showcase */
-  .showcase {
-    width: 100%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    text-align: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    padding-bottom: 50px;
-    margin-bottom: 100px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
-  }
-  .showcase h2 {
-    font-size: 42px;
-    color: #ffffff;
-  }
-  .showcase p {
-    font-size: 18px;
-    color: #ffffff;
-    margin-bottom: 48px;
-  }
-  .showcase .btn {
-    margin-top: 20px;
-  }
-}
-
-@media (max-width: 500px) {
-  body {
-    background-image: url("../images/background-mobile.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    min-height: 100vh;
-    width: 100%;
-  }
-  footer {
-    background-color: rgba(0, 0, 0, 0.25);
-    height: 40px;
-    animation: overlayMoveUp 0.5s ease-in;
-    margin-bottom: 0px !important;
-    animation: overlayMoveUp 0.5s ease-in;
-    -webkit-animation: overlayMoveUp 0.5s ease-in;
-  }
-  .main-nav .logo {
-    width: 100%;
-    margin-top: 16px;
-    padding: 12px 16px;
-    background: rgba(202, 202, 202, 0.2);
-    -webkit-box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.18);
-  }
-  /* Showcase */
-  .showcase {
-    width: 90%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    text-align: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    /* padding-bottom: 50px; */
-    position: absolute;
-  }
-  .showcase h2 {
-    font-size: 32px;
-    color: #ffffff;
-  }
-  .btn {
-    width: 100%;
-    margin: 48px 0 0 0;
-  }
-  /* form */
-  form {
-    width: 90% !important;
-  }
-  input {
-    height: 50px;
-    max-width: 100% !important;
-  }
-  button {
-    width: 100% !important;
     padding: 15px 0;
     font-size: 18px;
     font-weight: 600;
     border-radius: 5px;
     cursor: pointer;
-    margin: 24px auto !important;
-  }
+}
+
+/* Radio */
+#form-wrapper {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.test-form {
+    width: 90%;
+    max-width: 500px;
+}
+
+.test-form #form-title {
+    margin-top: 0;
+    font-weight: 400;
+    text-align: center;
+}
+
+.test-form #debt-amount-slider {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -ms-flex-line-pack: stretch;
+    align-content: stretch;
+    position: relative;
+    width: 100%;
+    height: 50px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.test-form #debt-amount-slider::before {
+    content: " ";
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    width: calc(100% * (4 / 5));
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    background: #fff;
+}
+
+.test-form #debt-amount-slider input,
+.test-form #debt-amount-slider label {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+}
+
+.test-form #debt-amount-slider label {
+    display: inline-block;
+    position: relative;
+    width: 20%;
+    height: 100%;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.test-form #debt-amount-slider label::before {
+    content: attr(data-debt-amount);
+    position: absolute;
+    left: 50%;
+    padding-top: 10px;
+    -webkit-transform: translate(-50%, 45px);
+    transform: translate(-50%, 45px);
+    font-size: 14px;
+    letter-spacing: 0.4px;
+    font-weight: 400;
+    white-space: nowrap;
+    opacity: 0.85;
+    -webkit-transition: all 0.15s ease-in-out;
+    transition: all 0.15s ease-in-out;
+}
+
+.test-form #debt-amount-slider label::after {
+    content: " ";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 30px;
+    border: 2px solid #7209b7;
+    background: #fff;
+    border-radius: 50%;
+    pointer-events: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    z-index: 1;
+    cursor: pointer;
+    -webkit-transition: all 0.15s ease-in-out;
+    transition: all 0.15s ease-in-out;
+}
+
+.test-form #debt-amount-slider label:hover::after {
+    -webkit-transform: translate(-50%, -50%) scale(1.25);
+    transform: translate(-50%, -50%) scale(1.25);
+}
+
+.test-form #debt-amount-slider input {
+    display: none;
+}
+
+.test-form #debt-amount-slider input:checked + label::before {
+    font-weight: 800;
+    opacity: 1;
+}
+
+.test-form #debt-amount-slider input:checked + label::after {
+    border-width: 4px;
+    -webkit-transform: translate(-50%, -50%) scale(0.75);
+    transform: translate(-50%, -50%) scale(0.75);
+}
+
+.test-form #debt-amount-slider input:checked ~ #debt-amount-pos {
+    opacity: 1;
+}
+
+.test-form #debt-amount-slider input:checked:nth-child(1) ~ #debt-amount-pos {
+    left: 10%;
+}
+
+.test-form #debt-amount-slider input:checked:nth-child(3) ~ #debt-amount-pos {
+    left: 30%;
+}
+
+.test-form #debt-amount-slider input:checked:nth-child(5) ~ #debt-amount-pos {
+    left: 50%;
+}
+
+.test-form #debt-amount-slider input:checked:nth-child(7) ~ #debt-amount-pos {
+    left: 70%;
+}
+
+.test-form #debt-amount-slider input:checked:nth-child(9) ~ #debt-amount-pos {
+    left: 90%;
+}
+
+.test-form #debt-amount-slider #debt-amount-pos {
+    display: block;
+    position: absolute;
+    top: 50%;
+    width: 12px;
+    height: 12px;
+    background: #7209b7;
+    border-radius: 50%;
+    -webkit-transition: all 0.15s ease-in-out;
+    transition: all 0.15s ease-in-out;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    border: 2px solid #fff;
+    opacity: 0;
+    z-index: 2;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+.test-form:valid #debt-amount-slider input + label::before {
+    transform: translate(-50%, 45px) scale(0.9);
+    -webkit-transition: all 0.15s linear;
+    transition: all 0.15s linear;
+    -webkit-transform: translate(-50%, 45px) scale(0.9);
+    -moz-transform: translate(-50%, 45px) scale(0.9);
+    -ms-transform: translate(-50%, 45px) scale(0.9);
+    -o-transform: translate(-50%, 45px) scale(0.9);
+}
+
+.test-form:valid #debt-amount-slider input:checked + label::before {
+    -webkit-transform: translate(-50%, 45px) scale(1.1);
+    transform: translate(-50%, 45px) scale(1.1);
+    -webkit-transition: all 0.15s linear;
+    transition: all 0.15s linear;
+}
+
+@media (max-width: 700px) {
+    body {
+        background-image: url("/Assets/background-mobile.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        min-height: 100vh;
+        width: 100%;
+    }
+
+    /* Showcase */
+    .showcase {
+        width: 100%;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        text-align: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        padding-bottom: 50px;
+        margin-bottom: 100px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+    .showcase h2 {
+        font-size: 42px;
+        color: #ffffff;
+    }
+    .showcase p {
+        font-size: 18px;
+        color: #ffffff;
+        margin-bottom: 48px;
+    }
+    .showcase .btn {
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 500px) {
+    body {
+        background-image: url("../images/background-mobile.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        min-height: 100vh;
+        width: 100%;
+        margin: 0 16px;
+    }
+    footer {
+        background-color: rgba(0, 0, 0, 0.25);
+        height: 40px;
+        animation: overlayMoveUp 0.5s ease-in;
+        margin-bottom: 0px !important;
+        animation: overlayMoveUp 0.5s ease-in;
+        -webkit-animation: overlayMoveUp 0.5s ease-in;
+        position: fixed;
+        bottom: 0;
+    }
+    .main-nav .logo {
+        width: 100%;
+        margin-top: 16px;
+        padding: 12px 16px;
+        background: rgba(202, 202, 202, 0.2);
+        -webkit-box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+    /* Showcase */
+    .showcase {
+        width: 90%;
+        display: -webkit-box;
+        display: -ms-flexbox;
+    }
+    .showcase h2 {
+        font-size: 32px;
+        color: #ffffff;
+    }
+    .btn {
+        width: 100%;
+        margin: 48px 0 0 0;
+    }
+    /* form */
+    input {
+        height: 50px;
+        max-width: 100% !important;
+    }
+    button {
+        width: 100% !important;
+        padding: 15px 0;
+        font-size: 18px;
+        font-weight: 600;
+        border-radius: 5px;
+        cursor: pointer;
+        margin: 24px auto !important;
+    }
+    form,
+    .main-nav {
+        margin-left: 16px;
+        margin-right: 16px;
+    }
+}
+
+.form-control::-webkit-input-placeholder {
+    color: rgba(255, 255, 255, 0.535) !important;
+}
+
+.form-control:-ms-input-placeholder {
+    color: rgba(255, 255, 255, 0.535) !important;
+}
+
+.form-control::-ms-input-placeholder {
+    color: rgba(255, 255, 255, 0.535) !important;
+}
+
+.form-control::placeholder {
+    color: #f8f8f8 !important;
+}
+
+::-webkit-calendar-picker-indicator {
+    background-color: #e5e5e5;
+    padding: 4px;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    color: #e5e5e5;
+}
+
+.form-check .form-check-input,
+.form-check .form-check-label {
+    height: 21.6px !important;
+}
+
+.form-check .form-check-label {
+    margin-left: 4px;
+}
+
+.required:after {
+    content: " *";
+    color: #f72585;
 }
 /*# sourceMappingURL=style.css.map */
+
+@media (min-width: 2440px) {
+    .showcase {
+        margin-top: 250px;
+        margin-bottom: 300px;
+    }
+}

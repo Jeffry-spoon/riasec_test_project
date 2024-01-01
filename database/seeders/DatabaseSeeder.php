@@ -3,10 +3,14 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Types;
 use Illuminate\Database\Seeder;
 use Database\Seeders\AdminUserSeeder;
 use Database\Seeders\CategoriesTableSeeder;
 use Database\Seeders\JobsTableSeeder;
+use Database\Seeders\QuestionsSeeder;
+use Database\Seeders\TypesSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -26,6 +30,8 @@ class DatabaseSeeder extends Seeder
             AdminUserSeeder::class,
             CategoriesTableSeeder::class,
             JobsTableSeeder::class,
+            TypesSeeder::class,
+            QuestionsSeeder::class,
         ]);
     }
 }
