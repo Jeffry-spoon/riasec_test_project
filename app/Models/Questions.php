@@ -12,6 +12,14 @@ class Questions extends Model
 
     protected $fillable = [
         'questions_text',
+        'types_id',
         'categories_id',
     ];
+
+    public function type()
+    {
+        return $this->belongsTo(Types::class, 'types_id', 'id');
+    }
+
+
 }
