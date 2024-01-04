@@ -23,11 +23,16 @@ Route::get('/', function () {
 // Quiz
 Route::get('quiz', [QuizController::class, 'create'])->name('quiz.create');
 
+// User guide
+Route::get('help', function () {
+    return view('user.user-guide');
+})->name('help');
+
 
 // Result
 // Route::get('result',[ResultController::class, 'show'])->name('result.show');
 Route::get('result', function () {
-    return view('user/result');
+    return view('user.result');
 });
 
 

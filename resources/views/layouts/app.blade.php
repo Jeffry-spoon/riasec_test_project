@@ -14,8 +14,6 @@
     @include('components.navbar')
 
     @yield('content')
-    <!-- Footer -->
-    @include('components.footer')
 
     <script src="js/script.js"></script>
     <script src="js/script.js"></script>

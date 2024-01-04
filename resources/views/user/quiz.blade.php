@@ -23,14 +23,13 @@
             id="section_{{ $category }}"
             style="{{ $loop->first ? '' : 'display: none;' }}"
         >
-        <div class="category-title d-flex flex-row justify-content-center">
-            <p class="me-2">Kategori:</p>
-            <h5>{{ $category }}</h5>
-        </div>
+            <div class="category-title d-flex flex-row justify-content-center">
+                <p class="me-2">Kategori:</p>
+                <h5>{{ $category }}</h5>
+            </div>
 
-            @foreach ($sectionQuestions as $index => $question)
-            @foreach ($question as $sectionIndex => $innerQuestion)
-
+            @foreach ($sectionQuestions as $index => $question) @foreach
+            ($question as $sectionIndex => $innerQuestion)
 
             <div class="soal text-center">
                 <h4
@@ -47,16 +46,19 @@
                                 class="form-check-input"
                                 type="radio"
                                 name="inlineRadioOptions_{{ $sectionIndex }}_{{
-                                    $index}}"
-                                id="inlineRadio{{ $sectionIndex }}__{{ $index }}_{{
-                                $i}}"
+                                    $index
+                                }}"
+                                id="inlineRadio{{ $sectionIndex }}__{{
+                                    $index
+                                }}_{{ $i }}"
                                 value="option{{ $i }}"
                             />
                             <label
                                 class="form-check-label"
-                                for="inlineRadio_{{ $sectionIndex }}_{{ $index }}_{{
+                                for="inlineRadio_{{ $sectionIndex }}_{{
                                     $index
-                                }}">
+                                }}_{{ $index }}"
+                            >
                                 {{ $i }}
                             </label>
                         </div>
@@ -69,9 +71,7 @@
                 />
             </div>
 
-            @endforeach
-            @endforeach
-            @if ($loop->last)
+            @endforeach @endforeach @if ($loop->last)
             <button
                 type="submit"
                 class="btn btn-primary border-0 d-grid"
@@ -86,7 +86,7 @@
                 type="button"
                 class="btn btn-primary nextButton"
                 data-section="{{ $category }}"
-                onclick="return mainPage({{ json_encode($chunkedQuestions)}})"
+                onclick="return mainPage({{ json_encode($chunkedQuestions) }})"
             >
                 Next
             </button>
@@ -96,22 +96,32 @@
     </form>
 </div>
 
+@include('components.footer')
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-        function mainPage( chunkedQuestions ) {
+    function mainPage(chunkedQuestions) {
         var isFormValid = true;
         const currentSection = $(".nextButton").data("section");
-        const categoryOrder = ["REALISTIC","INVESTIGATIVE","ARTISTIC", "SOCIAL","ENTERPRISING","CONVENTIONAL"];
+        const categoryOrder = [
+            "REALISTIC",
+            "INVESTIGATIVE",
+            "ARTISTIC",
+            "SOCIAL",
+            "ENTERPRISING",
+            "CONVENTIONAL",
+        ];
 
         const currentSectionIndex = categoryOrder.indexOf(currentSection);
         if (isNaN(currentSectionIndex) || currentSectionIndex === -1) {
             return isFormValid;
         }
-        const nextSection = categoryOrder[currentSectionIndex +1];
+        const nextSection = categoryOrder[currentSectionIndex + 1];
 
-       if (document.querySelectorAll('#checkRadio [type="radio"]:checked')
-                .length < 6) {
-            $('#incompleteSectionAlert').show();
+        if (
+            document.querySelectorAll('#checkRadio [type="radio"]:checked')
+                .length < 6
+        ) {
+            $("#incompleteSectionAlert").show();
             isFormValid = false;
         } else {
             $("#incompleteSectionAlert").hide();
@@ -127,17 +137,20 @@
                 behavior: "smooth",
             });
 
-        // check if all questions are answered to enable the submit button
-        const totalQuestionsInSection = chunkedQuestions[currentSection].length;
-        const answeredQuestionsInSection = document.querySelectorAll(`#checkRadio_${nextSection} [type="radio"]:checked`).length;
+            // check if all questions are answered to enable the submit button
+            const totalQuestionsInSection =
+                chunkedQuestions[currentSection].length;
+            const answeredQuestionsInSection = document.querySelectorAll(
+                `#checkRadio_${nextSection} [type="radio"]:checked`
+            ).length;
 
-        // If all questions in the current section are answered, enable the submit button
-        if (answeredQuestionsInSection === totalQuestionsInSection * 6) {
-            $("#submitButton").prop("disabled", false);
+            // If all questions in the current section are answered, enable the submit button
+            if (answeredQuestionsInSection === totalQuestionsInSection * 6) {
+                $("#submitButton").prop("disabled", false);
+            }
+
+            return isFormValid;
         }
-
-        return isFormValid;
-        };
     }
 </script>
 

@@ -72,7 +72,7 @@ body {
 .main-nav .logo {
     width: 280px;
     padding: 12px 16px;
-  /* From https://css.glass */
+    /* From https://css.glass */
     background: rgba(0, 0, 0, 0.22);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -142,8 +142,6 @@ body {
 
 /* Showcase */
 .showcase {
-    width: 100%;
-    margin-top: 120px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -158,8 +156,14 @@ body {
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
-    padding-bottom: 50px;
-    margin-bottom: 100px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    height: 200px; /****set height****/
+    margin: auto;
 }
 
 .showcase h2 {
@@ -187,7 +191,7 @@ body {
     bottom: 0;
     width: 100%;
     text-align: center;
-    margin-top: 240px;
+    position: relative;
 }
 
 /* Register */
@@ -511,28 +515,14 @@ button {
 
     /* Showcase */
     .showcase {
-        width: 100%;
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-orient: vertical;
-        -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-        flex-direction: column;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-        text-align: center;
-        -webkit-box-pack: center;
-        -ms-flex-pack: center;
-        justify-content: center;
-        padding-bottom: 50px;
-        margin-bottom: 100px;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        -webkit-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%);
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: auto;
+        height: 200px; /****set height****/
+        margin: auto;
     }
     .showcase h2 {
         font-size: 42px;
@@ -652,13 +642,27 @@ button {
 
 .required:after {
     content: " *";
-    color: #f72585;
+    color: #ffd700;
 }
 /*# sourceMappingURL=style.css.map */
 
 @media (min-width: 2440px) {
     .showcase {
-        margin-top: 250px;
-        margin-bottom: 300px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: auto;
+        height: 200px; /****set height****/
+        margin: auto;
     }
+}
+
+.invalid-feedback {
+    color: #ffd700 !important; /* Your desired color */
+}
+.form-control.is-invalid,
+.was-validated .form-control:invalid {
+    border-color: #ffd700 !important; /* Your desired color */
 }
