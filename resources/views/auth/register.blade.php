@@ -108,6 +108,8 @@
      <button type="submit" class="btn btn-primary border-0 d-grid" style="padding: 12px 36px; background: #f72585" disabled >Mulai Quiz</button>
     </form>
 
+    @include('components.footer')
+
     <!-- Include JavaScript to handle button state -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
