@@ -30,11 +30,11 @@
         <!-- <div class="mb-3">
           <label for="datepicker" class="form-label required">Birth date</label>
           <input type="date" name="birth-date" class="form-label form-control bg-transparent text-light @error('birth-date')is-invalid @enderror" required value="{{ old('birth-date') }}"/>
-            @error('birth-date')
+            {{-- @error('birth-date') --}}
             <div class="invalid-feedback">
-            {{ $message }}
+            {{-- {{ $message }} --}}
             </div>
-            @enderror
+            {{-- @enderror --}}
         </div> -->
         <!-- Gender -->
         <div class="mb-3">
@@ -70,11 +70,11 @@
           <!-- <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label required">Domicile</label>
             <input type="text" class="form-control bg-transparent text-light @error('domicile')is-invalid @enderror" placeholder="Example: Jakarta Barat " name="domicile" required value="{{ old('domicile') }}"/>
-            @error('domicile')
+            {{-- @error('domicile') --}}
             <div class="invalid-feedback">
-            {{ $message }}
+            {{-- {{ $message }} --}}
             </div>
-            @enderror
+            {{-- @enderror --}}
           </div> -->
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label required">Nama Instansi Sekolah/Kampus</label>
@@ -88,11 +88,11 @@
           <!-- <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label required">Desired/Current Major</label>
             <input type="text" class="form-control bg-transparent text-light @error('major')is-invalid @enderror" placeholder="Input your current major" name="major" required value="{{ old('major') }}" />
-            @error('major')
+            {{-- @error('major') --}}
             <div class="invalid-feedback">
-            {{ $message }}
+            {{-- {{ $message }} --}}
             </div>
-            @enderror
+            {{-- @enderror --}}
           </div> -->
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label required">Pekerjaan Masa Depan</label>

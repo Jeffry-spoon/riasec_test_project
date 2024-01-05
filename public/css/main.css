@@ -666,3 +666,10 @@ button {
 .was-validated .form-control:invalid {
     border-color: #ffd700 !important; /* Your desired color */
 }
+
+.title-guide {
+    font-size:20px;
+    font-weight: 600;
+    text-align: center;
+    border-top: 16px;
+}
