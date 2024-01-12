@@ -52,7 +52,6 @@ class QuizController extends Controller
 
         $categoryTexts = Categories::whereIn('id', $questions[$type->id]->pluck('categories_id'))->pluck('category_text', 'id')->toArray();
 
-
         foreach ($questions[$type->id] as $question) {
         $question->category_text = $categoryTexts[$question->categories_id] ?? null;
         $category = $question->category_text;
