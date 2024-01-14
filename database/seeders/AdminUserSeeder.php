@@ -14,11 +14,16 @@ class AdminUserSeeder extends Seeder
      */
     public function run(): void
     {
-        User::create([
+        User::create(
+        [
             'name'=>'admin',
             'email'=> 'admin@laracamp.com',
+            'is_admin' => true,
             'email_verified_at' => date('Y-m-d H:i:s', time()),
             'password' => Hash::make('Ukrida123!'),
-        ]);
+        ],
+        
+
+    );
     }
 }

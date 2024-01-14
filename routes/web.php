@@ -22,6 +22,7 @@ Route::get('/', function () {
 
 // Quiz
 Route::get('quiz', [QuizController::class, 'create'])->name('quiz.create');
+Route::post('quiz', [QuizController::class, 'store'])->name('quiz.store');
 
 // User guide
 Route::get('help', function () {
@@ -29,16 +30,14 @@ Route::get('help', function () {
 })->name('help');
 
 
-// Result
-// Route::get('result',[ResultController::class, 'show'])->name('result.show');
 Route::get('result', function () {
     return view('user.result');
 });
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

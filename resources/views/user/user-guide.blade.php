@@ -1,44 +1,65 @@
-@extends('layouts.app')
+@extends('layouts.app') @section('content')
+<div
+    class="container d-flex align-items-center flex-column mb-3 justify-content-between"
+>
+    <div class="main h-100">
+        <!-- Showcase -->
+        
+        <header class="showcase col-sm-12 justify-content-center mx-auto">
+            <p class="fs-5 text-center text-light col-6">
+                Kuesioner ini terdiri dari 30 aktivitas yang dilakukan dalam
+                pekerjaan yang berbeda. Quiz ini digunakan untuk menentukan
+                minat bidang anda. Harap perhatikan bahwa tidak ada jawaban yang
+                benar atau salah. Pililah jawaban yang paling mencerminkan
+                preferensi anda terhadap setiap aktivitas.
+            </p>
 
-@section('content')
-<div class="container mx-auto">
-    <form action="">
-    <h2 class="text-align-center title-guide text-light">
-        Bagaimana Cara Mengerjakan Career Assessment Quiz?
-    </h2>
-    <section class="mx-auto" data-testid="sectionHelpArticlePage">
-        <div class="list-guide">
-            <ol class="mb-2">
-                <li class="mb-4">Isi data dirimu dengan <strong>lengkap.</strong>📝 
-                    <img
-                        alt="User-added image"
-                        src="https://i.ibb.co/w0CKRnc/Halaman-produk-tokopedia.jpg"
-                    />
-                </li>
-                <li class="mb-4">
-                    Jawab tes RIASEC dengan <strong>jujur</strong>. 🤔
-                    <img
-                        alt="User-added image"
-                        src="https://i.ibb.co/KXvqnX8/Cek-keranjang-produk-tokopedia.jpg"
-                    />
-                </li class="mb-4">
-                <li>
-                    Klik submit dan lihat hasilnya. 👀
-                    <img
-                        alt="User-added image"
-                        src="https://i.ibb.co/hyrQZBW/checkout-tokopedia.png"
-                    />
-                </li>
-                <li class="mb-4">
-                    Temukan potensi karirmu!. 💼
-                </li>
-            </ol>
-        </div>
+            <div class="answer-desc">
+                <div class="answer-desc-title">
+                    <p>Terdapat 6 pilihan untuk setiap pertanyaan</p>
+                    <div class="answer-list d-flex text-light text-start">
+                        <div class="left-list">
+                            <ul>
+                                <li>1: Sangat Tidak Suka</li>
+                                <li>2: Tidak Suka</li>
+                                <li>3. Agak Tidak Suka</li>
+                            </ul>
+                        </div>
+                        <div class="right-list">
+                            <ul>
+                                <li>4: Agak Suka</li>
+                                <li>5: Suka</li>
+                                <li>6. Sangat Suka</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        <a href="{{route('register')}}" class="btn btn-primary border-0 d-grid" style="background: #f72585; padding: 12px 36px;">Lanjut !!!</a>
-    </section>
-    </form>
-    @include('components.footer')
+            <div class="d-grid gap-2 col-md-3 mx-auto">
+                <a
+                    href="{{ route('register')}}"
+                    class="btn btn-primary text-decoration-none border-0"
+                    style="padding: 12px 36px; background: #f72585"
+                >
+                    Lanjut
+                </a>
+            </div>
+        </header>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" style="position: fixed">
+        <a
+            href="https://ukrida.ac.id/studyprogram/ps/50/program-studi-psikologi"
+            class="text-decoration-none text-light"
+            >Copyright &copy;
+            <script>
+                document.write(new Date().getFullYear());
+            </script>
+            – Psikologi UKRIDA</a
+        >
+    </footer>
 </div>
 
 <!-- Buat gambar bisa di zoom out atau diklik lalu responsive gambar masih statis -->

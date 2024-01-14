@@ -11,6 +11,7 @@ use Database\Seeders\CategoriesTableSeeder;
 use Database\Seeders\JobsTableSeeder;
 use Database\Seeders\QuestionsSeeder;
 use Database\Seeders\TypesSeeder;
+use Database\Seeders\UserSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -32,6 +33,9 @@ class DatabaseSeeder extends Seeder
             JobsTableSeeder::class,
             TypesSeeder::class,
             QuestionsSeeder::class,
+            UserSeeder::class,
+            ResultSeeder::class,
         ]);
     }
 }
+
