@@ -1,6 +1,6 @@
 @extends('layouts.app') @section('content')
 <div id="form-wrapper">
-    <form action="/p/quote.php" method="post" class="test-form">
+    <form action="" method="post" class="test-form">
         <div
             class="alert alert-warning alert-dismissible fade show"
             role="alert"
@@ -28,8 +28,8 @@
                 <h5>{{ $category }}</h5>
             </div>
 
-            @foreach ($sectionQuestions as $index => $question) @foreach
-            ($question as $sectionIndex => $innerQuestion)
+            @foreach ($sectionQuestions as $index => $question)
+            @foreach ($question as $sectionIndex => $innerQuestion)
 
             <div class="soal text-center">
                 <h4
@@ -71,7 +71,9 @@
                 />
             </div>
 
-            @endforeach @endforeach @if ($loop->last)
+            @endforeach
+            @endforeach
+            @if ($loop->last)
             <button
                 type="submit"
                 class="btn btn-primary border-0 d-grid"
@@ -100,6 +102,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     function mainPage(chunkedQuestions) {
+
         var isFormValid = true;
         const currentSection = $(".nextButton").data("section");
         const categoryOrder = [
@@ -112,11 +115,11 @@
         ];
 
         const currentSectionIndex = categoryOrder.indexOf(currentSection);
+
         if (isNaN(currentSectionIndex) || currentSectionIndex === -1) {
             return isFormValid;
         }
         const nextSection = categoryOrder[currentSectionIndex + 1];
-
         if (
             document.querySelectorAll('#checkRadio [type="radio"]:checked')
                 .length < 6
@@ -140,9 +143,11 @@
             // check if all questions are answered to enable the submit button
             const totalQuestionsInSection =
                 chunkedQuestions[currentSection].length;
+
             const answeredQuestionsInSection = document.querySelectorAll(
                 `#checkRadio_${nextSection} [type="radio"]:checked`
             ).length;
+
 
             // If all questions in the current section are answered, enable the submit button
             if (answeredQuestionsInSection === totalQuestionsInSection * 6) {
