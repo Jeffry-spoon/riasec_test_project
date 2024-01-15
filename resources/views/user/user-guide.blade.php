@@ -6,7 +6,7 @@
         <!-- Showcase -->
         
         <header class="showcase col-sm-12 justify-content-center mx-auto">
-            <p class="fs-5 text-center text-light col-6">
+            <p class="fs-5 text-center text-light col-lg-6 col-sm-12 mt-lg-5">
                 Kuesioner ini terdiri dari 30 aktivitas yang dilakukan dalam
                 pekerjaan yang berbeda. Quiz ini digunakan untuk menentukan
                 minat bidang anda. Harap perhatikan bahwa tidak ada jawaban yang

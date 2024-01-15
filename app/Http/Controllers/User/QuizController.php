@@ -7,6 +7,7 @@ use App\Models\Types;
 use App\Models\Questions;
 use App\Models\Categories;
 use Illuminate\Http\Request;
+use App\Models\Results;
 use Symfony\Component\Console\Question\Question;
 use lluminate\Database\Eloquent\Builder;
 
@@ -88,14 +89,11 @@ class QuizController extends Controller
     public function store(Request $request)
     {
 
-    dd($request);
-        // Mendapatkan nilai hidden input
-    $hiddenData = json_decode($request->input('hiddenData'), true);
+    dd($request->all());
 
-    // Lakukan sesuatu dengan data yang diterima
-    // ...
 
-    return response()->json(['message' => 'Data berhasil diterima di server.']);
+
+    return response()->json(['message' => 'Data berhasil diterima di server.', 'data' => $request->all()]);
     }
 
     /**

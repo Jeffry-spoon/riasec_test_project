@@ -228,7 +228,7 @@ function sendDataToController() {
     var csrfToken = $('meta[name="csrf-token"]').attr('content');
 
     $.ajax({
-        url: 'http://127.0.0.1:8000/submit',  // URL endpoint POST harus diisi dengan endpoint yang benar
+        url:  "{{route('quiz.store')}}",  // URL endpoint POST harus diisi dengan endpoint yang benar
         type: 'POST',
         data: JSON.stringify({
             data: data,
@@ -239,7 +239,7 @@ function sendDataToController() {
             'X-CSRF-TOKEN': csrfToken
         },
         success: function (result) {
-            console.log('Quiz answers submitted successfully:', result);
+            console.log('Quiz answers submitted successfully:', result.data);
             // Redirect ke halaman hasil quiz setelah pengiriman berhasil
             window.location.href = "{{ route('result') }}";
         },
