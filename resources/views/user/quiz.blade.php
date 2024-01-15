@@ -88,7 +88,7 @@
                 type="button"
                 class="btn btn-primary nextButton"
                 data-section="{{ $category }}"
-                onclick="return mainPage({{ json_encode($chunkedQuestions) }})"
+                onclick="return mainPage(this, {{ json_encode($chunkedQuestions) }}, '{{ $category }}')"
             >
                 Next
             </button>
@@ -101,10 +101,10 @@
 @include('components.footer')
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    function mainPage(chunkedQuestions) {
+    function mainPage(button, chunkedQuestions, category) {
 
         var isFormValid = true;
-        const currentSection = $(".nextButton").data("section");
+        const currentSection = $(button).data("section");
         const categoryOrder = [
             "REALISTIC",
             "INVESTIGATIVE",
@@ -114,15 +114,14 @@
             "CONVENTIONAL",
         ];
 
+        var currentsection_length = chunkedQuestions[currentSection][0].length;
+
         const currentSectionIndex = categoryOrder.indexOf(currentSection);
 
-        if (isNaN(currentSectionIndex) || currentSectionIndex === -1) {
-            return isFormValid;
-        }
         const nextSection = categoryOrder[currentSectionIndex + 1];
         if (
             document.querySelectorAll('#checkRadio [type="radio"]:checked')
-                .length < 6
+                .length < currentsection_length
         ) {
             $("#incompleteSectionAlert").show();
             isFormValid = false;
