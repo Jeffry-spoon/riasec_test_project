@@ -35,6 +35,9 @@ function getCurrentCategory() {
 
 // function untuk melakukan mapping data sementara
 function mapping() {
+    // inisiasi variabel
+    var data = {};
+
     // Loop melalui setiap kategori dalam quizData
     for (var category in quizData) {
         if (quizData.hasOwnProperty(category)) {
