@@ -1,19 +1,25 @@
-@extends('layouts.app') @section('content')
+@extends('layouts.app')
+@section('content')
+<script>
+    // Define a global variable to hold your data
+    var quizData = @json($chunkedQuestions);
+
+    var userAnswers = {};
+
+    function saveAnswer(category, questionId, answer) {
+    if (!userAnswers[category]) {
+        userAnswers[category] = {};
+    }
+
+    userAnswers[category][questionId] = answer;
+}
+</script>
 <div id="form-wrapper">
     <form action="" method="post" class="test-form">
-        <div
-            class="alert alert-warning alert-dismissible fade show"
-            role="alert"
-            id="incompleteSectionAlert"
-            style="display: none"
-        >
-            You should answer all questions in this section before moving on.
-            <button
-                type="button"
-                class="btn-close d-flex align-items-center"
-                data-bs-dismiss="alert"
-                aria-label="Close"
-            ></button>
+        @csrf
+        <div id="alertMessage" class="alert alert-warning alert-dismissible fade show" role="alert" style="display: none;">
+            <span id="alertText" class="text-black"></span>
+            <button type="button" class="btn-close" onclick="closeAlert()" aria-label="Close"></button>
         </div>
 
         @foreach ($chunkedQuestions as $category => $sectionQuestions)
@@ -45,19 +51,14 @@
                             <input
                                 class="form-check-input"
                                 type="radio"
-                                name="inlineRadioOptions_{{ $sectionIndex }}_{{
-                                    $index
-                                }}"
-                                id="inlineRadio{{ $sectionIndex }}__{{
-                                    $index
-                                }}_{{ $i }}"
-                                value="option{{ $i }}"
+                                name="inlineRadioOptions_{{ $sectionIndex }}_{{$index}}"
+                                id="inlineRadio{{ $sectionIndex }}{{$index}}_{{ $i }}"
+                                value="{{ $i }}"
+                                onchange="saveAnswer('{{ $category }}', '{{ $innerQuestion["id"] }}', this.value)"
                             />
                             <label
                                 class="form-check-label"
-                                for="inlineRadio_{{ $sectionIndex }}_{{
-                                    $index
-                                }}_{{ $index }}"
+                                for="inlineRadio_{{ $sectionIndex }}_{{$index}}_{{ $i }}"
                             >
                                 {{ $i }}
                             </label>
@@ -75,22 +76,20 @@
             @endforeach
             @if ($loop->last)
             <button
-                type="submit"
-                class="btn btn-primary border-0 d-grid"
-                style="padding: 12px 36px; background: #f72585"
-                id="submitButton"
-                disabled
+                type="button"
+                class="btn btn-primary"
+                onclick="handleSubmitButtonClick()"
             >
-                Submit
+            Submit
             </button>
             @else
             <button
                 type="button"
                 class="btn btn-primary nextButton"
                 data-section="{{ $category }}"
-                onclick="return mainPage(this, {{ json_encode($chunkedQuestions) }}, '{{ $category }}')"
+                onclick="handleNextButtonClick()"
             >
-                Next
+            Next
             </button>
             @endif
         </div>
@@ -100,62 +99,6 @@
 
 @include('components.footer')
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    function mainPage(button, chunkedQuestions, category) {
 
-        var isFormValid = true;
-        const currentSection = $(button).data("section");
-        const categoryOrder = [
-            "REALISTIC",
-            "INVESTIGATIVE",
-            "ARTISTIC",
-            "SOCIAL",
-            "ENTERPRISING",
-            "CONVENTIONAL",
-        ];
-
-        var currentsection_length = chunkedQuestions[currentSection][0].length;
-
-        const currentSectionIndex = categoryOrder.indexOf(currentSection);
-
-        const nextSection = categoryOrder[currentSectionIndex + 1];
-        if (
-            document.querySelectorAll('#checkRadio [type="radio"]:checked')
-                .length < currentsection_length
-        ) {
-            $("#incompleteSectionAlert").show();
-            isFormValid = false;
-        } else {
-            $("#incompleteSectionAlert").hide();
-
-            // Hide current section
-            $(`#section_${currentSection}`).hide();
-
-            // Show next section
-            $(`#section_${nextSection}`).show();
-
-            // Optional: Scroll to the top of the next section
-            $(`#section_${nextSection}`)[0].scrollIntoView({
-                behavior: "smooth",
-            });
-
-            // check if all questions are answered to enable the submit button
-            const totalQuestionsInSection =
-                chunkedQuestions[currentSection].length;
-
-            const answeredQuestionsInSection = document.querySelectorAll(
-                `#checkRadio_${nextSection} [type="radio"]:checked`
-            ).length;
-
-
-            // If all questions in the current section are answered, enable the submit button
-            if (answeredQuestionsInSection === totalQuestionsInSection * 6) {
-                $("#submitButton").prop("disabled", false);
-            }
-
-            return isFormValid;
-        }
-    }
-</script>
-
+<script src="{{ asset('js/quiz.js') }}"></script>
 @endsection
