@@ -87,7 +87,15 @@ class QuizController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+    dd($request);
+        // Mendapatkan nilai hidden input
+    $hiddenData = json_decode($request->input('hiddenData'), true);
+
+    // Lakukan sesuatu dengan data yang diterima
+    // ...
+
+    return response()->json(['message' => 'Data berhasil diterima di server.']);
     }
 
     /**

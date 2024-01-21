@@ -15,11 +15,12 @@
 }
 </script>
 <div id="form-wrapper">
-    <form action="" method="post" class="test-form">
+    <form id="quizForm" method="POST" action="" class="test-form">
         @csrf
+
         <div id="alertMessage" class="alert alert-warning alert-dismissible fade show" role="alert" style="display: none;">
             <span id="alertText" class="text-black"></span>
-            <button type="button" class="btn-close" onclick="closeAlert()" aria-label="Close"></button>
+            {{-- <button type="button" class="btn-close" onclick="closeAlert()" aria-label="Close"></button> --}}
         </div>
 
         @foreach ($chunkedQuestions as $category => $sectionQuestions)
@@ -51,7 +52,7 @@
                             <input
                                 class="form-check-input"
                                 type="radio"
-                                name="inlineRadioOptions_{{ $sectionIndex }}_{{$index}}"
+                                name="inlineRadioOptions_{{ $category }}_{{ $sectionIndex }}_{{ $index }}"
                                 id="inlineRadio{{ $sectionIndex }}{{$index}}_{{ $i }}"
                                 value="{{ $i }}"
                                 onchange="saveAnswer('{{ $category }}', '{{ $innerQuestion["id"] }}', this.value)"

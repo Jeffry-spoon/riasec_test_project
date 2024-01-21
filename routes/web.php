@@ -22,7 +22,9 @@ Route::get('/', function () {
 
 // Quiz
 Route::get('quiz', [QuizController::class, 'create'])->name('quiz.create');
-Route::post('quiz', [QuizController::class, 'store'])->name('quiz.store');
+Route::post('submit', [QuizController::class, 'store'])->name('quiz.store');
+
+
 
 // User guide
 Route::get('help', function () {
@@ -32,7 +34,7 @@ Route::get('help', function () {
 
 Route::get('result', function () {
     return view('user.result');
-});
+})->name('result');
 
 
 // Route::get('/dashboard', function () {

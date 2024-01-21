@@ -561,13 +561,12 @@ button {
         width: 100%;
         margin-top: 16px;
         padding: 12px 16px;
-        background: rgba(202, 202, 202, 0.2);
-        -webkit-box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border-radius: 10px;
-        border: 1px solid rgba(255, 255, 255, 0.18);
+        background: rgba(0, 0, 0, 0.22);
+        border-radius: 16px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(9.2px);
+        -webkit-backdrop-filter: blur(9.2px);
+        border: 1px solid rgba(0, 0, 0, 0.3);
     }
     /* Showcase */
     .showcase {
@@ -601,6 +600,7 @@ button {
     .main-nav {
         margin-left: 16px;
         margin-right: 16px;
+        padding: 24px 8px;
     }
 }
 
@@ -698,8 +698,8 @@ button {
     background: #89b800;
     box-shadow: 1px -1px #79a300, 2px -2px #79a300, 3px -3px #79a300,   4px -4px #79a300, 5px -5px #79a300, 6px -6px #79a300, 7px -7px   #79a300, 8px -8px #79a300, 9px -9px #79a300, 10px -10px #79a300;
   }
-  
-  
+
+
   .wrapper{
     text-align:center;
     margin:0 auto;

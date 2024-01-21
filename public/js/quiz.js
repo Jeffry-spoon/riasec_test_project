@@ -23,7 +23,7 @@ function getCurrentCategory() {
     )
 
     // Ambil ID dari elemen tersebut
-    if(visibleSection) {
+    if (visibleSection) {
         var categoryId = visibleSection.id.replace('section_', '');
         return categoryId;
     }
@@ -102,14 +102,26 @@ function validation(data, selectCategory) {
     return tempCount;
 }
 
+// function untuk memvalidasi apakah semua pertanyaan pada kategori terakhir telah dijawab
+function validateLastCategory() {
+    var lastCategory = Object.keys(data)[Object.keys(data).length - 1];
+
+    // Cek setiap pertanyaan dalam kategori terakhir
+    for (var i = 0; i < data[lastCategory].questions.length; i++) {
+        if (data[lastCategory].questions[i].answer === null) {
+            return false; // Ada pertanyaan pada kategori terakhir yang belum dijawab
+        }
+    }
+
+    return true; // Semua pertanyaan pada kategori terakhir telah dijawab
+}
+
 // function untuk mentrigger logic button next
 function handleNextButtonClick() {
     // Simpan jawaban pengguna ke backend atau lakukan tindakan lainnya
     console.log('User Answers:', userAnswers);
 
     if (showFeedback()) {
-        console.log('Moving to the next category...');
-
         moveToNextCategory();
 
         currentCategory = Object.keys(data)[currentCategoryIndex];
@@ -132,7 +144,7 @@ function showFeedback() {
         setTimeout(function() {
             // Cek apakah alert masih terbuka
             var alertMessage = document.getElementById('alertMessage');
-            if(alertMessage.style.display === 'block') {
+            if (alertMessage.style.display === 'block') {
                 // jika alert masih terbuka, tutup alert secara automatis
                 alertMessage.style.display = 'none';
             }
@@ -160,9 +172,83 @@ function moveToNextCategory() {
         console.log('Current category index:', currentCategoryIndex);
 
     } else {
-        console.log('Ini adalah kategori terakhir.');
+        submitQuizAnswers();
     }
 }
+
+// function untuk mengirimkan data ke controller
+function submitQuizAnswers() {
+    var unansweredCount = setValueQuestion(currentCategory);
+    console.log('Current category for feedback:', currentCategory);
+    console.log('Unanswered Count:', unansweredCount);
+
+    if (unansweredCount > 0) {
+        var alertText = `Anda belum menjawab ${unansweredCount} pertanyaan di kategori ini. Silakan jawab semua pertanyaan sebelum melanjutkan.`;
+
+        document.getElementById('alertText').innerText = alertText;
+        document.getElementById('alertMessage').style.display = 'block';
+
+        setTimeout(function() {
+            // Cek apakah alert masih terbuka
+            var alertMessage = document.getElementById('alertMessage');
+            if (alertMessage.style.display === 'block') {
+                // jika alert masih terbuka, tutup alert secara automatis
+                alertMessage.style.display = 'none';
+            }
+        }, 5000);
+
+        return false;
+    }
+
+    // Periksa apakah semua pertanyaan pada kategori terakhir telah dijawab
+    if (!validateLastCategory()) {
+        var alertText = 'Mohon lengkapi semua pertanyaan pada kategori terakhir sebelum mengirim jawaban.';
+        document.getElementById('alertText').innerText = alertText;
+        document.getElementById('alertMessage').style.display = 'block';
+
+        setTimeout(function() {
+            // Cek apakah alert masih terbuka
+            var alertMessage = document.getElementById('alertMessage');
+            if (alertMessage.style.display === 'block') {
+                // jika alert masih terbuka, tutup alert secara automatis
+                alertMessage.style.display = 'none';
+            }
+        }, 5000);
+
+        return false;
+    }
+
+    sendDataToController();
+
+    return true;
+}
+
+function sendDataToController() {
+    // Menggunakan metode AJAX untuk mengirim data JSON ke endpoint '/submit-quiz'
+    var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+    $.ajax({
+        url: 'http://127.0.0.1:8000/submit',  // URL endpoint POST harus diisi dengan endpoint yang benar
+        type: 'POST',
+        data: JSON.stringify({
+            data: data,
+            userAnswers: userAnswers
+        }),
+        contentType: 'application/json',
+        headers: {
+            'X-CSRF-TOKEN': csrfToken
+        },
+        success: function (result) {
+            console.log('Quiz answers submitted successfully:', result);
+            // Redirect ke halaman hasil quiz setelah pengiriman berhasil
+            window.location.href = "{{ route('result') }}";
+        },
+        error: function (error) {
+            console.error('Error submitting quiz answers:', error);
+        }
+    });
+}
+
 
 // function untuk menyembunyikan kategori saat ini
 function hideCurrentCategory() {
@@ -181,106 +267,11 @@ function showNextCategory() {
 
 }
 
+ function handleSubmitButtonClick() {
+    // Simpan jawaban pengguna ke backend atau lakukan tindakan lainnya
 
+    if (showFeedback()) {
 
-
-// Fungsi untuk mengambil jawaban dari formulir dan memperbarui variabel data
-// function updateDataFromForm(dataToUpdate) {
-//     // Iterasi melalui setiap kategori dalam dataToUpdate
-//     for (var category in dataToUpdate) {
-//         if (dataToUpdate.hasOwnProperty(category)) {
-//             // Iterasi melalui setiap pertanyaan dalam kategori
-//             for (var i = 0; i < dataToUpdate[category].questions.length; i++) {
-//                 // Ambil jawaban dari formulir
-//                 var answer = $('input[name="inlineRadioOptions_' + category + '_' + i + '"]:checked').val();
-//                 console.log(answer);
-//                 // Periksa apakah jawaban tidak null
-//                 if (answer !== undefined) {
-//                     // Update nilai jawaban pada variabel dataToUpdate
-//                     dataToUpdate[category].questions[i].answer = answer;
-
-//                 }
-//             }
-//         }
-//     }
-// }
-// console.log(dataToUpdate);
-
-
-//     function mainPage(button, chunkedQuestions, category) {
-
-//         var isFormValid = true;
-//         const currentSection = $(button).data("section")
-//         const categoryOrder = [
-//             "REALISTIC",
-//             "INVESTIGATIVE",
-//             "ARTISTIC",
-//             "SOCIAL",
-//             "ENTERPRISING",
-//             "CONVENTIONAL",
-//         ];
-
-//         var currentsection_length = chunkedQuestions[currentSection][0].length;
-
-//         console.log(currentsection_length);
-
-//         const currentSectionIndex = categoryOrder.indexOf(currentSection);
-//         // if (isNaN(currentSectionIndex) || currentSectionIndex === -1) {
-//         //     return isFormValid;
-//         // }
-//         const nextSection = categoryOrder[currentSectionIndex + 1];
-
-//         if (
-//             document.querySelectorAll('#checkRadio [type="radio"]:checked')
-//                 .length < currentsection_length
-//         ) {
-//             $("#incompleteSectionAlert").show();
-//             isFormValid = false;
-//         } else {
-//             $("#incompleteSectionAlert").hide();
-
-//             // Hide current section
-//             $(#section_$,{currentSection}).hide();
-
-//             // Show next section
-//             $(#section_$,{nextSection}).show();
-//             // $(#section_INVESTIGATIVE).show();
-
-//             // Optional: Scroll to the top of the next section
-//             $(#section_${nextSection})[0].scrollIntoView({
-//                 behavior: "smooth",
-//             });
-
-
-//             // check if all questions are answered to enable the submit button
-//             // const totalQuestionsInSection =
-//             //     chunkedQuestions[currentsection_length].length;
-
-//             // const answeredQuestionsInSection = document.querySelectorAll(
-//             //     #checkRadio_${nextSection} [type="radio"]:checked
-//             // );
-//             // Check if all questions are answered to enable the submit button
-
-//             // $(document).ready(function(){
-
-//             //     $('#ccSelectForm').validate({
-//             //         rules: {
-//             //             inlineRadioOptions_0_0: {
-//             //                 required: true,
-//             //             },
-//             //         }
-//             //     });
-
-//             //     $('#ccSelectForm input').on('keyup blur', function () {
-//             //         if ($('#ccSelectForm').valid()) {
-//             //     $('button.btn').prop('disabled', false);
-//             //     } else {
-//             //     $('button.btn').prop('disabled', 'disabled');
-//             //     }
-//             //     });
-//             // });
-
-
-
-//         }
-//     }
+        moveToNextCategory();
+    }
+}
