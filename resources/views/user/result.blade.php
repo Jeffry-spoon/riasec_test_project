@@ -2,6 +2,8 @@
 
 @section('content')
 
+@dd($categoryResults)
+
       <!-- Main -->
       <div class="container text-center">
         <div class="row">
@@ -22,13 +24,13 @@
             <p>Add values to the javascript array to edit the chart</p>
                 <div id="chart">
                   <canvas id="myBarChart" width="400" height="400"></canvas>
-                </div>  
+                </div>
             </div>
           </div>
 
           <!-- End Bar Chart -->
 
-          <!-- Result Table --> 
+          <!-- Result Table -->
           <div class="col-md-4 mb-4"></div>
           <!-- End Result Table -->
         </div>
@@ -115,6 +117,6 @@ const data = {
   }]
 };
     </script>
-    
+
 
 @endsection

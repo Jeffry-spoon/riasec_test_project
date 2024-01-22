@@ -89,11 +89,30 @@ class QuizController extends Controller
     public function store(Request $request)
     {
 
-    dd($request->all());
+      // Ambil data jawaban dari request
+      $userAnswers = $request->input('userAnswers');
+
+      // Inisialisasi array untuk menyimpan hasil per kategori
+      $categoryResults = [];
+
+      // Loop melalui setiap kategori pada jawaban pengguna
+      foreach ($userAnswers as $category => $answers) {
+          // Hitung jumlah jawaban yang memiliki nilai tertentu (misalnya, "6")
+          $totalAnswers = array_sum($answers);
+
+          // Tambahkan pernyataan dd untuk melihat hasil pada setiap iterasi
+        //   dd($totalAnswers);
+
+          // Simpan hasil per kategori
+          $categoryResults[$category] = $totalAnswers;
+      }
+
+      // Sekarang, $categoryResults akan berisi total jawaban per kategori
 
 
+    // Redirect ke ResultController dengan membawa data hasil
+    return redirect()->route('result.show', ['categoryResults' => $categoryResults]);
 
-    return response()->json(['message' => 'Data berhasil diterima di server.', 'data' => $request->all()]);
     }
 
     /**

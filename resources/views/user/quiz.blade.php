@@ -325,7 +325,7 @@
                 success: function(result) {
                     console.log('Quiz answers submitted successfully:', result.data);
                     // Redirect ke halaman hasil quiz setelah pengiriman berhasil
-                    window.location.href = "{{ route('result') }}";
+                    window.location.href = "{{ route('result.show') }}";
                 },
                 error: function(error) {
                     console.error('Error submitting quiz answers:', error);

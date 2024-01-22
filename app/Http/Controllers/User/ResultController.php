@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
+use App\Http\Controllers\Controller;
 use App\Models\Results;
 use Illuminate\Http\Request;
 
@@ -34,9 +35,21 @@ class ResultController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Results $results)
+    public function show(Request $request)
     {
-        return view('user/result');
+    //     // Ambil data hasil dari request
+    // $categoryResults = $request->input('categoryResults');
+
+    // // Tambahkan pernyataan dd untuk melihat data hasil
+    // dd($categoryResults);
+
+    // // Anda dapat melakukan apa pun yang diperlukan dengan data hasil ini,
+    // // misalnya, menyimpannya ke database atau langsung melewatkan ke view.
+
+    // // Misalnya, melewatkan data hasil ke view
+    // return view('user.result', compact('categoryResults'));
+
+    return view ('user.result');
     }
 
     /**
