@@ -109,7 +109,7 @@ class QuizController extends Controller
 
       // Sekarang, $categoryResults akan berisi total jawaban per kategori
 
-
+      dd($categoryResults);
     // Redirect ke ResultController dengan membawa data hasil
     return redirect()->route('result.show', ['categoryResults' => $categoryResults]);
 

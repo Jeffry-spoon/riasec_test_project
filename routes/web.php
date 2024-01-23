@@ -19,14 +19,12 @@ use App\Http\Controllers\User\ResultController;
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
-
-Route::get('quiz', [QuizController::class, 'create'])->name('quiz.create');
+//
+// Route::get('quiz', [QuizController::class, 'create'])->name('quiz.create');
 
 // Route::get('quiz', [QuizController::class, 'create'])->name('quiz.create');
 Route::post('submit', [QuizController::class, 'store'])->name('quiz.store');
 
-// Result
-Route::get('result', [ResultController::class, 'show'])->name('result.show');
 
 
 // User guide
@@ -34,12 +32,13 @@ Route::get('help', function () {
     return view('user.user-guide');
 })->name('help');
 
-// Route::middleware('registered')->group(function () {
-//     // Quiz
-//     // Route::get('quiz', [QuizController::class, 'create'])->name('quiz.create');
-//     Route::post('submit', [QuizController::class, 'store'])->name('quiz.store');
+Route::middleware('registered')->group(function () {
+    // Quiz
+    Route::get('quiz', [QuizController::class, 'create'])->name('quiz.create');
 
+    // Result
+    Route::get('result', [ResultController::class, 'show'])->name('result.show');
 
-// });
+});
 
 require __DIR__.'/auth.php';

@@ -3,7 +3,7 @@
 @section('content')
   <!-- Register -->
 
-    <form method="post" action="register">
+    <form method="post" action="{{ route('register.store') }}">
         @csrf
       <div class="title-form">
         <p class="fs-5 text-center">Sebelum Anda memulai tes, kami ingin mengenal Anda lebih baik. Kami tidak akan pernah membagikan data Anda kepada orang lain.</p>

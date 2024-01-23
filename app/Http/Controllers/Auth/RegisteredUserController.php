@@ -77,10 +77,8 @@ class RegisteredUserController extends Controller
             'occupation_desc' => $userDetailData['occupation'],
         ]);
 
-        // Redirect only if the user is not already authenticated
-    // if (!Auth::check()) {
+        Auth::login($user);
 
-    // }
-    return redirect()->route('quiz.create');
+        return redirect($this->redirectTo);
     }
 }
