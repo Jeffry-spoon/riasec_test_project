@@ -2,7 +2,7 @@
 
 @section('content')
 
-@dd($categoryResults)
+{{-- @dd($categoryResults) --}}
 
       <!-- Main -->
       <div class="container text-center">

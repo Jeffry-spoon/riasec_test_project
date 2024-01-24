@@ -91,8 +91,12 @@ class QuizController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
+
+        // dd($request->all());
+    // Mendapatkan tipe yang aktif sebagai koleksi
+    $typesCollection = Types::where('is_active', 1)->get();
 
       // Ambil data jawaban dari request
       $userAnswers = $request->input('userAnswers');
@@ -119,12 +123,13 @@ class QuizController extends Controller
 
       // Session masing - masing pengguna
       $username = Session::get('registration_username');
-      dd($categoryResults, $typeId, $typeName);
+    //   dd($categoryResults, $typeId, $typeName);
 
       session(['quiz_completed' => true]);
 
       // Redirect ke ResultController dengan membawa data hasil
-    return redirect('/result')->with('success', 'Kuis berhasil disubmit!');
+    //   return view('result.show', compact('categoryResults', 'typeId', 'typeName'));
+    return redirect()->route('result.show', compact('categoryResults', 'typeId', 'typeName'));
 
     }
 

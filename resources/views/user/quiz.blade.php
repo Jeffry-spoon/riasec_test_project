@@ -335,8 +335,6 @@
 
         }
 
-        console.log(data);
-
 
         // function untuk menyembunyikan kategori saat ini
         function hideCurrentCategory() {
