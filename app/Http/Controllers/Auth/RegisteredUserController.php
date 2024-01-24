@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 use App\Models\Types;
+use Illuminate\Support\Facades\Session;
+
 
 class RegisteredUserController extends Controller
 {
@@ -32,6 +34,9 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+
+
+
         $request->validate([
             'name' => 'required|string',
             'email' => 'required|email:dns',
@@ -44,6 +49,15 @@ class RegisteredUserController extends Controller
             // 'major' => 'required|string',
             'occupation' => 'required|string',
         ]);
+
+        $existingUser = User::where('email', $request->input('email'))->first();
+
+        // Periksa apakah pengguna sudah terdaftar sebelumnya.
+        if ($existingUser) {
+            Auth::login($existingUser);
+
+            return redirect()->route('quiz.create')->with('info', 'Anda sudah terdaftar sebelumnya.');
+        }
 
         $userData = [
             'name' => $request['name'],
@@ -79,6 +93,21 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect($this->redirectTo);
+        return redirect()->route('quiz.create');
     }
+
+    public function storeRegistration(Request $request)
+    {
+    // Validasi dan logika penyimpanan data registrasi
+
+    // Simpan nama pengguna ke dalam sesi
+    Session::put('registration_username', $request->input('name'));
+
+    // Set sesi registration_completed
+    Session::put('registration_completed', true);
+
+    // Redirect atau kirim tanggapan sukses
+    return redirect('/quiz')->with('success', 'Registrasi berhasil!');
+    }
+
 }

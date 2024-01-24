@@ -17,10 +17,13 @@ class RegisteredMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        // Pemeriksaan apakah pengguna sudah terdaftar
-        if (!$request->user()) {
-            // Debugging
-            return redirect()->route('register');
+        // Periksa apakah pengguna telah melakukan registrasi.
+        if (auth()->check()) {
+            if (session('quiz_completed')) {
+                return redirect('/result')->with('success', 'Anda telah menyelesaikan kuis!');
+            }
+            // Lanjutkan ke tujuan asli jika pengguna sudah terdaftar.
+            return $next($request);
         }
         // Cek apa  kah pengguna telah menyelesaikan semua langkah (registrasi, quiz, result)
         if (!$this->userCompletedSession($request)) {
@@ -28,8 +31,8 @@ class RegisteredMiddleware
             return redirect()->route('register');
         }
 
-        // Jika pengguna terdaftar dan telah menyelesaikan sesi, lanjutkan ke permintaan berikutnya
-        return $next($request);
+         // Redirect atau kirim tanggapan kesalahan jika pengguna belum terdaftar.
+         return redirect('/register')->with('error', 'Anda harus registrasi terlebih dahulu.');
     }
 
     /**

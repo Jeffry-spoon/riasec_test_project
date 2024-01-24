@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use App\Models\Results;
 use Symfony\Component\Console\Question\Question;
 use lluminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Contracts\Session\Session as SessionSession;
 
 class QuizController extends Controller
 {
@@ -26,8 +28,8 @@ class QuizController extends Controller
      */
     public function create(Types $types, Questions $question)
     {
-    // Mendapatkan tipe yang aktif sebagai koleksi
-    $types = Types::where('is_active', 1)->get();
+      // Mendapatkan tipe yang aktif sebagai koleksi
+     $typesCollection = Types::where('is_active', 1)->get();
 
     // Inisialisasi array untuk menyimpan pertanyaan
     $questions = [];
@@ -47,7 +49,7 @@ class QuizController extends Controller
     // }
 
     // Loop melalui setiap tipe
-    foreach ($types as $type) {
+    foreach ($typesCollection  as $type) {
         // Ambil pertanyaan untuk setiap tipe
         $questions[$type->id] = Questions::where('types_id', $type->id)->get();
 
@@ -63,7 +65,7 @@ class QuizController extends Controller
 
     // Group questions by category
     $groupedQuestions = [];
-    foreach ($types as $type) {
+    foreach ($typesCollection as $type) {
         foreach ($questions[$type->id] as $question) {
             $category = $question->category_text;
             $groupedQuestions[$category][] = $question;
@@ -79,7 +81,10 @@ class QuizController extends Controller
     $allCategories = array_keys($chunkedQuestions);
     $uniqueCategories = array_values(array_unique($allCategories));
 
-    return view('user/quiz', compact('types',  'chunkedQuestions', 'uniqueCategories'));
+    Session::put('current_type_id', $types->id);
+    Session::put('current_type_name', $types->type_name);
+
+    return view('user/quiz', compact('typesCollection', 'chunkedQuestions', 'uniqueCategories'));
     }
 }
 
@@ -95,25 +100,35 @@ class QuizController extends Controller
       // Inisialisasi array untuk menyimpan hasil per kategori
       $categoryResults = [];
 
+       // Mendapatkan type_id
+    $typeId = $request->input('type_id');
+    $typeName = $request->input('type_name');
+
       // Loop melalui setiap kategori pada jawaban pengguna
       foreach ($userAnswers as $category => $answers) {
           // Hitung jumlah jawaban yang memiliki nilai tertentu (misalnya, "6")
           $totalAnswers = array_sum($answers);
 
-          // Tambahkan pernyataan dd untuk melihat hasil pada setiap iterasi
-        //   dd($totalAnswers);
-
           // Simpan hasil per kategori
           $categoryResults[$category] = $totalAnswers;
       }
 
-      // Sekarang, $categoryResults akan berisi total jawaban per kategori
+      // Mendapatkan type_id dari koleksi Types
+    $typeId = $typesCollection->pluck('id')->first();
+    $typeName = $typesCollection->pluck('type_name')->first();
 
-      dd($categoryResults);
-    // Redirect ke ResultController dengan membawa data hasil
-    return redirect()->route('result.show', ['categoryResults' => $categoryResults]);
+      // Session masing - masing pengguna
+      $username = Session::get('registration_username');
+      dd($categoryResults, $typeId, $typeName);
+
+      session(['quiz_completed' => true]);
+
+      // Redirect ke ResultController dengan membawa data hasil
+    return redirect('/result')->with('success', 'Kuis berhasil disubmit!');
 
     }
+
+
 
     /**
      * Display the specified resource.

@@ -14,6 +14,9 @@
             userAnswers[category][questionId] = answer;
         }
     </script>
+
+{{-- @dd($types); --}}
+
     <div id="form-wrapper">
         <form id="quizForm" method="POST" action="" class="test-form">
             @csrf
@@ -75,9 +78,7 @@
     </div>
 
     @include('components.footer')
-   
 
-    {{-- <script src="{{ asset('js/quiz.js') }}"></script> --}}
     <script>
         // Inisialisasi variabel data sebagai objek kosong di luar fungsi mapping
         console.log('data lemparan', quizData);
@@ -316,7 +317,7 @@
                 type: 'POST',
                 data: JSON.stringify({
                     data: data,
-                    userAnswers: userAnswers
+                    userAnswers: userAnswers,
                 }),
                 contentType: 'application/json',
                 headers: {
@@ -331,7 +332,10 @@
                     console.error('Error submitting quiz answers:', error);
                 }
             });
+
         }
+
+        console.log(data);
 
 
         // function untuk menyembunyikan kategori saat ini
