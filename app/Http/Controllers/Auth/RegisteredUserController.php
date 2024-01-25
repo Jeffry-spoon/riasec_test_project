@@ -17,6 +17,7 @@ use App\Models\Types;
 use Illuminate\Support\Facades\Session;
 
 
+
 class RegisteredUserController extends Controller
 {
     /**
@@ -93,6 +94,10 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
+        // Setelah login atau registrasi berhasil
+    Session::put('user_id', auth()->user()->id);
+    Session::put('username', auth()->user()->username);
+
         return redirect()->route('quiz.create');
     }
 
@@ -105,6 +110,7 @@ class RegisteredUserController extends Controller
 
     // Set sesi registration_completed
     Session::put('registration_completed', true);
+
 
     // Redirect atau kirim tanggapan sukses
     return redirect('/quiz')->with('success', 'Registrasi berhasil!');

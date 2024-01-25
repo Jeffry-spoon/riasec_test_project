@@ -7,7 +7,7 @@
       <!-- Main -->
       <div class="container text-center">
         <div class="row">
-        <div class="title text-light mt-sm-1">
+        <div clas s="title text-light mt-sm-1">
           <div class="col align-self-center" style="margin-top: 40px;">
             <h2>YOUR RIASEC TEST RESULT</h2>
             <h1>Jeffry</h1>

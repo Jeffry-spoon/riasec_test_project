@@ -38,7 +38,6 @@ class ResultController extends Controller
     public function show(Request $request)
     {
 
-        dd($request);
     //     // Ambil data hasil dari request
     // $categoryResults = $request->input('categoryResults');
 
@@ -76,5 +75,10 @@ class ResultController extends Controller
     public function destroy(Results $results)
     {
         //
+    }
+
+    public function storage(Request $request)
+    {
+
     }
 }

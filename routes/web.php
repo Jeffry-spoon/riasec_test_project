@@ -41,6 +41,8 @@ Route::middleware('registered')->group(function () {
 
     // Result
     Route::get('result', [ResultController::class, 'show'])->name('result.show');
+    Route::post('result', [ResultController::class, 'storage'])->name('result.storage');
+
 
 });
 

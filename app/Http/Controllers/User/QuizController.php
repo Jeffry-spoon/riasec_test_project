@@ -4,12 +4,11 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Types;
+use App\Models\User;
 use App\Models\Questions;
 use App\Models\Categories;
 use Illuminate\Http\Request;
-use App\Models\Results;
-use Symfony\Component\Console\Question\Question;
-use lluminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Contracts\Session\Session as SessionSession;
 
@@ -91,7 +90,7 @@ class QuizController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
 
         // dd($request->all());
@@ -122,14 +121,22 @@ class QuizController extends Controller
     $typeName = $typesCollection->pluck('type_name')->first();
 
       // Session masing - masing pengguna
-      $username = Session::get('registration_username');
-    //   dd($categoryResults, $typeId, $typeName);
+      $userId = Session::get('user_id');
+
+      $userName = User::find($userId)->name;
+
+
+    // dd($categoryResults, $userName, $typeName);
+
 
       session(['quiz_completed' => true]);
 
       // Redirect ke ResultController dengan membawa data hasil
-    //   return view('result.show', compact('categoryResults', 'typeId', 'typeName'));
-    return redirect()->route('result.show', compact('categoryResults', 'typeId', 'typeName'));
+    return response()->json([
+        'result' => $categoryResults,
+        'typeName' => $typeName,
+        'name' => $userName,
+    ]);
 
     }
 

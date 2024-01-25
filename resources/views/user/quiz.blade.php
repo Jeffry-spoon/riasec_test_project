@@ -15,6 +15,7 @@
         }
     </script>
 
+
 {{-- @dd($types); --}}
 
     <div id="form-wrapper">
@@ -309,31 +310,56 @@
         }
 
         function sendDataToController() {
-            // Menggunakan metode AJAX untuk mengirim data JSON ke endpoint '/submit-quiz'
-            var csrfToken = $('meta[name="csrf-token"]').attr('content');
+    // Menggunakan metode AJAX untuk mengirim data JSON ke endpoint '/submit-quiz'
+    var csrfToken = $('meta[name="csrf-token"]').attr('content');
 
-            $.ajax({
-                url: "{{ route('quiz.store') }}", // URL endpoint POST harus diisi dengan endpoint yang benar
-                type: 'POST',
-                data: JSON.stringify({
-                    data: data,
-                    userAnswers: userAnswers,
-                }),
-                contentType: 'application/json',
-                headers: {
-                    'X-CSRF-TOKEN': csrfToken
-                },
-                success: function(result) {
-                    console.log('Quiz answers submitted successfully:', result.data);
-                    // Redirect ke halaman hasil quiz setelah pengiriman berhasil
-                    window.location.href = "{{ route('result.show') }}";
-                },
-                error: function(error) {
-                    console.error('Error submitting quiz answers:', error);
-                }
-            });
-
+    $.ajax({
+        url: "{{ route('quiz.store') }}", // URL endpoint POST harus diisi dengan endpoint yang benar
+        type: 'POST',
+        data: JSON.stringify({
+            data: data,
+            userAnswers: userAnswers,
+        }),
+        contentType: 'application/json',
+        headers: {
+            'X-CSRF-TOKEN': csrfToken
+        },
+        success: function(result) {
+            // console.log(result)
+            // Send data to the ResultController
+            sendToResultController(result);
+        },
+        error: function(xhr, status, error) {
+            console.error('Error submitting quiz answers:', error);
+            console.log('XHR:', xhr);
+            console.log('Status:', status);
         }
+    });
+}
+
+function sendToResultController(data) {
+    var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+    // Use the Fetch API for making the POST request
+    fetch("{{ route('result.storage') }}", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': csrfToken,
+        },
+        body: JSON.stringify({
+            data: data,
+        })
+    })
+    .then(response => response.json())
+    .then(result => {
+        console.log('Data sent to ResultController successfully:', result);
+        // Handle the response as needed
+    })
+    .catch(error => {
+        console.error('Error sending data to ResultController:', error);
+    });
+}
 
 
         // function untuk menyembunyikan kategori saat ini
