@@ -17,10 +17,30 @@
     <!-- Navbar -->
     @include('components.navbar')
 
+      {{-- <!-- Loading div -->
+      <div class="loading-overlay">
+        <div class="loading-spinner"></div>
+    </div> --}}
+
     @yield('content')
 
     <script src="js/script.js"></script>
     <script src="js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
   </body>
+
+  <script>
+    // script.js
+
+$(document).ready(function() {
+    // Show loading overlay when the page starts loading
+    $('.loading-overlay').show();
+
+    // Hide loading overlay when the page has completely loaded
+    $(window).on('load', function() {
+        $('.loading-overlay').hide();
+    });
+});
+
+  </script>
 </html>

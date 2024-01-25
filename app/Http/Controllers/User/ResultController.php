@@ -38,17 +38,7 @@ class ResultController extends Controller
     public function show(Request $request)
     {
 
-    //     // Ambil data hasil dari request
-    // $categoryResults = $request->input('categoryResults');
-
-    // // Tambahkan pernyataan dd untuk melihat data hasil
-    // dd($categoryResults);
-
-    // // Anda dapat melakukan apa pun yang diperlukan dengan data hasil ini,
-    // // misalnya, menyimpannya ke database atau langsung melewatkan ke view.
-
-    // // Misalnya, melewatkan data hasil ke view
-    // return view('user.result', compact('categoryResults'));
+        dd($request);
 
     return view ('/user/result');
     }
@@ -80,5 +70,6 @@ class ResultController extends Controller
     public function storage(Request $request)
     {
 
+        dd($request);
     }
 }

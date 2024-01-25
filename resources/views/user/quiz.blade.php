@@ -16,7 +16,7 @@
     </script>
 
 
-{{-- @dd($types); --}}
+    {{-- @dd($types); --}}
 
     <div id="form-wrapper">
         <form id="quizForm" method="POST" action="" class="test-form">
@@ -310,56 +310,60 @@
         }
 
         function sendDataToController() {
-    // Menggunakan metode AJAX untuk mengirim data JSON ke endpoint '/submit-quiz'
-    var csrfToken = $('meta[name="csrf-token"]').attr('content');
+            // Menggunakan metode AJAX untuk mengirim data JSON ke endpoint '/submit-quiz'
+            var csrfToken = $('meta[name="csrf-token"]').attr('content');
 
-    $.ajax({
-        url: "{{ route('quiz.store') }}", // URL endpoint POST harus diisi dengan endpoint yang benar
-        type: 'POST',
-        data: JSON.stringify({
-            data: data,
-            userAnswers: userAnswers,
-        }),
-        contentType: 'application/json',
-        headers: {
-            'X-CSRF-TOKEN': csrfToken
-        },
-        success: function(result) {
-            // console.log(result)
-            // Send data to the ResultController
-            sendToResultController(result);
-        },
-        error: function(xhr, status, error) {
-            console.error('Error submitting quiz answers:', error);
-            console.log('XHR:', xhr);
-            console.log('Status:', status);
+            $.ajax({
+                url: "{{ route('quiz.store') }}", // URL endpoint POST harus diisi dengan endpoint yang benar
+                type: 'POST',
+                data: JSON.stringify({
+                    data: data,
+                    userAnswers: userAnswers,
+                }),
+                contentType: 'application/json',
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken
+                },
+                success: function(result) {
+                    console.log('AJAX Response:', result);
+
+                    // Check if 'id' is present
+                    var newlyCreatedId = result.id;
+                    console.log('Newly created ID:', newlyCreatedId);
+                    window.location.href = "{{ route('result.storage') }}";
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error submitting quiz answers:', error);
+                    console.log('XHR:', xhr);
+                    console.log('Status:', status);
+                }
+            });
         }
-    });
-}
 
-function sendToResultController(data) {
-    var csrfToken = $('meta[name="csrf-token"]').attr('content');
+        function sendToResultController(data) {
+            var csrfToken = $('meta[name="csrf-token"]').attr('content');
 
-    // Use the Fetch API for making the POST request
-    fetch("{{ route('result.storage') }}", {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': csrfToken,
-        },
-        body: JSON.stringify({
-            data: data,
-        })
-    })
-    .then(response => response.json())
-    .then(result => {
-        console.log('Data sent to ResultController successfully:', result);
-        // Handle the response as needed
-    })
-    .catch(error => {
-        console.error('Error sending data to ResultController:', error);
-    });
-}
+            // Use the Fetch API for making the POST request
+            fetch("{{ route('result.storage') }}", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': csrfToken,
+                    },
+                    body: JSON.stringify({
+                        data: data,
+                    })
+                })
+                .then(response => response.json())
+                .then(result => {
+                    console.log('Data sent to ResultController successfully:', result);
+                    // Handle the response as needed
+                    window.location.href = "{{ route('result.show') }}";
+                })
+                .catch(error => {
+                    console.error('Error sending data to ResultController:', error);
+                });
+        }
 
 
         // function untuk menyembunyikan kategori saat ini

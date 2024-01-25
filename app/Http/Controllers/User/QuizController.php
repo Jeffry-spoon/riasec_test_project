@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\Types;
 use App\Models\User;
+use App\Models\Results;
 use App\Models\Questions;
 use App\Models\Categories;
 use Illuminate\Http\Request;
@@ -120,26 +121,28 @@ class QuizController extends Controller
     $typeId = $typesCollection->pluck('id')->first();
     $typeName = $typesCollection->pluck('type_name')->first();
 
-      // Session masing - masing pengguna
-      $userId = Session::get('user_id');
+     $user = Auth::user();
+     $userID = $user->id;
 
-      $userName = User::find($userId)->name;
+    // Insert ke database
+    $result = Results::create([
+        'user_id' => $userID,
+        'types_id' => $typeId,
+        'score' => json_encode($categoryResults),
+    ]);
 
-
-    // dd($categoryResults, $userName, $typeName);
+    $newlyCreatedId = $result->id;
 
 
       session(['quiz_completed' => true]);
 
-      // Redirect ke ResultController dengan membawa data hasil
+    // Redirect ke ResultController dengan membawa data hasil
     return response()->json([
-        'result' => $categoryResults,
-        'typeName' => $typeName,
-        'name' => $userName,
+        'id' => $newlyCreatedId,
     ]);
 
     }
-
+    // 'name' => $userName,
 
 
     /**

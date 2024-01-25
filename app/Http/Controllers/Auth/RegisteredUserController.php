@@ -94,9 +94,11 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        // Setelah login atau registrasi berhasil
-    Session::put('user_id', auth()->user()->id);
-    Session::put('username', auth()->user()->username);
+        // $userName = auth()->user()->name;
+        // dd($userName);
+
+        // // Setelah login atau registrasi berhasil
+        // Session::put('username', $userName);
 
         return redirect()->route('quiz.create');
     }

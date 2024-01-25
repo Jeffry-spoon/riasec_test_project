@@ -11,6 +11,8 @@ class Results extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        
+        'user_id',
+        'types_id',
+        'score',
     ];
 }
