@@ -19,9 +19,9 @@ class RegisteredMiddleware
     {
         // Periksa apakah pengguna telah melakukan registrasi.
         if (auth()->check()) {
-            if (session('quiz_completed')) {
-                return redirect('/result')->with('success', 'Anda telah menyelesaikan kuis!');
-            }
+            // if (session('quiz_completed')) {
+            //     return redirect('/user/result')->with('success', 'Anda telah menyelesaikan kuis!');
+            // }
             // Lanjutkan ke tujuan asli jika pengguna sudah terdaftar.
             return $next($request);
         }

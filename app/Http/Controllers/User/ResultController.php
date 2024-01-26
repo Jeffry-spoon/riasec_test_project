@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Results;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ResultController extends Controller
@@ -35,12 +36,33 @@ class ResultController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Request $request)
+    public function show ($id)
     {
 
-        dd($request);
+    //  dd($id);
 
-    return view ('/user/result');
+        $result = Results::find($id);
+
+
+        // Memastikan hasil ditemukan
+        if ($result) {
+            //mengakses nama pengguna terkait
+            $userId = $result->user_id;
+            $score = json_decode($result->score);
+            $userData = User::where('id', $userId)->first(); // Menggunakan first() untuk mendapatkan satu objek
+            $userName = $userData->name;
+            $scoreToArray = get_object_vars($score);
+            arsort($scoreToArray);
+            $topCategories = array_slice($scoreToArray, 0, 3, true);
+
+
+            // dd($result, $userId, $userName, $score, $topCategories);
+        } else {
+            abort(404);
+        }
+
+
+    return view ('/user/result', compact('userName', 'topCategories', 'score'));
     }
 
     /**
@@ -65,11 +87,5 @@ class ResultController extends Controller
     public function destroy(Results $results)
     {
         //
-    }
-
-    public function storage(Request $request)
-    {
-
-        dd($request);
     }
 }

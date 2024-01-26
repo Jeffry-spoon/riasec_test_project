@@ -328,9 +328,10 @@
                     console.log('AJAX Response:', result);
 
                     // Check if 'id' is present
-                    var newlyCreatedId = result.id;
-                    console.log('Newly created ID:', newlyCreatedId);
-                    window.location.href = "{{ route('result.storage') }}";
+                    //var newlyCreatedId = result.id;
+                    let url = "{{ route('result.show', ['id'=> ':id']) }}";
+                    window.location.href = url.replace(':id', result.id);
+
                 },
                 error: function(xhr, status, error) {
                     console.error('Error submitting quiz answers:', error);
@@ -338,31 +339,6 @@
                     console.log('Status:', status);
                 }
             });
-        }
-
-        function sendToResultController(data) {
-            var csrfToken = $('meta[name="csrf-token"]').attr('content');
-
-            // Use the Fetch API for making the POST request
-            fetch("{{ route('result.storage') }}", {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': csrfToken,
-                    },
-                    body: JSON.stringify({
-                        data: data,
-                    })
-                })
-                .then(response => response.json())
-                .then(result => {
-                    console.log('Data sent to ResultController successfully:', result);
-                    // Handle the response as needed
-                    window.location.href = "{{ route('result.show') }}";
-                })
-                .catch(error => {
-                    console.error('Error sending data to ResultController:', error);
-                });
         }
 
 

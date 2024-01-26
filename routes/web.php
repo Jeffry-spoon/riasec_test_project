@@ -34,14 +34,17 @@ Route::get('help', function () {
     return view('user.user-guide');
 })->name('help');
 
+// Result
+// Route::get('result/{id}', [ResultController::class, 'show'])->name('result.show');
+
+
 Route::middleware('registered')->group(function () {
     // Quiz
     Route::get('quiz', [QuizController::class, 'create'])->name('quiz.create');
     Route::post('quiz', [QuizController::class, 'store'])->name('quiz.store');
 
     // Result
-    Route::get('result', [ResultController::class, 'show'])->name('result.show');
-    Route::post('result', [ResultController::class, 'storage'])->name('result.storage');
+    Route::get('result/{id}', [ResultController::class, 'show'])->name('result.show');
 
 
 });
