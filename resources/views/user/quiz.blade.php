@@ -16,8 +16,6 @@
     </script>
 
 
-    {{-- @dd($types); --}}
-
     <div id="form-wrapper">
         <form id="quizForm" method="POST" action="" class="test-form">
             @csrf
@@ -41,35 +39,50 @@
                                 <h4 id="form-title_{{ $sectionIndex }}_{{ $index }}" class="text-center">
                                     {{ $innerQuestion['questions_text'] }}
                                 </h4>
-                                <div class="container d-flex justify-content-center">
-                                    <div id="checkRadio" class="checkRadio_{{ $index }}">
+                                <div class="mt-4 d-flex align-items-center justify-content-center radios">
+                                    <h6 class="me-4 fs-5 desc">Sangat tidak <br> suka</h6>
+                                    <div id="checkRadio"
+                                        class="checkRadio_{{ $index }}  d-flex align-items-center justify-content-between">
                                         @for ($i = 1; $i <= 6; $i++)
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" type="radio"
                                                     name="inlineRadioOptions_{{ $category }}_{{ $sectionIndex }}_{{ $index }}"
                                                     id="inlineRadio{{ $sectionIndex }}{{ $index }}_{{ $i }}"
                                                     value="{{ $i }}"
-                                                    onchange="saveAnswer('{{ $category }}', '{{ $innerQuestion['id'] }}', this.value)" />
-                                                <label class="form-check-label"
-                                                    for="inlineRadio_{{ $sectionIndex }}_{{ $index }}_{{ $i }}">
-                                                    {{ $i }}
-                                                </label>
+                                                    onchange="saveAnswer('{{ $category }}', '{{ $innerQuestion['id'] }}', this.value)"
+                                                    @if ($i == 1) first
+                                                    @elseif ($i == 3) middle
+                                                    @elseif ($i == 6) last @endif" />
                                             </div>
                                         @endfor
                                     </div>
+                                    <h6 class="ms-4 fs-5 desc">Sangat suka</h6>
+                                </div>
+                                <div class="desc-text mt-3">
+                                    <div class="row justify-content-between align-items-center g-2">
+                                        <div class="col">
+                                            <p class="me-4 fs-5 text-start">Sangat tidak <br> suka</p>
+                                        </div>
+                                        <div class="col">
+                                            <p class="ms-4 fs-5 text-end">Sangat suka</p>
+                                        </div>
+                                    </div>
                                 </div>
                                 <hr class="border border-primary-emphasis border-1 opacity-75 mt-4 mb-4"
-                                    style="max-width: 400px; margin: 0 auto" />
+                                    style="width: 100%; margin: 0 auto" />
                             </div>
                         @endforeach
                     @endforeach
                     @if ($loop->last)
-                        <button type="button" class="btn btn-primary" onclick="handleSubmitButtonClick()">
+                        <button type="button" class="btn btn-primary d-flex justify-content-center mx-auto " onclick="handleSubmitButtonClick()" style="width: 300px;">
                             Submit
                         </button>
                     @else
-                        <button type="button" class="btn btn-primary nextButton" data-section="{{ $category }}"
-                            onclick="handleNextButtonClick()">
+                        <button type="button" class="btn btn-primary nextButton mx-auto"
+                            data-section="{{ $category }}" onclick="handleNextButtonClick()"
+                            style="width: 300px;
+                            display: flex;
+                            justify-content: center;">
                             Next
                         </button>
                     @endif
@@ -329,7 +342,7 @@
 
                     // Check if 'id' is present
                     //var newlyCreatedId = result.id;
-                    let url = "{{ route('result.show', ['id'=> ':id']) }}";
+                    let url = "{{ route('result.show', ['id' => ':id']) }}";
                     window.location.href = url.replace(':id', result.id);
 
                 },
@@ -366,6 +379,36 @@
 
                 moveToNextCategory();
             }
+        }
+
+        // Periksa lebar layar saat halaman dimuat
+        window.addEventListener('load', function() {
+            toggleDescTextVisibility(); // Panggil fungsi saat halaman dimuat
+        });
+
+        // Periksa lebar layar saat ukuran layar berubah
+        window.addEventListener('resize', function() {
+            toggleDescTextVisibility(); // Panggil fungsi saat ukuran layar berubah
+        });
+
+        // Fungsi untuk menampilkan atau menyembunyikan elemen desc-text berdasarkan lebar layar
+        function toggleDescTextVisibility() {
+            var screenWidth = window.innerWidth; // Dapatkan lebar layar
+
+            var descTextElements = document.querySelectorAll('.desc-text');
+            var descTextElementslg = document.querySelectorAll('.desc');
+
+            descTextElements.forEach(function(descTextElement) {
+                if (screenWidth < 500) {
+                    // Jika lebar layar kurang dari 500px, tampilkan elemen desc-text
+                    descTextElement.style.display = 'block';
+                    // descTextElementslg.style.display = 'none';
+                } else {
+                    // Jika lebar layar 500px atau lebih, sembunyikan elemen desc-text
+                    descTextElement.style.display = 'none';
+                    // descTextElementslg.style.display = 'block';
+                }
+            });
         }
     </script>
 @endsection

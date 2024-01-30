@@ -1,10 +1,10 @@
 @extends('layouts.app') @section('content')
 <div
-    class="container d-flex align-items-center flex-column mb-3 justify-content-between"
+    class="container d-flex align-items-center flex-column mb-3 justify-content-betweenm overlay"
 >
     <div class="main h-100">
         <!-- Showcase -->
-        
+
         <header class="showcase col-sm-12 justify-content-center mx-auto">
             <p class="fs-5 text-center text-light col-lg-6 col-sm-12 mt-lg-5">
                 Kuesioner ini terdiri dari 30 aktivitas yang dilakukan dalam
@@ -36,15 +36,13 @@
                 </div>
             </div>
 
-            <div class="d-grid gap-2 col-md-3 mx-auto">
                 <a
-                    href="{{ route('register')}}"
-                    class="btn btn-primary text-decoration-none border-0"
+                    href="{{ route('quiz.create')}}"
+                    class="btn btn-primary border-0 d-grid"
                     style="padding: 12px 36px; background: #f72585"
                 >
                     Lanjut
                 </a>
-            </div>
         </header>
     </div>
 

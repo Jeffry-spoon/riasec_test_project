@@ -244,7 +244,7 @@ form {
     height: auto;
     background-color: rgba(255, 255, 255, 0.13);
     margin: 18px auto;
-    max-width: 70vh;
+    max-width: 90vh;
     background: rgba(126, 126, 126, 0.19);
     /* From https://css.glass */
     background: rgba(0, 0, 0, 0.22);
@@ -316,8 +316,7 @@ button {
 }
 
 .test-form {
-    width: 90%;
-    max-width: 500px;
+    width: 100%;
 }
 
 .test-form #form-title {
@@ -505,8 +504,9 @@ button {
 }
 
 @media (max-width: 700px) {
+
     body {
-        background-image: url("/Assets/background-mobile.png");
+        background-image: url("/Assets/background-desktop.png");
         background-repeat: no-repeat;
         background-size: cover;
         min-height: 100vh;
@@ -547,6 +547,14 @@ button {
         width: 100%;
         margin: 0 16px;
     }
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.199); /* Warna hitam dengan opasitas 0.5 */
+    }
     footer {
         background-color: rgba(0, 0, 0, 0.25);
         height: 40px;
@@ -556,6 +564,9 @@ button {
         -webkit-animation: overlayMoveUp 0.5s ease-in;
         position: fixed;
         bottom: 0;
+    }
+    .main-nav {
+        z-index: 999;
     }
     .main-nav .logo {
         width: 100%;
@@ -567,6 +578,7 @@ button {
         backdrop-filter: blur(9.2px);
         -webkit-backdrop-filter: blur(9.2px);
         border: 1px solid rgba(0, 0, 0, 0.3);
+        z-index: 999;
     }
     /* Showcase */
     .showcase {
@@ -579,7 +591,7 @@ button {
         color: #ffffff;
     }
     .btn {
-        width: 100%;
+        width: 100%  !important;
         margin: 48px 0 0 0;
     }
     /* form */
@@ -602,6 +614,16 @@ button {
         margin-right: 16px;
         padding: 24px 8px;
     }
+
+    .test-form {
+        width: 95% ;
+
+    }
+
+    .desc-text {
+        display: block !important;
+    }
+
 }
 
 .form-control::-webkit-input-placeholder {
@@ -634,10 +656,6 @@ button {
 .form-check .form-check-input,
 .form-check .form-check-label {
     height: 21.6px !important;
-}
-
-.form-check .form-check-label {
-    margin-left: 4px;
 }
 
 .required:after {
@@ -750,4 +768,65 @@ body {
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+#checkRadio
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.desc {
+    display: none; /* Atur elemen untuk disembunyikan secara default */
+}
+
+.form-check
+{
+  display: block;
+  min-height: 0;
+  padding-left: 0 !important;
+}
+.form-check-inline
+{
+    margin-right: 0 !important;
+}
+.form-check .form-check-input {
+    margin-left: 0 !important;
+}
+
+/* Ukuran besar untuk radio button indeks pertama */
+input[type="radio"].first {
+    width: 24px; /* Sesuaikan ukuran sesuai kebutuhan */
+    height: 24px; /* Sesuaikan ukuran sesuai kebutuhan */
+}
+
+/* Ukuran kecil untuk radio button indeks di tengah */
+input[type="radio"].middle {
+    width: 16px; /* Sesuaikan ukuran sesuai kebutuhan */
+    height: 16px; /* Sesuaikan ukuran sesuai kebutuhan */
+}
+
+/* Ukuran besar untuk radio button indeks terakhir */
+input[type="radio"].last {
+    width: 24px; /* Sesuaikan ukuran sesuai kebutuhan */
+    height: 24px; /* Sesuaikan ukuran sesuai kebutuhan */
+}
+
+@media screen and (min-width: 500px) {
+    .desc {
+        display: block; /* Tampilkan elemen jika lebar layar lebih besar atau sama dengan 500px */
+    }
+
+
+#checkRadio
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 80%;
+    margin: 0 auto;
+}
 }

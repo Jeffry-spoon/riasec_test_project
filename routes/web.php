@@ -20,31 +20,28 @@ use App\Http\Middleware\RegisteredMiddleware;
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
-//
-// Route::get('quiz', [QuizController::class, 'create'])->name('quiz.create')->middleware(RegisteredMiddleware::class);
 
-// Route::get('quiz', [QuizController::class, 'create'])->name('quiz.create');
+// Route::get('pdf', function () {
+//     return view('user/pdf-export');
+// })->name('pdf');
 
 
- // Result
-// Route::get('result', [ResultController::class, 'show'])->name('result.show');
-
-// User guide
-Route::get('help', function () {
-    return view('user.user-guide');
-})->name('help');
-
-// Result
-// Route::get('result/{id}', [ResultController::class, 'show'])->name('result.show');
 
 
 Route::middleware('registered')->group(function () {
+
+    // User guide
+    Route::get('help', function () {return view('user.user-guide');})->name('help');
+
+
     // Quiz
     Route::get('quiz', [QuizController::class, 'create'])->name('quiz.create');
     Route::post('quiz', [QuizController::class, 'store'])->name('quiz.store');
 
     // Result
     Route::get('result/{id}', [ResultController::class, 'show'])->name('result.show');
+     Route::get('pdf-export/{id}', [ResultController::class, 'viewPDF'])->name('view.pdf');
+    //  Route::get('result/{id}/download/pdf', [ResultController::class, 'downloadPDF'])->name('download.pdf');
 
 
 });

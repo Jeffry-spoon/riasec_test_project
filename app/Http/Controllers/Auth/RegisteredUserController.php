@@ -57,7 +57,7 @@ class RegisteredUserController extends Controller
         if ($existingUser) {
             Auth::login($existingUser);
 
-            return redirect()->route('quiz.create')->with('info', 'Anda sudah terdaftar sebelumnya.');
+            return redirect()->route('help')->with('info', 'Anda sudah terdaftar sebelumnya.');
         }
 
         $userData = [
@@ -94,13 +94,7 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        // $userName = auth()->user()->name;
-        // dd($userName);
-
-        // // Setelah login atau registrasi berhasil
-        // Session::put('username', $userName);
-
-        return redirect()->route('quiz.create');
+        return redirect()->route('help');
     }
 
     public function storeRegistration(Request $request)
@@ -115,7 +109,7 @@ class RegisteredUserController extends Controller
 
 
     // Redirect atau kirim tanggapan sukses
-    return redirect('/quiz')->with('success', 'Registrasi berhasil!');
+    return redirect('/help')->with('success', 'Registrasi berhasil!');
     }
 
 }

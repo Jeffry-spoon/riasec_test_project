@@ -27,25 +27,16 @@
             </div>
             @enderror
         </div>
-        <!-- <div class="mb-3">
-          <label for="datepicker" class="form-label required">Birth date</label>
-          <input type="date" name="birth-date" class="form-label form-control bg-transparent text-light @error('birth-date')is-invalid @enderror" required value="{{ old('birth-date') }}"/>
-            {{-- @error('birth-date') --}}
-            <div class="invalid-feedback">
-            {{-- {{ $message }} --}}
-            </div>
-            {{-- @enderror --}}
-        </div> -->
         <!-- Gender -->
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label required">Jenis Kelamin</label>
           <div class="form-check">
             <input class="form-check-input" type="radio" name="gender" value="Male" />
-            <label class="form-check-label" for="flexRadioDefault1"> Laki - Laki</label>
+            <label class="form-check-label ms-2" for="flexRadioDefault1"> Laki - Laki</label>
           </div>
           <div class="form-check mt-3 mb-3">
             <input class="form-check-input" type="radio" name="gender" value="Female" />
-            <label class="form-check-label" for="flexRadioDefault2"> Perempuan</label>
+            <label class="form-check-label ms-2" for="flexRadioDefault2"> Perempuan</label>
           </div>
         </div>
           <!-- End Gender -->
@@ -67,15 +58,6 @@
             </div>
             @enderror
           </div>
-          <!-- <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label required">Domicile</label>
-            <input type="text" class="form-control bg-transparent text-light @error('domicile')is-invalid @enderror" placeholder="Example: Jakarta Barat " name="domicile" required value="{{ old('domicile') }}"/>
-            {{-- @error('domicile') --}}
-            <div class="invalid-feedback">
-            {{-- {{ $message }} --}}
-            </div>
-            {{-- @enderror --}}
-          </div> -->
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label required">Nama Instansi Sekolah/Kampus</label>
             <input type="text" class="form-control bg-transparent text-light @error('school-name')is-invalid @enderror" placeholder="Input your School name here" name="school-name" required value="{{ old('school-name') }}"/>
@@ -85,15 +67,6 @@
             </div>
             @enderror
           </div>
-          <!-- <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label required">Desired/Current Major</label>
-            <input type="text" class="form-control bg-transparent text-light @error('major')is-invalid @enderror" placeholder="Input your current major" name="major" required value="{{ old('major') }}" />
-            {{-- @error('major') --}}
-            <div class="invalid-feedback">
-            {{-- {{ $message }} --}}
-            </div>
-            {{-- @enderror --}}
-          </div> -->
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label required">Pekerjaan Masa Depan</label>
             <input type="text" class="form-control bg-transparent text-light @error('occupation')is-invalid @enderror" placeholder="Input your feature accupation" name="occupation" required value="{{ old('occupation') }}"/>
@@ -137,13 +110,6 @@
     formInputs.forEach(input => {
         input.addEventListener('input', checkFormInputs);
     });
-
-//   $(document).ready(function() {
-//             $("#prospects_form").submit(function(e) {
-//                 e.preventDefault();
-//                 // Your custom code here
-//             });
-//         });
 </script>
 
 

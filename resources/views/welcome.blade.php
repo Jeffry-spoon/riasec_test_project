@@ -11,7 +11,7 @@
 
         <div class="d-grid gap-2 col-md-3 mx-auto">
             <a
-                href="{{ route('help') }}"
+                href="{{ route('register') }}"
                 class="btn btn-primary text-decoration-none border-0"
                 style="padding: 12px 36px; background: #f72585"
             >
