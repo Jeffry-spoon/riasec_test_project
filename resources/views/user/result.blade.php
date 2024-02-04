@@ -55,6 +55,7 @@
             </div>
         </div>
         <div class="row mt-3 p-2 mb-4">
+
             @foreach ($mergetArray as $top)
                 <div class="col-md-4 mb-4">
                     <div class="card shadow-lg h-100">
@@ -62,12 +63,8 @@
                             class="category-image" style="border-radius: 6px;">
                         <div class="card-body">
                             <h3>{{ $top['category']['category_text'] }}</h3>
-                            <p class="card-text">{{ $top['category']['description'] }}</p>
-                            <ul class="job-list">
-                                @foreach ($top['jobs'] as $job)
-                                    <li>{{ $job }}</li>
-                                @endforeach
-                            </ul>
+                            <p class="card-text">{!! nl2br(e ($top['category']['description'])) !!}</p>
+                          
                         </div>
                     </div>
                 </div>

@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             AdminUserSeeder::class,
             CategoriesTableSeeder::class,
-            JobsTableSeeder::class,
+            // JobsTableSeeder::class,
             TypesSeeder::class,
             QuestionsSeeder::class,
             UserSeeder::class,
@@ -38,4 +38,3 @@ class DatabaseSeeder extends Seeder
         ]);
     }
 }
-

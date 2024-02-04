@@ -18,48 +18,105 @@ class CategoriesTableSeeder extends Seeder
         [
             'id' => 1,
             'category_text' => 'REALISTIC',
-            'description'=> 'These people are often good at mechanical or athletic jobs.',
+            'slug' => 'realistic',
+            'description'=> 'Orang-orang ini sering baik dalam pekerjaan mekanik atau atletik. Jurusan kuliah yang baik untuk orang-orang Realistis adalah..
+            - Pertanian
+            - Asisten Kesehatan
+            - Komputer
+            - Konstruksi
+            - Mekanik/Mesin
+            - Teknik
+            - Makanan dan Perhotelan',
             'images' => 'images/realistic.png',
+            'user_id' => 1,
             'created_at' => date('Y-m-d H:i:s', time()),
             'updated_at' => date('Y-m-d H:i:s', time())
         ],
         [
             'id' => 2,
-            'description'=> 'These people like to watch, learn, analyze and solve problems.',
+            'description'=> 'Orang-orang ini suka menonton, belajar, menganalisis, dan memecahkan masalah. Jurusan-jurusan yang cocok untuk orang-orang dengan sifat Investigative adalah...
+            - Biologi Kelautan
+            - Teknik
+            - Kimia
+            - Zoologi
+            - Kedokteran/Bedah
+            - Ekonomi Konsumen
+            - Psikologi',
             'category_text' => 'INVESTIGATIVE',
+            'slug' => 'investigative',
             'images' => 'images/invetigative.png',
+            'user_id' => 1,
             'created_at' => date('Y-m-d H:i:s', time()),
             'updated_at' => date('Y-m-d H:i:s', time())
         ],
         [
             'id' => 3,
-            'description'=> 'These people like to work in unstructured situations where they can use their creativity.',
+            'description'=> 'Orang-orang ini suka bekerja dalam situasi yang tidak terstruktur di mana mereka dapat menggunakan kreativitas mereka.
+            Jurusan-jurusan yang bisa dipertimbangkan:
+            - Komunikasi
+            - Kosmetologi
+            - Seni Rupa dan Pertunjukan
+            - Fotografi
+            - Radio dan Televisi
+            - Desain Interior
+            - Arsitektur
+            - Pelayanan Publik dan Kemanusiaan
+            - Seni dan Komunikasi',
             'category_text' => 'ARTISTIC',
+            'slug' => 'artistic',
             'images' => 'images/artisitic.png',
+            'user_id' => 1,
             'created_at' => date('Y-m-d H:i:s', time()),
             'updated_at' => date('Y-m-d H:i:s', time())
         ],
         [
             'id' => 4,
-            'description'=> 'These people like to work with other people, rather than things.',
+            'description'=> 'Orang-orang ini suka bekerja dengan orang lain, daripada dengan barang. Jurusan-jurusan yang cocok untuk orang-orang dengan sifat Sosial adalah...
+            - Konseling
+            - Keperawatan
+            - Terapi Fisik
+            - Perjalanan
+            - Periklanan
+            - Hubungan Masyarakat
+            - Pendidikan',
             'category_text' => 'SOCIAL',
+            'slug' => 'social',
             'images' => 'images/social.png',
+            'user_id' => 1,
             'created_at' => date('Y-m-d H:i:s', time()),
             'updated_at' => date('Y-m-d H:i:s', time())
         ],
         [
             'id' => 5,
-            'description'=> 'These people like to work with others and enjoy persuading and and performing.',
+            'description'=> 'Orang-orang ini suka bekerja dengan orang lain dan menikmati meyakinkan dan tampil. Jurusan-jurusan yang cocok untuk orang-orang dengan sifat Enterprising adalah...
+            - Pemasaran Mode
+            - Properti
+            - Pemasaran/Penjualan
+            - Hukum
+             -Ilmu Politik
+            - Perdagangan Internasional
+            - Perbankan/Keuangan',
             'category_text' => 'ENTERPRISING',
+            'slug' => 'enterprising',
             'images' => 'images/enterprising.png',
+            'user_id' => 1,
             'created_at' => date('Y-m-d H:i:s', time()),
             'updated_at' => date('Y-m-d H:i:s', time())
         ],
         [
             'id' => 6,
-            'description'=> 'These people are very detail oriented, organized and like to work with data.',
+            'description'=> 'Orang-orang ini sangat memperhatikan detail, terorganisir, dan menyukai pekerjaan dengan data. Jurusan-jurusan yang cocok untuk orang-orang dengan sifat Konvensional adalah...
+            - Akuntansi
+            - Pelaporan Pengadilan
+            - Asuransi
+            - Administrasi
+            - Rekam Medis
+            - Perbankan
+            - Pemrosesan Data',
             'category_text' => 'CONVENTIONAL',
+            'slug' => 'conventional',
             'images' => 'images/conventional.png',
+            'user_id' => 1,
             'created_at' => date('Y-m-d H:i:s', time()),
             'updated_at' => date('Y-m-d H:i:s', time())
         ],

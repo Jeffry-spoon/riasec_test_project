@@ -14,8 +14,10 @@ return new class extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->string('category_text','255');
-            $table->string('description', '255');
+            $table->string('slug');
+            $table->longText('description');
             $table->binary('images');
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
             $table->softDeletes();
         });

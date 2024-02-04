@@ -115,11 +115,11 @@
                         <td>{{ $top['category']['category_text'] }}</td>
                         <td>{{ $top['category']['description'] }}</td>
                         <td>
-                        <ul class="job-list">
+                        {{-- <ul class="job-list">
                             @foreach ($top['jobs'] as $job)
                                 <li>{{ $job }}</li>
                             @endforeach
-                        </ul>
+                        </ul> --}}
                         </td>
                     </tr>
                 @endforeach

@@ -9,9 +9,4 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Jobs extends Model
 {
     use HasFactory, SoftDeletes;
-
-    protected $fillable = [
-        'jobs_text',
-        'categories_id',
-    ];
 }
