@@ -105,23 +105,16 @@ class ResultController extends Controller
       $data = ExportDump::where('result_id', $id)->first();
       $category = Categories::all();
 
-      $jobs = [];
-      foreach ($category as $cate) {
-          // Ambil jobs berdasarkan categories_id
-          $jobs[$cate->category_text] = Jobs::where('categories_id', $cate->id)->pluck('jobs_text');
-      }
-
       $mergetArray= [];
       foreach ($category as $category) {
           $categoryText = $category['category_text'];
           $categoryJobs = $jobs[$categoryText] ?? [];
           $mergetArray[] = [
               'category' => $category,
-              'jobs' => $categoryJobs,
           ];
       }
 
-      $pdf = PDF::loadView('user/pdf-export', compact('data', 'category', 'mergetArray'));
+      $pdf = PDF::loadView('user/pdf-export', compact('data', 'mergetArray'));
 
       $pdf->setPaper('landscape');
 

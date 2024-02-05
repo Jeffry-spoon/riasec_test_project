@@ -39,15 +39,18 @@
 
     table.products {
         font-size: 0.875rem;
+        border: 1px solid #dee2e6;
     }
 
     table.products tr {
         background-color: rgb(96 165 250);
+        border: 1px solid #dee2e6;
     }
 
     table.products th {
         color: #ffffff;
         padding: 0.5rem;
+        border: 1px solid #dee2e6;
     }
 
     table tr.items {
@@ -108,19 +111,12 @@
                 <tr>
                     <th>Category</th>
                     <th>Description</th>
-                    <th>Jobs</th>
                 </tr>
                 @foreach ($mergetArray as $top)
                     <tr class="items">
                         <td>{{ $top['category']['category_text'] }}</td>
-                        <td>{{ $top['category']['description'] }}</td>
-                        <td>
-                        {{-- <ul class="job-list">
-                            @foreach ($top['jobs'] as $job)
-                                <li>{{ $job }}</li>
-                            @endforeach
-                        </ul> --}}
-                        </td>
+                        <td>{!! nl2br(e($top['category']['description'])) !!}</td>
+
                     </tr>
                 @endforeach
             </table>
