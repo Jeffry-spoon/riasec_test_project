@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('event_types_links', function (Blueprint $table) {
+        Schema::create('export_dumps', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('event_id')->constrained();
-            $table->foreignId('type_id')->constrained();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('result_id')->constrained();
+            $table->string('name');
+            $table->json('score');
+            $table->json('description');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('event_types_links');
+        Schema::dropIfExists('export_dumps');
     }
 };

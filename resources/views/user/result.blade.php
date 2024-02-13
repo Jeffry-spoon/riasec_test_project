@@ -122,7 +122,6 @@
                         display: false
                     }
                 }
-            },
-        });
+            }        });
     </script>
 @endsection

@@ -75,12 +75,6 @@ class ResultController extends Controller
                 $categoryValues[] = $categoryItem->getAttributes();
             }
 
-        // $jobs = [];
-        // foreach ($category as $category) {
-        //     // Ambil jobs berdasarkan categories_id
-        //     $jobs[$category->category_text] = Jobs::where('categories_id', $category->id)->pluck('jobs_text');
-        // }
-
         $mergetArray= [];
         foreach ($categoryValues as $category) {
             $categoryText = $category['category_text'];

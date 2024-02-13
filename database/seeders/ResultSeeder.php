@@ -19,6 +19,7 @@ class ResultSeeder extends Seeder
                 'types_id' => 1,
                 'user_id' => 2,
                 'event_id' => 1,
+                'event_id' => 1,
                 'score' => json_encode(
                     [
                         'R' => 30,
@@ -38,7 +39,7 @@ class ResultSeeder extends Seeder
                 'id' => 2,
                 'types_id' => 1,
                 'user_id' => 3,
-                'event_id' => 1,
+                'event_id' => 2,
                 'score' => json_encode(
                     [
                         'R' => 20,
@@ -58,7 +59,7 @@ class ResultSeeder extends Seeder
                 'id' => 3,
                 'types_id' => 1,
                 'user_id' => 3,
-                'event_id' => 1,
+                'event_id' => 3,
                 'score' => json_encode(
                     [
                         'R' => 20,
@@ -78,6 +79,7 @@ class ResultSeeder extends Seeder
                 'id' => 4,
                 'types_id' => 1,
                 'user_id' => 3,
+                'event_id' => 1,
                 'event_id' => 1,
                 'score' => json_encode(
                     [

@@ -34,20 +34,6 @@ class QuizController extends Controller
     // Inisialisasi array untuk menyimpan pertanyaan
     $questions = [];
 
-    // // Loop melalui setiap tipe
-    // foreach ($types as $type) {
-    //     // Ambil pertanyaan untuk setiap tipe
-    //     $questions[$type->id] = Questions::where('types_id', $type->id)->get();
-
-        // Ambil data category_text dari Categories berdasarkan categories_id dan konversi ke associative array
-
-    //     // Loop melalui setiap pertanyaan dan ganti categories_id dengan category_text
-    //     foreach ($questions[$type->id] as $question) {
-    //     $question->category_text = $categoryTexts[$question->categories_id] ?? null;
-    //     unset($question->categories_id); // Hapus categories_id jika diperlukan
-    //     }
-    // }
-
     // Loop melalui setiap tipe
     foreach ($typesCollection  as $type) {
         // Ambil pertanyaan untuk setiap tipe
