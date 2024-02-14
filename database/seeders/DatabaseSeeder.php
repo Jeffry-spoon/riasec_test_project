@@ -33,8 +33,9 @@ class DatabaseSeeder extends Seeder
             TypesSeeder::class,
             QuestionsSeeder::class,
             UserSeeder::class,
-            ResultSeeder::class,
             EventSeeder::class,
+            ResultSeeder::class,
+
         ]);
     }
 }

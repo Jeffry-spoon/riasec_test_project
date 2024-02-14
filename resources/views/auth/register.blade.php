@@ -107,10 +107,12 @@
             </div>
             <div class="mb-3">
                 <label for="event" class="form-label required">Event</label>
-                <select class="form-select bg-transparent text-light" name="event" required>
-                    <option value="" class="glass-option" style="height: 50px">Pilih Event</option>
-                    <option value="Event1" class="glass-option">Event 1</option>
-                    <option value="Event2" class="glass-option">Event 2</option>
+                <select class="form-select bg-transparent text-light" name="event" style="height: 50px" required>
+                    <option value="" class="glass-option" >Pilih Event</option>
+                    @foreach ($events as $event)
+                        <option value="{{ $event->id }}" class="glass-option">{{ $event->title }}</option>
+                    @endforeach
+
                     <!-- Tambahkan opsi lainnya sesuai kebutuhan -->
                 </select>
                 @error('event')
@@ -131,7 +133,7 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
         // Get all input fields
-        const formInputs = document.querySelectorAll('form input');
+        const formInputs = document.querySelectorAll('form input, form select');
 
         // Get the submit button
         const submitButton = document.querySelector('form button');

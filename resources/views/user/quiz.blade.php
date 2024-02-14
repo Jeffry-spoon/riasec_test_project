@@ -74,7 +74,8 @@
                         @endforeach
                     @endforeach
                     @if ($loop->last)
-                        <button type="button" class="btn btn-primary d-flex justify-content-center mx-auto " onclick="handleSubmitButtonClick()" style="width: 300px;">
+                        <button type="button" class="btn btn-primary d-flex justify-content-center mx-auto "
+                            onclick="handleSubmitButtonClick()" style="width: 300px;">
                             Submit
                         </button>
                     @else
@@ -90,6 +91,10 @@
             @endforeach
         </form>
     </div>
+
+    <div id="start-time" style="display: none;"></div>
+    <div id="end-time" style="display: none;"></div>
+    <div id="time-difference" class="text-center mb-4" style="display: none;"></div>
 
     @include('components.footer')
 
@@ -370,6 +375,31 @@
             nextCategoryElement.style.display = '';
             console.log('category selanjutnya: ', nextCategory);
 
+        }
+
+        // Tambahkan kode berikut di dalam tag <script> Anda
+        var startTime; // Waktu mulai
+
+        function startQuiz() {
+            startTime = new Date(); // Catat waktu mulai
+            document.getElementById("start-time").innerText = startTime.getTime(); // Simpan waktu mulai dalam elemen HTML
+        }
+
+        function submitQuiz() {
+            var endTime = new Date(); // Waktu selesai
+            document.getElementById("end-time").innerText = endTime.getTime(); // Simpan waktu selesai dalam elemen HTML
+
+            // Hitung dan tampilkan selisih waktu
+            var start = parseInt(document.getElementById("start-time").innerText);
+            var end = parseInt(document.getElementById("end-time").innerText);
+            var difference = end - start;
+            var seconds = Math.floor(difference / 1000);
+            var minutes = Math.floor(seconds / 60);
+            var remainingSeconds = seconds % 60;
+            document.getElementById("time-difference").innerText = "Waktu pengerjaan: " + minutes + " menit " +
+                remainingSeconds + " detik";
+            document.getElementById("time-difference").style.display =
+            "block"; // Tampilkan elemen dengan hasil selisih waktu
         }
 
         function handleSubmitButtonClick() {

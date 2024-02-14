@@ -18,6 +18,7 @@ class ResultSeeder extends Seeder
                 'id' => 1,
                 'types_id' => 1,
                 'user_id' => 2,
+                'event_id' => 1,
                 'score' => json_encode(
                     [
                         'R' => 30,
@@ -27,6 +28,7 @@ class ResultSeeder extends Seeder
                         'E' => 29,
                         'C' => 10,
                     ]),
+                    'time' => '01:20',
                 'created_at' => date('Y-m-d H:i:s', time()),
                 'updated_at' => date('Y-m-d H:i:s', time())
             ],
@@ -34,6 +36,7 @@ class ResultSeeder extends Seeder
                 'id' => 2,
                 'types_id' => 1,
                 'user_id' => 3,
+                'event_id' => 1,
                 'score' => json_encode(
                     [
                         'R' => 20,
@@ -43,6 +46,7 @@ class ResultSeeder extends Seeder
                         'E' => 25,
                         'C' => 10,
                     ]),
+                    'time' => '01:20',
                 'created_at' => date('Y-m-d H:i:s', time()),
                 'updated_at' => date('Y-m-d H:i:s', time())
             ],
@@ -50,6 +54,7 @@ class ResultSeeder extends Seeder
                 'id' => 3,
                 'types_id' => 1,
                 'user_id' => 3,
+                'event_id' => 1,
                 'score' => json_encode(
                     [
                         'R' => 20,
@@ -59,6 +64,7 @@ class ResultSeeder extends Seeder
                         'E' => 25,
                         'C' => 10,
                     ]),
+                    'time' => '01:20',
                 'created_at' => date('Y-m-d H:i:s', time()),
                 'updated_at' => date('Y-m-d H:i:s', time())
             ],
@@ -66,6 +72,7 @@ class ResultSeeder extends Seeder
                 'id' => 4,
                 'types_id' => 1,
                 'user_id' => 3,
+                'event_id' => 1,
                 'score' => json_encode(
                     [
                         'R' => 20,
@@ -75,6 +82,7 @@ class ResultSeeder extends Seeder
                         'E' => 25,
                         'C' => 20,
                     ]),
+                    'time' => '01:20',
                 'created_at' => date('Y-m-d H:i:s', time()),
                 'updated_at' => date('Y-m-d H:i:s', time())
             ],
