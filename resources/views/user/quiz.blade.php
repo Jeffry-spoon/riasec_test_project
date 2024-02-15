@@ -331,13 +331,20 @@
             // Menggunakan metode AJAX untuk mengirim data JSON ke endpoint '/submit-quiz'
             var csrfToken = $('meta[name="csrf-token"]').attr('content');
 
+            var endTimeData  = recordEndTime(); // Get the end time and duration
+
+            var quizData = {
+                data: data,
+                userAnswers: userAnswers,
+                startTime: startTime,
+                endTime: endTimeData.endTime,
+                durationInSeconds: endTimeData.durationInSeconds // Get the duration from the returned object
+            };
+
             $.ajax({
                 url: "{{ route('quiz.store') }}", // URL endpoint POST harus diisi dengan endpoint yang benar
                 type: 'POST',
-                data: JSON.stringify({
-                    data: data,
-                    userAnswers: userAnswers,
-                }),
+                data: JSON.stringify(quizData),
                 contentType: 'application/json',
                 headers: {
                     'X-CSRF-TOKEN': csrfToken
@@ -377,36 +384,44 @@
 
         }
 
-        // Tambahkan kode berikut di dalam tag <script> Anda
-        var startTime; // Waktu mulai
+        // Declare a global variable to hold the start time
+        var startTime;
 
+        // Function to start the quiz and record the start time
         function startQuiz() {
-            startTime = new Date(); // Catat waktu mulai
-            document.getElementById("start-time").innerText = startTime.getTime(); // Simpan waktu mulai dalam elemen HTML
+            startTime = new Date(); // Record the start time
+            console.log("Waktu mulai quiz:", startTime);
         }
 
-        function submitQuiz() {
-            var endTime = new Date(); // Waktu selesai
-            document.getElementById("end-time").innerText = endTime.getTime(); // Simpan waktu selesai dalam elemen HTML
+        // Call the startQuiz() function when the window is loaded
+        window.addEventListener('load', function() {
+            startQuiz(); // Call the function when the window is loaded
+        });
 
-            // Hitung dan tampilkan selisih waktu
-            var start = parseInt(document.getElementById("start-time").innerText);
-            var end = parseInt(document.getElementById("end-time").innerText);
-            var difference = end - start;
-            var seconds = Math.floor(difference / 1000);
-            var minutes = Math.floor(seconds / 60);
-            var remainingSeconds = seconds % 60;
-            document.getElementById("time-difference").innerText = "Waktu pengerjaan: " + minutes + " menit " +
-                remainingSeconds + " detik";
-            document.getElementById("time-difference").style.display =
-            "block"; // Tampilkan elemen dengan hasil selisih waktu
+        // Function to get the start time
+        function getStartTime() {
+            return startTime; // Return the start time
         }
+
+        function recordEndTime() {
+            var endTime = new Date();
+            console.log("Waktu selesai quiz ", endTime, "detik");
+            var difference = endTime - startTime; // Calculate the difference
+            var durationInSeconds = Math.floor(difference / 1000); // Calculate duration in seconds
+            console.log("Selisih: ", durationInSeconds, "detik");
+            return {
+                endTime: endTime,
+                durationInSeconds: durationInSeconds
+            }; // Return the end time and duration
+        }
+
+        // Fungsi yang dipanggil Setiap soal dikerjakan
 
         function handleSubmitButtonClick() {
             // Simpan jawaban pengguna ke backend atau lakukan tindakan lainnya
 
             if (showFeedback()) {
-
+                recordEndTime();
                 moveToNextCategory();
             }
         }

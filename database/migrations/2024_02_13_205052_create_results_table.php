@@ -17,7 +17,9 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained();
             $table->foreignId('event_id')->constrained();
             $table->json('score');
-            $table->time('time');
+            $table->time('start_time');
+            $table->time('end_time');
+            $table->time('difference');
             $table->timestamps();
             $table->softDeletes();
         });

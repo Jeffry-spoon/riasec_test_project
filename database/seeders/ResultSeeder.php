@@ -28,7 +28,9 @@ class ResultSeeder extends Seeder
                         'E' => 29,
                         'C' => 10,
                     ]),
-                    'time' => '01:20',
+                    'start_time' => '01:20',
+                    'end_time' => '01:20',
+                    'difference' => '01:20',
                 'created_at' => date('Y-m-d H:i:s', time()),
                 'updated_at' => date('Y-m-d H:i:s', time())
             ],
@@ -46,7 +48,9 @@ class ResultSeeder extends Seeder
                         'E' => 25,
                         'C' => 10,
                     ]),
-                    'time' => '01:20',
+                    'start_time' => '01:20',
+                    'end_time' => '01:20',
+                    'difference' => '01:20',
                 'created_at' => date('Y-m-d H:i:s', time()),
                 'updated_at' => date('Y-m-d H:i:s', time())
             ],
@@ -64,7 +68,9 @@ class ResultSeeder extends Seeder
                         'E' => 25,
                         'C' => 10,
                     ]),
-                    'time' => '01:20',
+                    'start_time' => '01:20',
+                    'end_time' => '01:20',
+                    'difference' => '01:20',
                 'created_at' => date('Y-m-d H:i:s', time()),
                 'updated_at' => date('Y-m-d H:i:s', time())
             ],
@@ -82,7 +88,9 @@ class ResultSeeder extends Seeder
                         'E' => 25,
                         'C' => 20,
                     ]),
-                    'time' => '01:20',
+                    'start_time' => '01:20',
+                    'end_time' => '01:20',
+                    'difference' => '01:20',
                 'created_at' => date('Y-m-d H:i:s', time()),
                 'updated_at' => date('Y-m-d H:i:s', time())
             ],

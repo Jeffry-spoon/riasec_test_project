@@ -94,21 +94,24 @@ class QuizController extends Controller
     public function store(Request $request)
     {
 
-        // dd($request->all());
+        dd($request->all());
     // Mendapatkan tipe yang aktif sebagai koleksi
     $typesCollection = Types::where('is_active', 1)->get();
 
-      // Ambil data jawaban dari request
-      $userAnswers = $request->input('userAnswers');
+    // Ambil data jawaban dari request
+    $userAnswers = $request->input('userAnswers');
 
-      // Inisialisasi array untuk menyimpan hasil per kategori
-      $categoryResults = [];
+    // Inisialisasi array untuk menyimpan hasil per kategori
+    $categoryResults = [];
 
-       // Mendapatkan type_id
+    // Mendapatkan type_id
     $typeId = $request->input('type_id');
     $typeName = $request->input('type_name');
 
-      // Loop melalui setiap kategori pada jawaban pengguna
+    // Mendapatkan kembali data event dari session
+    $temporaryEvent = Session::get('temporary_event');
+
+    // Loop melalui setiap kategori pada jawaban pengguna
       foreach ($userAnswers as $category => $answers) {
           // Hitung jumlah jawaban yang memiliki nilai tertentu (misalnya, "6")
           $totalAnswers = array_sum($answers);

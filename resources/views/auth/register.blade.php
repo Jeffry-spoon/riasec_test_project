@@ -4,7 +4,8 @@
     <!-- Register -->
     <style>
         .glass-option {
-            background-color: #007bff;
+            background-color: #e5e5e5;
+            color: #000000;
             /* Warna biru */
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.5);
@@ -15,7 +16,7 @@
         }
 
         .glass-option:hover {
-            background: rgba(255, 255, 255, 0.6);
+            background: #f72585;
         }
     </style>
 
