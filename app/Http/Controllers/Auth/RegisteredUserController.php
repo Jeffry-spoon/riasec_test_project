@@ -88,7 +88,7 @@ class RegisteredUserController extends Controller
         $event = $request->input('event');
 
         // Simpan event ke dalam session dengan menggunakan flash
-        Session::flash('temporary_event', $event);
+        Session::put('temporary_event', $event);
 
 //         // Mendapatkan kembali data event dari session
 // $temporaryEvent = Session::get('temporary_event');

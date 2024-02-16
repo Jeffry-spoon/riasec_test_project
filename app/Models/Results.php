@@ -13,6 +13,10 @@ class Results extends Model
     protected $fillable = [
         'user_id',
         'types_id',
+        'event_id',
+        'start_time',
+        'end_time',
+        'difference',
         'score',
     ];
 }

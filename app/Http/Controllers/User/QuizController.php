@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Results;
 use App\Models\Questions;
 use App\Models\Categories;
+use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -80,23 +81,34 @@ class QuizController extends Controller
     public function store(Request $request)
     {
 
-        dd($request->all());
     // Mendapatkan tipe yang aktif sebagai koleksi
     $typesCollection = Types::where('is_active', 1)->get();
 
     // Ambil data jawaban dari request
     $userAnswers = $request->input('userAnswers');
 
+    // Ambil data waktu dari request
+    $startTime = Carbon::parse($request['startTime']);
+    $endTime = Carbon::parse($request['endTime']);
+    $durationInSeconds = $request['durationInSeconds'];
+
+    // dd($startTime, $endTime, $durationInSeconds);
+
+    // Menghitung durasi jika tidak disediakan
+    if (!$durationInSeconds) {
+        $durationInSeconds = $endTime->diffInSeconds($startTime);
+    }
+
     // Inisialisasi array untuk menyimpan hasil per kategori
     $categoryResults = [];
 
     // Mendapatkan type_id
     $typeId = $request->input('type_id');
-    $typeName = $request->input('type_name');
+    // $typeName = $request->input('type_name');
 
     // Mendapatkan kembali data event dari session
     $temporaryEvent = Session::get('temporary_event');
-
+    
     // Loop melalui setiap kategori pada jawaban pengguna
       foreach ($userAnswers as $category => $answers) {
           // Hitung jumlah jawaban yang memiliki nilai tertentu (misalnya, "6")
@@ -108,7 +120,6 @@ class QuizController extends Controller
 
       // Mendapatkan type_id dari koleksi Types
     $typeId = $typesCollection->pluck('id')->first();
-    $typeName = $typesCollection->pluck('type_name')->first();
 
      $user = Auth::user();
      $userID = $user->id;
@@ -118,10 +129,13 @@ class QuizController extends Controller
         'user_id' => $userID,
         'types_id' => $typeId,
         'score' => json_encode($categoryResults),
+        'start_time' => $startTime,
+        'end_time' => $endTime,
+        'difference' => $durationInSeconds,
+        'event_id' => $temporaryEvent
     ]);
 
     $newlyCreatedId = $result->id;
-
 
       session(['quiz_completed' => true]);
 
@@ -130,8 +144,7 @@ class QuizController extends Controller
         'id' => $newlyCreatedId,
     ]);
 
-    }
-    // 'name' => $userName,
+}
 
 
     /**
