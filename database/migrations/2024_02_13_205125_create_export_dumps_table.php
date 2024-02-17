@@ -15,6 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('result_id')->constrained();
             $table->string('name');
+            $table->string('school_name');
+            $table->string('grade');
+            $table->string('event');
             $table->json('score');
             $table->json('description');
             $table->timestamps();

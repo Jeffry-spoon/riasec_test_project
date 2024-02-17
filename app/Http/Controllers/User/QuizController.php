@@ -12,6 +12,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 use Illuminate\Contracts\Session\Session as SessionSession;
 
 class QuizController extends Controller
@@ -29,6 +30,7 @@ class QuizController extends Controller
      */
     public function create(Types $types, Questions $question)
     {
+
       // Mendapatkan tipe yang aktif sebagai koleksi
      $typesCollection = Types::where('is_active', 1)->get();
 
@@ -104,11 +106,8 @@ class QuizController extends Controller
 
     // Mendapatkan type_id
     $typeId = $request->input('type_id');
-    // $typeName = $request->input('type_name');
 
-    // Mendapatkan kembali data event dari session
-    $temporaryEvent = Session::get('temporary_event');
-    
+
     // Loop melalui setiap kategori pada jawaban pengguna
       foreach ($userAnswers as $category => $answers) {
           // Hitung jumlah jawaban yang memiliki nilai tertentu (misalnya, "6")
@@ -124,6 +123,10 @@ class QuizController extends Controller
      $user = Auth::user();
      $userID = $user->id;
 
+     // Mendapatkan kembali data event dari session
+    $temporaryEvent = Session::get('temporary_event');
+
+    $slug = Str::random(10);
     // Insert ke database
     $result = Results::create([
         'user_id' => $userID,
@@ -132,16 +135,17 @@ class QuizController extends Controller
         'start_time' => $startTime,
         'end_time' => $endTime,
         'difference' => $durationInSeconds,
-        'event_id' => $temporaryEvent
+        'event_id' => $temporaryEvent,
+        'slug' => $slug,
     ]);
 
-    $newlyCreatedId = $result->id;
+    // $newlyCreatedSlug = $result->slug;
 
       session(['quiz_completed' => true]);
 
     // Redirect ke ResultController dengan membawa data hasil
     return response()->json([
-        'id' => $newlyCreatedId,
+        'slug' => $slug,
     ]);
 
 }

@@ -82,7 +82,9 @@
                         <div>
                             <h4>Riasec Test Result</h4>
                         </div>
-                        <div>{{ $data['name'] }}</div>
+                        <div>Nama:  {{ strtoupper($data['name']) }}</div>
+                        <div>Nama Sekolah: {{ $data['school_name'] }}</div>
+                        <div>Kelas: {{ $data['grade'] }}</div>
                     </td>
                 </tr>
             </table>

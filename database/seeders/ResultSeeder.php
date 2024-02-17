@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Results;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class ResultSeeder extends Seeder
 {
@@ -16,6 +17,7 @@ class ResultSeeder extends Seeder
         $ResultList = [
             [
                 'id' => 1,
+                'slug' => Str::random(10),
                 'types_id' => 1,
                 'user_id' => 2,
                 'event_id' => 1,
@@ -29,14 +31,15 @@ class ResultSeeder extends Seeder
                         'E' => 29,
                         'C' => 10,
                     ]),
-                    'start_time' => '01:20',
-                    'end_time' => '01:20',
+                    'start_time' => '2024-02-16 14:02:21',
+                    'end_time' => '2024-02-16 14:02:21',
                     'difference' => '01:20',
                 'created_at' => date('Y-m-d H:i:s', time()),
                 'updated_at' => date('Y-m-d H:i:s', time())
             ],
             [
                 'id' => 2,
+                'slug' => Str::random(10),
                 'types_id' => 1,
                 'user_id' => 3,
                 'event_id' => 2,
@@ -49,14 +52,15 @@ class ResultSeeder extends Seeder
                         'E' => 25,
                         'C' => 10,
                     ]),
-                    'start_time' => '01:20',
-                    'end_time' => '01:20',
+                    'start_time' => '2024-02-16 14:02:21',
+                    'end_time' => '2024-02-16 14:02:21',
                     'difference' => '01:20',
                 'created_at' => date('Y-m-d H:i:s', time()),
                 'updated_at' => date('Y-m-d H:i:s', time())
             ],
             [
                 'id' => 3,
+                'slug' => Str::random(10),
                 'types_id' => 1,
                 'user_id' => 3,
                 'event_id' => 3,
@@ -69,14 +73,15 @@ class ResultSeeder extends Seeder
                         'E' => 25,
                         'C' => 10,
                     ]),
-                    'start_time' => '01:20',
-                    'end_time' => '01:20',
+                    'start_time' => '2024-02-16 14:02:21',
+                    'end_time' => '2024-02-16 14:02:21',
                     'difference' => '01:20',
                 'created_at' => date('Y-m-d H:i:s', time()),
                 'updated_at' => date('Y-m-d H:i:s', time())
             ],
             [
                 'id' => 4,
+                'slug' => Str::random(10),
                 'types_id' => 1,
                 'user_id' => 3,
                 'event_id' => 1,
@@ -90,8 +95,8 @@ class ResultSeeder extends Seeder
                         'E' => 25,
                         'C' => 20,
                     ]),
-                    'start_time' => '01:20',
-                    'end_time' => '01:20',
+                    'start_time' => '2024-02-16 14:02:21',
+                    'end_time' => '2024-02-16 14:02:21',
                     'difference' => '01:20',
                 'created_at' => date('Y-m-d H:i:s', time()),
                 'updated_at' => date('Y-m-d H:i:s', time())

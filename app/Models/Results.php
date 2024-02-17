@@ -18,5 +18,6 @@ class Results extends Model
         'end_time',
         'difference',
         'score',
+        'slug'
     ];
 }

@@ -49,12 +49,15 @@ class RegisteredUserController extends Controller
             'occupation' => 'required|string',
         ]);
 
+         // Ambil data event dari request
+        $event = $request->input('event');
+        Session::put('temporary_event', $event);
+
         $existingUser = User::where('email', $request->input('email'))->first();
 
         // Periksa apakah pengguna sudah terdaftar sebelumnya.
         if ($existingUser) {
             Auth::login($existingUser);
-
             return redirect()->route('help')->with('info', 'Anda sudah terdaftar sebelumnya.');
         }
 
@@ -87,19 +90,18 @@ class RegisteredUserController extends Controller
         // Ambil data event dari request
         $event = $request->input('event');
 
-        // Simpan event ke dalam session dengan menggunakan flash
-        Session::put('temporary_event', $event);
-
-//         // Mendapatkan kembali data event dari session
-// $temporaryEvent = Session::get('temporary_event');
+    //    // Mendapatkan kembali data event dari session
+    //     $temporaryEvent = Session::get('temporary_event');
+    //     dd($temporaryEvent);
 
         Auth::login($user);
 
-        return redirect()->route('help');
+        return redirect()->route('help', compact('event'));
     }
 
     public function storeRegistration(Request $request)
     {
+        dd($request);
     // Validasi dan logika penyimpanan data registrasi
 
     // Simpan nama pengguna ke dalam sesi

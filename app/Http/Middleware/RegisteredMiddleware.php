@@ -19,17 +19,9 @@ class RegisteredMiddleware
     {
         // Periksa apakah pengguna telah melakukan registrasi.
         if (auth()->check()) {
-            // if (session('quiz_completed')) {
-            //     return redirect('/user/result')->with('success', 'Anda telah menyelesaikan kuis!');
-            // }
-            // Lanjutkan ke tujuan asli jika pengguna sudah terdaftar.
+
             return $next($request);
         }
-        // // Cek apa  kah pengguna telah menyelesaikan semua langkah (registrasi, quiz, result)
-        // if (!$this->userCompletedSession($request)) {
-        //     // Jika tidak, arahkan ke halaman registrasi
-        //     return redirect()->route('register');
-        // }
 
          // Redirect atau kirim tanggapan kesalahan jika pengguna belum terdaftar.
          return redirect('/register')->with('error', 'Anda harus registrasi terlebih dahulu.');

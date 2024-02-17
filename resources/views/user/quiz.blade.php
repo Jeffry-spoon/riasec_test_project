@@ -331,14 +331,14 @@
             // Menggunakan metode AJAX untuk mengirim data JSON ke endpoint '/submit-quiz'
             var csrfToken = $('meta[name="csrf-token"]').attr('content');
 
-            var endTimeData  = recordEndTime(); // Get the end time and duration
+            var endTimeData = recordEndTime(); // Get the end time and duration
 
             var quizData = {
                 data: data,
                 userAnswers: userAnswers,
                 startTime: startTime,
                 endTime: endTimeData.endTime,
-                durationInSeconds: endTimeData.durationInSeconds // Get the duration from the returned object
+                formattedTime: endTimeData.formattedTime // Get the duration from the returned object
             };
 
             $.ajax({
@@ -354,8 +354,8 @@
 
                     // Check if 'id' is present
                     //var newlyCreatedId = result.id;
-                    let url = "{{ route('result.show', ['id' => ':id']) }}";
-                    window.location.href = url.replace(':id', result.id);
+                    let url = "{{ route('result.show', ['slug' => ':slug']) }}";
+                    window.location.href = url.replace(':slug', result.slug);
 
                 },
                 error: function(xhr, status, error) {
@@ -409,9 +409,16 @@
             var difference = endTime - startTime; // Calculate the difference
             var durationInSeconds = Math.floor(difference / 1000); // Calculate duration in seconds
             console.log("Selisih: ", durationInSeconds, "detik");
+
+            var minutes = Math.floor(durationInSeconds / 60);
+            var seconds = durationInSeconds % 60;
+
+            // Format nilai untuk penyimpanan dalam kolom waktu MySQL
+            var formattedTime = ('00' + minutes).slice(-2) + ':' + ('00' + seconds).slice(-2) + ':00';
+
             return {
-                endTime: endTime,
-                durationInSeconds: durationInSeconds
+                endTime: endTime.toISOString(),
+                formattedTime: formattedTime
             }; // Return the end time and duration
         }
 

@@ -4,10 +4,12 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Categories;
+use App\Models\Event;
 use App\Models\ExportDump;
 use App\Models\Results;
 use App\Models\User;
 use App\Models\Jobs;
+use App\Models\UsersDetail;
 use PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -42,27 +44,30 @@ class ResultController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show ($id)
+    public function show ($slug)
     {
-        $result = Results::find($id);
+        $result = Results::where('slug', $slug)->first();
         $categoriesResult = Categories::all();
 
         // Memastikan hasil ditemukan
         if ($result) {
             //mengakses nama pengguna terkait
             $userId = $result->user_id;
+            $eventId = $result->event_id;
             $score = json_decode($result->score);
             $unsort = $score;
-            $userData = User::where('id', $userId)->first(); // Menggunakan first() untuk mendapatkan satu objek
+            $userData = User::where('id', $userId)->first();
+            $userDetailData = UsersDetail::where('user_id', $userId)
+                                    ->select('school_name', 'education_level')
+                                    ->first();
+
+            $event = Event::where('id', $eventId)->first();
             $userName = $userData->name;
             $scoreToArray = get_object_vars($score);
             $unsort = get_object_vars($score);
             arsort($scoreToArray);
             $highlightCategories = array_slice($scoreToArray, 0, 3, true);
             $topSixCategories = array_slice($scoreToArray, 0, 6, true);
-
-
-            // dd($result, $userId, $userName, $score, $topCategories);
         } else {
             abort(404);
         }
@@ -82,21 +87,24 @@ class ResultController extends Controller
                 'category' => $category,
             ];
         }
-
+$dummyData = 'dummmy';
         // Simpan data ke dalam table export_dump
         $exportDump = ExportDump::create([
             'result_id' => $result->id,
             'name' => $userName,
+            'school_name' => $userDetailData->school_name,
+            'grade' => $userDetailData->education_level,
+            'event' => $event->title,
             'score' => json_encode($unsort),
             'description' => json_encode($mergetArray),
         ]);
 
-        return view('/user/result', compact('result', 'userName', 'unsort', 'mergetArray'));
+        return view('/user/result', compact('result', 'userName', 'unsort', 'mergetArray', 'event'));
     }
 
-    public function viewPDF($id)
+    public function viewPDF($slug)
     {
-      $data = ExportDump::where('result_id', $id)->first();
+      $data = ExportDump::where('result_id', $slug)->first();
       $category = Categories::all();
 
       $mergetArray= [];

@@ -8,13 +8,14 @@
         $topSixCategories = array_slice($unsort, 0, 6, true);
         $categoryNames = array_keys($highlightCategories);
     @endphp
+
     <div class="container">
         <!-- Main -->
         <div class="container text-center">
             <div class="row">
                 <div clas s="title text-light mt-sm-1">
                     <div class="col align-self-center text-light" style="margin-top: 40px;">
-                        <h4>Hasil RIASEC TEST kamu</h4>
+                        <h4>Hasil RIASEC TEST kamu - <strong>{{$event->title }}</strong></h4>
                         <h1 class="fw-bolder">{{ $userName }}</h1>
                     </div>
                 </div>
@@ -64,7 +65,7 @@
                         <div class="card-body">
                             <h3>{{ $top['category']['category_text'] }}</h3>
                             <p class="card-text">{!! nl2br(e ($top['category']['description'])) !!}</p>
-                          
+
                         </div>
                     </div>
                 </div>

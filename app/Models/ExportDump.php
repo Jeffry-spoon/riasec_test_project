@@ -15,5 +15,8 @@ class ExportDump extends Model
         'name',
         'score',
         'description',
+        'school_name',
+        'grade',
+        'event'
     ];
 }
