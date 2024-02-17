@@ -82,6 +82,7 @@ class QuizController extends Controller
      */
     public function store(Request $request)
     {
+        $user_tz = 'Asia/Jakarta';
 
     // Mendapatkan tipe yang aktif sebagai koleksi
     $typesCollection = Types::where('is_active', 1)->get();
@@ -90,10 +91,9 @@ class QuizController extends Controller
     $userAnswers = $request->input('userAnswers');
 
     // Ambil data waktu dari request
-    $startTime = Carbon::parse($request['startTime']);
-    $endTime = Carbon::parse($request['endTime']);
+    $startTime = Carbon::parse($request['startTime'])->tz('Asia/Jakarta');
+    $endTime = Carbon::parse($request['endTime'])->tz('Asia/Jakarta');
     $durationInSeconds = $request['durationInSeconds'];
-
     // dd($startTime, $endTime, $durationInSeconds);
 
     // Menghitung durasi jika tidak disediakan
@@ -128,6 +128,8 @@ class QuizController extends Controller
 
     $slug = Str::random(10);
     // Insert ke database
+
+
     $result = Results::create([
         'user_id' => $userID,
         'types_id' => $typeId,

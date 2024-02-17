@@ -417,7 +417,7 @@
             var formattedTime = ('00' + minutes).slice(-2) + ':' + ('00' + seconds).slice(-2) + ':00';
 
             return {
-                endTime: endTime.toISOString(),
+                endTime: endTime,
                 formattedTime: formattedTime
             }; // Return the end time and duration
         }
