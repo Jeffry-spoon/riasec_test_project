@@ -583,7 +583,7 @@ button {
     /* Showcase */
     .showcase {
         width: 90%;
-        display: -webkit-box;
+        /* display: -webkit-box; */
         display: -ms-flexbox;
     }
     .showcase h2 {
