@@ -100,16 +100,12 @@
 
     <script>
         // Inisialisasi variabel data sebagai objek kosong di luar fungsi mapping
-        console.log('data lemparan', quizData);
 
         var data = {};
         var currentCategory = getCurrentCategory();
         var dataMapping = mapping();
         var alertElement = document.getElementById('alertElement');
         var currentCategoryIndex = 0;
-
-        console.log('data mapping:', data);
-        console.log('current cateogry', currentCategory);
 
         let checkValidationCategory = validation(data, currentCategory);
 
@@ -160,7 +156,6 @@
 
         // function untuk mendapatkan jawaban masing - masing pertanyaan dan mengupdate jawaban pada answer
         function setValueQuestion(selectCategory) {
-            // console.log(userAnswers[selectCategory]); // Debugging, lihat jawaban yang telah disimpan
 
             // Mendeklarasikan dan menginisialisasi tempCount ke 0
             var tempCount = 0;
@@ -175,13 +170,8 @@
                 } else {
                     // Jika jawaban sudah disimpan, perbarui nilai answer di data
                     data[selectCategory].questions[i].answer = userAnswers[selectCategory][questionId];
-                    // console.log(`Jawaban untuk pertanyaan ${questionId} diupdate menjadi: ${userAnswers[selectCategory][questionId]}`);
-
                 }
             }
-
-            console.log('Data yang sudah diperbarui:', data);
-
 
             // Kembalikan nilai tempCount
             return tempCount;
@@ -221,7 +211,6 @@
         // function untuk mentrigger logic button next
         function handleNextButtonClick() {
             // Simpan jawaban pengguna ke backend atau lakukan tindakan lainnya
-            console.log('User Answers:', userAnswers);
 
             if (showFeedback()) {
                 moveToNextCategory();
@@ -234,8 +223,6 @@
         // function untuk menampilkan umpan balik
         function showFeedback() {
             var unansweredCount = setValueQuestion(currentCategory);
-            console.log('Current category for feedback:', currentCategory);
-            console.log('Unanswered Count:', unansweredCount);
 
             if (unansweredCount > 0) {
                 var alertText =
@@ -272,7 +259,6 @@
 
                 // Tampilkan kategori berikutnya
                 showNextCategory();
-                console.log('Current category index:', currentCategoryIndex);
 
             } else {
                 submitQuizAnswers();
@@ -282,8 +268,6 @@
         // function untuk mengirimkan data ke controller
         function submitQuizAnswers() {
             var unansweredCount = setValueQuestion(currentCategory);
-            console.log('Current category for feedback:', currentCategory);
-            console.log('Unanswered Count:', unansweredCount);
 
             if (unansweredCount > 0) {
                 var alertText =
@@ -372,7 +356,6 @@
             var currentCategory = Object.keys(data)[currentCategoryIndex - 1];
             var currentCategoryElement = document.getElementById('section_' + currentCategory);
             currentCategoryElement.style.display = 'none';
-            console.log('category sebelum: ', currentCategory);
         }
 
         // function untuk menampilkan kategori berikutnya
@@ -380,8 +363,6 @@
             var nextCategory = Object.keys(data)[currentCategoryIndex];
             var nextCategoryElement = document.getElementById('section_' + nextCategory);
             nextCategoryElement.style.display = '';
-            console.log('category selanjutnya: ', nextCategory);
-
         }
 
         // Declare a global variable to hold the start time
@@ -390,7 +371,6 @@
         // Function to start the quiz and record the start time
         function startQuiz() {
             startTime = new Date(); // Record the start time
-            console.log("Waktu mulai quiz:", startTime);
         }
 
         // Call the startQuiz() function when the window is loaded
@@ -405,10 +385,8 @@
 
         function recordEndTime() {
             var endTime = new Date();
-            console.log("Waktu selesai quiz ", endTime, "detik");
             var difference = endTime - startTime; // Calculate the difference
             var durationInSeconds = Math.floor(difference / 1000); // Calculate duration in seconds
-            console.log("Selisih: ", durationInSeconds, "detik");
 
             var minutes = Math.floor(durationInSeconds / 60);
             var seconds = durationInSeconds % 60;
