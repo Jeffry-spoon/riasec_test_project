@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug');
+            $table->timestamp('cut_off_date');
+            $table->boolean('is_active');
             $table->timestamps();
             $table->softDeletes();
         });

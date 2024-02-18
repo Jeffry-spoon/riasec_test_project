@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 use App\Models\Types;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Session;
 
 
@@ -26,7 +27,8 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        $events = Event::all();
+        $events = Event::where('cut_off_date', '>', Carbon::now())
+        ->get();
 
         return view('auth.register', compact('events'));
     }
@@ -90,10 +92,6 @@ class RegisteredUserController extends Controller
         // Ambil data event dari request
         $event = $request->input('event');
 
-    //    // Mendapatkan kembali data event dari session
-    //     $temporaryEvent = Session::get('temporary_event');
-    //     dd($temporaryEvent);
-
         Auth::login($user);
 
         return redirect()->route('help', compact('event'));
@@ -101,7 +99,7 @@ class RegisteredUserController extends Controller
 
     public function storeRegistration(Request $request)
     {
-        dd($request);
+
     // Validasi dan logika penyimpanan data registrasi
 
     // Simpan nama pengguna ke dalam sesi
