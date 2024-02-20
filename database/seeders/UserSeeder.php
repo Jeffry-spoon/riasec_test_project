@@ -16,14 +16,14 @@ class UserSeeder extends Seeder
     {
         $UserList = [
             [
-                'id' => 2,
+                'id' => 7,
                 'name' => 'norman.mcdonalid',
                 'email' => 'norman.mcdonalid@example.com',
                 'created_at' => date('Y-m-d H:i:s', time()),
                 'updated_at' => date('Y-m-d H:i:s', time())
             ],
             [
-                'id' => 3,
+                'id' => 8,
                 'name' => 'Terri Hawkins',
                 'email' => 'terri.hawkins@example.com',
                 'created_at' => date('Y-m-d H:i:s', time()),
@@ -35,7 +35,7 @@ class UserSeeder extends Seeder
         $UserDetail = [
             [
                 'id' => 1,
-                'user_id' => 2,
+                'user_id' => 7,
                 'education_level' => 'Kelas 12 IPA',
                 'gender' => 'Male',
                 'phone_number' => '(987) 610-4370',
@@ -46,7 +46,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'id' => 2,
-                'user_id' => 3,
+                'user_id' => 8,
                 'education_level' => 'Kelas 12 IPA',
                 'gender' => 'Female',
                 'phone_number' => '(208) 682-9054',
