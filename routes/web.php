@@ -21,11 +21,11 @@ use App\Http\Middleware\CheckResultOwner;
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
-
+Route::get('help', function () {return view('user.user-guide');})->name('help');
 Route::middleware('registered')->group(function () {
 
     // User guide
-    Route::get('help', function () {return view('user.user-guide');})->name('help');
+    // Route::get('help', function () {return view('user.user-guide');})->name('help');
 
 
     // Quiz
