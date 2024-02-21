@@ -148,6 +148,7 @@
 
   /* Footer */
   .footer {
+    position: fixed;
     justify-content: center;
     margin-bottom: 24px;
     left: 0;
