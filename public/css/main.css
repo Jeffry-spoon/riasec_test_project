@@ -1,11 +1,10 @@
 * {
-    -webkit-box-sizing: border-box;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-}
+  }
 
-body {
+  body {
     font-family: "Poppins", sans-serif;
     color: #000;
     font-size: 15px;
@@ -17,81 +16,59 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     opacity: 0;
-    -webkit-animation: fadeIn 1s ease-in both;
     animation: fadeIn 1s ease-in both;
-}
+    -webkit-animation: fadeIn 1s ease-in both;
+  }
 
-@-webkit-keyframes fadeIn {
+  @keyframes fadeIn {
     from {
-        opacity: 0;
-        -webkit-transform: translate3d(0, -20%, 0);
-        transform: translate3d(0, -20%, 0);
+      opacity: 0;
+      transform: translate3d(0, -20%, 0);
     }
     to {
-        opacity: 1;
-        -webkit-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
     }
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        -webkit-transform: translate3d(0, -20%, 0);
-        transform: translate3d(0, -20%, 0);
-    }
-    to {
-        opacity: 1;
-        -webkit-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
-    }
-}
-
-.container {
+  }
+  .container {
     width: 90%;
     max-width: 1100px;
     margin: auto;
-}
+  }
 
-/* Nav */
-.main-nav {
-    display: -webkit-box;
-    display: -ms-flexbox;
+  /* Nav */
+  .main-nav {
     display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
     justify-content: center;
     height: 100px;
     padding: 20px 0;
     font-size: 16px;
-}
+  }
 
-.main-nav .logo {
+  .main-nav .logo {
     width: 280px;
     padding: 12px 16px;
-    /* From https://css.glass */
-    background: rgba(0, 0, 0, 0.22);
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(9.2px);
-    -webkit-backdrop-filter: blur(9.2px);
-    border: 1px solid rgba(0, 0, 0, 0.3);
+     /* From https://css.glass */
+     background: rgba(0, 0, 0, 0.22);
+     border-radius: 16px;
+     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+     border: 1px solid rgba(0, 0, 0, 0.3);
+     backdrop-filter: blur(5px);
+     -webkit-backdrop-filter: blur(5px);
     top: 0;
-}
+  }
 
-.menu-btn {
+  .menu-btn {
     cursor: pointer;
     position: absolute;
     top: 20px;
     right: 30px;
     z-index: 2;
     display: none;
-}
+  }
 
-.custom-btn {
+  .custom-btn {
     width: 20%;
     margin: 36px 0 0 0;
     text-align: center;
@@ -113,13 +90,13 @@ body {
     -moz-transition: 0.5s;
     -ms-transition: 0.5s;
     -o-transition: 0.5s;
-}
+  }
 
-.btn:hover {
+  .btn:hover {
     background-color: #2d00f7 !important;
-}
+  }
 
-.btn-start {
+  .btn-start {
     width: 100%;
     margin: 36px 0 0 0;
     text-align: center;
@@ -131,116 +108,101 @@ body {
     background: #f72585;
     color: #fff;
     font-size: 20px;
-}
+  }
 
-.btn-start:hover {
+  .btn-start:hover {
     background-color: #2d00f7 !important;
     color: #ffffff;
-    -webkit-transition: 0.5s;
     transition: 0.5s;
-}
+  }
 
-/* Showcase */
-.showcase {
-    display: -webkit-box;
-    display: -ms-flexbox;
+  /* Showcase */
+  .showcase {
     display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
     flex-direction: column;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center;
     text-align: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
     justify-content: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: auto;
-    height: 200px; /****set height****/
-    margin: auto;
-}
+    padding-bottom: 50px;
+    margin-top: 120px;
+  }
 
-.showcase h2 {
+  .showcase h2 {
     font-size: 42px;
     color: #ffffff;
-}
+  }
 
-.showcase p {
+  .showcase p {
     font-size: 18px;
     color: #ffffff;
     margin-bottom: 48px;
-}
+    margin: 0 auto;
+    text-align: center;
+    max-width: 800px;
+    margin-bottom: 30px;
+  }
 
-.showcase .btn {
+  .showcase .btn {
     margin-top: 20px;
-}
+  }
 
-/* Footer */
-.footer {
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
+  /* Footer */
+  .footer {
     justify-content: center;
     margin-bottom: 24px;
     left: 0;
     bottom: 0;
     width: 100%;
     text-align: center;
-    position: relative;
-}
+    margin-top: 240px;
+  }
 
-/* Register */
-.wrapper {
+  /* Register */
+  .wrapper {
     margin-top: 80px;
     margin-bottom: 80px;
-}
+  }
 
-.form-signin {
+  .form-signin {
     max-width: 380px;
     padding: 15px 35px 45px;
     margin: 0 auto;
     border: 1px solid rgba(0, 0, 0, 0.1);
-}
+  }
 
-.form-signin-heading,
-.checkbox {
+  .form-signin-heading,
+  .checkbox {
     margin-bottom: 30px;
-}
+  }
 
-.checkbox {
+  .checkbox {
     font-weight: normal;
-}
+  }
 
-.form-control {
+  .form-control {
     background-color: none !important;
-}
+  }
 
-input[type="password"] {
+  input[type=password] {
     margin-bottom: 20px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
-}
+  }
 
-/* Form */
-*,
-*:before,
-*:after {
+  /* Form */
+  *,
+  *:before,
+  *:after {
     padding: 0;
     margin: 0;
-    -webkit-box-sizing: border-box;
     box-sizing: border-box;
-}
+  }
 
-body {
+  body {
     background-color: #080710;
-}
+  }
 
-form {
+  form {
     height: auto;
     margin: 18px auto;
     max-width: 90vh;
@@ -253,14 +215,14 @@ form {
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
     padding: 42px 24px;
-}
+  }
 
-form * {
+  form * {
     color: #ffffff;
     outline: none;
-}
+  }
 
-input {
+  input {
     display: block;
     height: 50px;
     width: 100%;
@@ -271,25 +233,17 @@ input {
     font-size: 14px;
     font-weight: 300;
     border: solid 1px #ffffff;
-}
+  }
 
-::-webkit-input-placeholder {
+  ::-moz-placeholder {
     color: #e5e5e5;
-}
+  }
 
-:-ms-input-placeholder {
+  ::placeholder {
     color: #e5e5e5;
-}
+  }
 
-::-ms-input-placeholder {
-    color: #e5e5e5;
-}
-
-::placeholder {
-    color: #e5e5e5;
-}
-
-button {
+  button {
     margin-top: 50px;
     width: 100%;
     padding: 15px 0;
@@ -297,112 +251,83 @@ button {
     font-weight: 600;
     border-radius: 5px;
     cursor: pointer;
-}
+  }
 
-/* Radio */
-#form-wrapper {
+  /* Radio */
+  #form-wrapper {
     width: 100%;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
     flex-direction: column;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center;
-}
+  }
 
-.test-form {
-    width: 100%;
-}
-
-.test-form #form-title {
+  .test-form {
+    width: 90%;
+    max-width: 500px;
+  }
+  .test-form #form-title {
     margin-top: 0;
     font-weight: 400;
     text-align: center;
-}
-
-.test-form #debt-amount-slider {
-    display: -webkit-box;
-    display: -ms-flexbox;
+  }
+  .test-form #debt-amount-slider {
     display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: row;
     flex-direction: row;
-    -ms-flex-line-pack: stretch;
     align-content: stretch;
     position: relative;
     width: 100%;
     height: 50px;
     -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-.test-form #debt-amount-slider::before {
+       -moz-user-select: none;
+            user-select: none;
+  }
+  .test-form #debt-amount-slider::before {
     content: " ";
     position: absolute;
     height: 2px;
     width: 100%;
-    width: calc(100% * (4 / 5));
+    width: calc(100% * 4 / 5);
     top: 50%;
     left: 50%;
-    -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     background: #fff;
-}
-
-.test-form #debt-amount-slider input,
-.test-form #debt-amount-slider label {
-    -webkit-box-sizing: border-box;
+  }
+  .test-form #debt-amount-slider input,
+  .test-form #debt-amount-slider label {
     box-sizing: border-box;
-    -webkit-box-flex: 1;
-    -ms-flex: 1;
     flex: 1;
     -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+       -moz-user-select: none;
+            user-select: none;
     cursor: pointer;
-}
-
-.test-form #debt-amount-slider label {
+  }
+  .test-form #debt-amount-slider label {
     display: inline-block;
     position: relative;
     width: 20%;
     height: 100%;
     -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-.test-form #debt-amount-slider label::before {
+       -moz-user-select: none;
+            user-select: none;
+  }
+  .test-form #debt-amount-slider label::before {
     content: attr(data-debt-amount);
     position: absolute;
     left: 50%;
     padding-top: 10px;
-    -webkit-transform: translate(-50%, 45px);
     transform: translate(-50%, 45px);
     font-size: 14px;
     letter-spacing: 0.4px;
     font-weight: 400;
     white-space: nowrap;
     opacity: 0.85;
-    -webkit-transition: all 0.15s ease-in-out;
     transition: all 0.15s ease-in-out;
-}
-
-.test-form #debt-amount-slider label::after {
+  }
+  .test-form #debt-amount-slider label::after {
     content: " ";
     position: absolute;
     left: 50%;
     top: 50%;
-    -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     width: 30px;
     height: 30px;
@@ -411,60 +336,45 @@ button {
     border-radius: 50%;
     pointer-events: none;
     -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+       -moz-user-select: none;
+            user-select: none;
     z-index: 1;
     cursor: pointer;
-    -webkit-transition: all 0.15s ease-in-out;
     transition: all 0.15s ease-in-out;
-}
-
-.test-form #debt-amount-slider label:hover::after {
-    -webkit-transform: translate(-50%, -50%) scale(1.25);
+  }
+  .test-form #debt-amount-slider label:hover::after {
     transform: translate(-50%, -50%) scale(1.25);
-}
-
-.test-form #debt-amount-slider input {
+  }
+  .test-form #debt-amount-slider input {
     display: none;
-}
-
-.test-form #debt-amount-slider input:checked + label::before {
+  }
+  .test-form #debt-amount-slider input:checked + label::before {
     font-weight: 800;
     opacity: 1;
-}
-
-.test-form #debt-amount-slider input:checked + label::after {
+  }
+  .test-form #debt-amount-slider input:checked + label::after {
     border-width: 4px;
-    -webkit-transform: translate(-50%, -50%) scale(0.75);
     transform: translate(-50%, -50%) scale(0.75);
-}
-
-.test-form #debt-amount-slider input:checked ~ #debt-amount-pos {
+  }
+  .test-form #debt-amount-slider input:checked ~ #debt-amount-pos {
     opacity: 1;
-}
-
-.test-form #debt-amount-slider input:checked:nth-child(1) ~ #debt-amount-pos {
+  }
+  .test-form #debt-amount-slider input:checked:nth-child(1) ~ #debt-amount-pos {
     left: 10%;
-}
-
-.test-form #debt-amount-slider input:checked:nth-child(3) ~ #debt-amount-pos {
+  }
+  .test-form #debt-amount-slider input:checked:nth-child(3) ~ #debt-amount-pos {
     left: 30%;
-}
-
-.test-form #debt-amount-slider input:checked:nth-child(5) ~ #debt-amount-pos {
+  }
+  .test-form #debt-amount-slider input:checked:nth-child(5) ~ #debt-amount-pos {
     left: 50%;
-}
-
-.test-form #debt-amount-slider input:checked:nth-child(7) ~ #debt-amount-pos {
+  }
+  .test-form #debt-amount-slider input:checked:nth-child(7) ~ #debt-amount-pos {
     left: 70%;
-}
-
-.test-form #debt-amount-slider input:checked:nth-child(9) ~ #debt-amount-pos {
+  }
+  .test-form #debt-amount-slider input:checked:nth-child(9) ~ #debt-amount-pos {
     left: 90%;
-}
-
-.test-form #debt-amount-slider #debt-amount-pos {
+  }
+  .test-form #debt-amount-slider #debt-amount-pos {
     display: block;
     position: absolute;
     top: 50%;
@@ -472,9 +382,7 @@ button {
     height: 12px;
     background: #7209b7;
     border-radius: 50%;
-    -webkit-transition: all 0.15s ease-in-out;
     transition: all 0.15s ease-in-out;
-    -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     border: 2px solid #fff;
     opacity: 0;
@@ -483,165 +391,108 @@ button {
     -moz-border-radius: 50%;
     -ms-border-radius: 50%;
     -o-border-radius: 50%;
-}
-
-.test-form:valid #debt-amount-slider input + label::before {
+  }
+  .test-form:valid #debt-amount-slider input + label::before {
     transform: translate(-50%, 45px) scale(0.9);
-    -webkit-transition: all 0.15s linear;
     transition: all 0.15s linear;
     -webkit-transform: translate(-50%, 45px) scale(0.9);
     -moz-transform: translate(-50%, 45px) scale(0.9);
     -ms-transform: translate(-50%, 45px) scale(0.9);
     -o-transform: translate(-50%, 45px) scale(0.9);
-}
-
-.test-form:valid #debt-amount-slider input:checked + label::before {
-    -webkit-transform: translate(-50%, 45px) scale(1.1);
+  }
+  .test-form:valid #debt-amount-slider input:checked + label::before {
     transform: translate(-50%, 45px) scale(1.1);
-    -webkit-transition: all 0.15s linear;
     transition: all 0.15s linear;
-}
+  }
 
-@media (max-width: 700px) {
-
+  @media (max-width: 768px) {
     body {
-        background-image: url("/Assets/background-desktop.png");
-        background-repeat: no-repeat;
-        background-size: cover;
-        min-height: 100vh;
-        width: 100%;
+        background: url("../images/background-mobile.png");
+      background-repeat: no-repeat;
+      background-size: cover;
+      min-height: 100vh;
+      width: 100%;
     }
-
     /* Showcase */
     .showcase {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        width: auto;
-        height: 200px; /****set height****/
-        margin: auto;
+      margin-bottom: 50px; /* Sesuaikan margin bawah untuk layar kecil */
     }
     .showcase h2 {
-        font-size: 42px;
-        color: #ffffff;
+      font-size: 42px;
+      color: #ffffff;
     }
     .showcase p {
-        font-size: 18px;
-        color: #ffffff;
-        margin-bottom: 48px;
+      margin-left: auto; /* Reset margin kiri untuk tampilan desktop dan tablet */
+      margin-right: auto; /* Reset margin kanan untuk tampilan desktop dan tablet */
+      max-width: 600px; /* Sesuaikan lebar maksimum untuk tampilan desktop dan tablet */
     }
     .showcase .btn {
-        margin-top: 20px;
+      margin-top: 20px;
     }
-}
-
-@media (max-width: 500px) {
+  }
+  @media (max-width: 500px) {
     body {
-        background-image: url("../images/background-mobile.png");
-        background-repeat: no-repeat;
-        background-size: cover;
-        min-height: 100vh;
-        width: 100%;
-        margin: 0 16px;
-    }
-    .overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.199); /* Warna hitam dengan opasitas 0.5 */
+        background: url("../images/background-mobile.png");
+      background-repeat: no-repeat;
+      background-size: cover;
+      min-height: 100vh;
+      width: 100%;
+      margin: 0 16px;
     }
     footer {
-        background-color: rgba(0, 0, 0, 0.25);
-        height: 40px;
-        animation: overlayMoveUp 0.5s ease-in;
-        margin-bottom: 0px !important;
-        animation: overlayMoveUp 0.5s ease-in;
-        -webkit-animation: overlayMoveUp 0.5s ease-in;
-        position: fixed;
-        bottom: 0;
-    }
-    .main-nav {
-        z-index: 999;
+      background-color: rgba(0, 0, 0, 0.25);
+      height: 40px;
+      animation: overlayMoveUp 0.5s ease-in;
+      margin-bottom: 0px !important;
+      animation: overlayMoveUp 0.5s ease-in;
+      -webkit-animation: overlayMoveUp 0.5s ease-in;
     }
     .main-nav .logo {
-        width: 100%;
-        margin-top: 16px;
-        padding: 12px 16px;
-        background: rgba(0, 0, 0, 0.22);
-        border-radius: 16px;
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        backdrop-filter: blur(9.2px);
-        -webkit-backdrop-filter: blur(9.2px);
-        border: 1px solid rgba(0, 0, 0, 0.3);
-        z-index: 999;
+      width: 100%;
+      margin-top: 16px;
+      padding: 12px 16px;
     }
     /* Showcase */
     .showcase {
-        width: 90%;
-        /* display: -webkit-box; */
-        display: -ms-flexbox;
+      width: 100%; /* Lebar penuh untuk layar kecil */
+      margin-bottom: 30px; /* Sesuaikan margin bawah untuk layar sangat kecil */
     }
     .showcase h2 {
-        font-size: 32px;
-        color: #ffffff;
+      font-size: 32px;
+      color: #ffffff;
     }
     .btn {
-        width: 100%  !important;
-        margin: 48px 0 0 0;
+      width: 100%;
+      margin: 48px 0 0 0;
     }
     /* form */
     input {
-        height: 50px;
-        max-width: 100% !important;
+      height: 50px;
+      max-width: 100% !important;
     }
     button {
-        width: 100% !important;
-        padding: 15px 0;
-        font-size: 18px;
-        font-weight: 600;
-        border-radius: 5px;
-        cursor: pointer;
-        margin: 24px auto !important;
+      width: 100% !important;
+      padding: 15px 0;
+      font-size: 18px;
+      font-weight: 600;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 24px auto !important;
     }
     form,
     .main-nav {
-        margin-left: 16px;
-        margin-right: 16px;
-        padding: 24px 8px;
+      margin-left: 16px;
+      margin-right: 16px;
     }
-
-    .test-form {
-        width: 95% ;
-
-    }
-
-    .desc-text {
-        display: block !important;
-    }
-
-}
-
-.form-control::-webkit-input-placeholder {
+  }
+  .form-control::-moz-placeholder {
     color: rgba(255, 255, 255, 0.535) !important;
-}
-
-.form-control:-ms-input-placeholder {
+  }
+  .form-control::placeholder {
     color: rgba(255, 255, 255, 0.535) !important;
-}
+  }
 
-.form-control::-ms-input-placeholder {
-    color: rgba(255, 255, 255, 0.535) !important;
-}
-
-.form-control::placeholder {
-    color: #f8f8f8 !important;
-}
-
-::-webkit-calendar-picker-indicator {
+  ::-webkit-calendar-picker-indicator {
     background-color: #e5e5e5;
     padding: 4px;
     border-radius: 4px;
@@ -650,182 +501,39 @@ button {
     -ms-border-radius: 4px;
     -o-border-radius: 4px;
     color: #e5e5e5;
-}
+  }
 
-.form-check .form-check-input,
-.form-check .form-check-label {
+  .form-check .form-check-input,
+  .form-check .form-check-label {
     height: 21.6px !important;
-}
+  }
+  .form-check .form-check-label {
+    margin-left: 4px;
+  }
 
-.required:after {
+  .required:after {
     content: " *";
-    color: #ffd700;
-}
-/*# sourceMappingURL=style.css.map */
-
-@media (min-width: 2440px) {
-    .showcase {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        width: auto;
-        height: 200px; /****set height****/
-        margin: auto;
-    }
-}
-
-.invalid-feedback {
-    color: #ffd700 !important; /* Your desired color */
-}
-.form-control.is-invalid,
-.was-validated .form-control:invalid {
-    border-color: #ffd700 !important; /* Your desired color */
-}
-
-.title-guide {
-    font-size:20px;
-    font-weight: 600;
-    text-align: center;
-    border-top: 16px;
-}
-
-/* Bar Chart */
-#chart{
-    position:relative;
-    margin-top:40px;
-    width:500px;
-    height:200px;
-  }
-  @-webkit-keyframes bargrowth{
-    0%   {max-height: 0%;}
-    100%  {max-height: 100%;}
-  }
-  @keyframes bargrowth{
-    0%   {max-height: 0%;}
-    100%  {max-height: 100%;}
-  }
-  .bar{
-    -webkit-animation: bargrowth 1000ms ease;
-    animation: bargrowth 1000ms ease;
-    position:absolute;
-    bottom:0;
-    display:inline-block;
-    background: #89b800;
-    box-shadow: 1px -1px #79a300, 2px -2px #79a300, 3px -3px #79a300,   4px -4px #79a300, 5px -5px #79a300, 6px -6px #79a300, 7px -7px   #79a300, 8px -8px #79a300, 9px -9px #79a300, 10px -10px #79a300;
+    color: red;
   }
 
-
-  .wrapper{
-    text-align:center;
-    margin:0 auto;
-    margin-top:30px;
-    width:500px;
-    font-family:Helvetica;
-    font-size:12px;
-  }
-  .wrapper > h1, .wrapper > p{
-    margin:0;
-  }
-
-
-/* Loader */
-/* styles.css */
-
-body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Arial', sans-serif;
-}
-
-.loading-overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.8);
-    z-index: 9999;
-}
-
-.loading-spinner {
-    border: 8px solid #f3f3f3;
-    border-top: 8px solid #3498db;
+  .radio-button {
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
-    width: 50px;
-    height: 50px;
+    position: relative;
+    display: inline-block;
+    background-color: #ccc;
+  }
+  .radio-button__inner {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #fff;
     position: absolute;
     top: 50%;
     left: 50%;
-    margin-top: -25px;
-    margin-left: -25px;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-#checkRadio
-{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 80%;
-    margin: 0 auto;
-}
-
-.desc {
-    display: none; /* Atur elemen untuk disembunyikan secara default */
-}
-
-.form-check
-{
-  display: block;
-  min-height: 0;
-  padding-left: 0 !important;
-}
-.form-check-inline
-{
-    margin-right: 0 !important;
-}
-.form-check .form-check-input {
-    margin-left: 0 !important;
-}
-
-/* Ukuran besar untuk radio button indeks pertama */
-input[type="radio"].first {
-    width: 24px; /* Sesuaikan ukuran sesuai kebutuhan */
-    height: 24px; /* Sesuaikan ukuran sesuai kebutuhan */
-}
-
-/* Ukuran kecil untuk radio button indeks di tengah */
-input[type="radio"].middle {
-    width: 16px; /* Sesuaikan ukuran sesuai kebutuhan */
-    height: 16px; /* Sesuaikan ukuran sesuai kebutuhan */
-}
-
-/* Ukuran besar untuk radio button indeks terakhir */
-input[type="radio"].last {
-    width: 24px; /* Sesuaikan ukuran sesuai kebutuhan */
-    height: 24px; /* Sesuaikan ukuran sesuai kebutuhan */
-}
-
-@media screen and (min-width: 500px) {
-    .desc {
-        display: block; /* Tampilkan elemen jika lebar layar lebih besar atau sama dengan 500px */
-    }
-
-
-#checkRadio
-{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 80%;
-    margin: 0 auto;
-}
-}
+    transform: translate(-50%, -50%);
+  }
+  .radio-button:checked {
+    background-color: #007bff;
+  }/*# sourceMappingURL=style.css.map */
