@@ -22,7 +22,7 @@
 </div>
 
 <!-- Footer -->
-<footer class="footer">
+<footer class="footer" style="position: fixed;">
     <a
         href="https://ukrida.ac.id/studyprogram/ps/50/program-studi-psikologi"
         class="text-decoration-none text-light"
