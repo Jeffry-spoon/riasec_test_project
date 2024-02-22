@@ -43,18 +43,20 @@
                                     <h6 class="me-4 fs-5 desc">Sangat tidak <br> suka</h6>
                                     <div id="checkRadio"
                                         class="checkRadio_{{ $index }}  d-flex align-items-center justify-content-between">
-                                        @for ($i = 1; $i <= 6; $i++)
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio"
-                                                    name="inlineRadioOptions_{{ $category }}_{{ $sectionIndex }}_{{ $index }}"
-                                                    id="inlineRadio{{ $sectionIndex }}{{ $index }}_{{ $i }}"
-                                                    value="{{ $i }}"
-                                                    onchange="saveAnswer('{{ $category }}', '{{ $innerQuestion['id'] }}', this.value)"
-                                                    @if ($i == 1) first
-                                                    @elseif ($i == 3) middle
-                                                    @elseif ($i == 6) last @endif" />
-                                            </div>
-                                        @endfor
+                                        <div class="checkbox-container">
+                                            @for ($i = 1; $i <= 6; $i++)
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="inlineRadioOptions_{{ $category }}_{{ $sectionIndex }}_{{ $index }}"
+                                                        id="inlineRadio{{ $sectionIndex }}{{ $index }}_{{ $i }}"
+                                                        value="{{ $i }}"
+                                                        onchange="saveAnswer('{{ $category }}', '{{ $innerQuestion['id'] }}', this.value)"
+                                                        @if ($i == 1) first
+                                                        @elseif ($i == 3) middle
+                                                        @elseif ($i == 6) last @endif" />
+                                                </div>
+                                            @endfor
+                                        </div>
                                     </div>
                                     <h6 class="ms-4 fs-5 desc">Sangat suka</h6>
                                 </div>

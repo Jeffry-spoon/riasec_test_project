@@ -44,7 +44,7 @@
 
     </div>
     <!-- Footer -->
-    <footer class="footer" style="position: fixed;">
+    <footer class="footer" style="position: fixed;"ria>
         <a href="https://ukrida.ac.id/studyprogram/ps/50/program-studi-psikologi"
             class="text-decoration-none text-light">Copyright &copy;
             <script>

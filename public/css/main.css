@@ -265,6 +265,7 @@
   .test-form {
     width: 90%;
     max-width: 500px;
+    margin-bottom: 100px;
   }
   .test-form #form-title {
     margin-top: 0;
@@ -405,6 +406,16 @@
     transform: translate(-50%, 45px) scale(1.1);
     transition: all 0.15s linear;
   }
+  .checkbox-container {
+    display: flex;
+    justify-content: center; /* Mengatur checkbox rata tengah */
+    width: 300px; /* Atur lebar container menjadi 100% */
+}
+
+.checkbox-container .form-check-inline {
+    margin: 0 15px; /* Atur spasi di antara setiap checkbox */
+}
+
 
   @media (max-width: 768px) {
     body {
@@ -432,6 +443,16 @@
     }
   }
   @media (max-width: 500px) {
+    .checkbox-container {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .checkbox-container .form-check-inline {
+        margin: 0 10%; /* Menggunakan margin 2% dari lebar kontainer */
+        width: calc(100% / 6 - 4%); /* Mengatur lebar checkbox sesuai dengan 6 checkbox per baris */
+    }
     body {
         background: url("../images/background-mobile.png");
       background-repeat: no-repeat;
@@ -484,6 +505,9 @@
     .main-nav {
       margin-left: 16px;
       margin-right: 16px;
+    }
+    .desc {
+        display: none;
     }
   }
   .form-control::-moz-placeholder {
