@@ -155,14 +155,14 @@ class QuestionsSeeder extends Seeder
             'updated_at' => date('Y-m-d H:i:s', time())
           ],
           ['id' => 21,
-            'questions_text' => 'Mengajar keterampilan hidup.',
+            'questions_text' => 'Meningkatkan efisiensi dalam bisnis.',
             'types_id'=> 1,
             'categories_id'=> 5,
             'created_at' => date('Y-m-d H:i:s', time()),
             'updated_at' => date('Y-m-d H:i:s', time())
           ],
           ['id' => 22,
-            'questions_text' => 'Meningkatkan efisiensi dalam bisnis.',
+            'questions_text' => 'Mengelola bisnis.',
             'types_id'=> 1,
             'categories_id'=> 5,
             'created_at' => date('Y-m-d H:i:s', time()),

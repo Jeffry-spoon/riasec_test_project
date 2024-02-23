@@ -19,7 +19,7 @@ class ResultSeeder extends Seeder
                 'id' => 1,
                 'slug' => Str::random(10),
                 'types_id' => 1,
-                'user_id' => 2,
+                'user_id' => 7,
                 'event_id' => 1,
                 'event_id' => 1,
                 'score' => json_encode(
@@ -41,7 +41,7 @@ class ResultSeeder extends Seeder
                 'id' => 2,
                 'slug' => Str::random(10),
                 'types_id' => 1,
-                'user_id' => 3,
+                'user_id' => 8,
                 'event_id' => 2,
                 'score' => json_encode(
                     [
@@ -62,7 +62,7 @@ class ResultSeeder extends Seeder
                 'id' => 3,
                 'slug' => Str::random(10),
                 'types_id' => 1,
-                'user_id' => 3,
+                'user_id' => 8,
                 'event_id' => 3,
                 'score' => json_encode(
                     [
@@ -83,7 +83,7 @@ class ResultSeeder extends Seeder
                 'id' => 4,
                 'slug' => Str::random(10),
                 'types_id' => 1,
-                'user_id' => 3,
+                'user_id' => 8,
                 'event_id' => 1,
                 'event_id' => 1,
                 'score' => json_encode(

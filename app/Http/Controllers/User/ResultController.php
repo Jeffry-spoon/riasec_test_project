@@ -87,7 +87,7 @@ class ResultController extends Controller
                 'category' => $category,
             ];
         }
-$dummyData = 'dummmy';
+
         // Simpan data ke dalam table export_dump
         $exportDump = ExportDump::create([
             'result_id' => $result->id,
