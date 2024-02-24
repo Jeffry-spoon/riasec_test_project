@@ -148,14 +148,13 @@
 
   /* Footer */
   .footer {
-    position: fixed;
+    position: relative;
     justify-content: center;
     margin-bottom: 24px;
     left: 0;
     bottom: 0;
     width: 100%;
     text-align: center;
-    margin-top: 240px;
   }
 
   /* Register */
