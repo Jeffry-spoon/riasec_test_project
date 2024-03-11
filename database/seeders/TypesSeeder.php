@@ -20,6 +20,7 @@ class TypesSeeder extends Seeder
                 'slug' => 'test-minat-bakat',
                 'is_active' => true,
                 'is_project' => true,
+                'user_id' => 1,
                 'created_at' => date('Y-m-d H:i:s', time()),
                 'updated_at' => date('Y-m-d H:i:s', time())
             ],
@@ -29,6 +30,7 @@ class TypesSeeder extends Seeder
                 'slug' => 'psikologi-test',
                 'is_active' => false,
                 'is_project' => true,
+                'user_id' => 1,
                 'created_at' => date('Y-m-d H:i:s', time()),
                 'updated_at' => date('Y-m-d H:i:s', time())
             ],
@@ -38,6 +40,7 @@ class TypesSeeder extends Seeder
                 'slug' => 'ujian-akhir',
                 'is_active' => false,
                 'is_project' => true,
+                'user_id' => 1,
                 'created_at' => date('Y-m-d H:i:s', time()),
                 'updated_at' => date('Y-m-d H:i:s', time())
             ],

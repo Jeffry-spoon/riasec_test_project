@@ -13,6 +13,7 @@ class Types extends Model
     protected $fillable = [
         'type_name',
         'is_active',
+        'updated_by',
     ];
 
    public function questions()
