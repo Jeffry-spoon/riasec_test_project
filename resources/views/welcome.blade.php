@@ -2,7 +2,7 @@
 
 <!-- Showcase -->
 <div class="container">
-    <header class="showcase text-align-center">
+    <header class="showcase text-align-center" style="margin-top: 120px">
         <h2>Ready to discover your ideal career?</h2>
         <p>
             Take the RIASEC Test and find the perfect match for your unique
