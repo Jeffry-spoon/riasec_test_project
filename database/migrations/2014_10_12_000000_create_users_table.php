@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('email');
             $table->boolean('is_admin')->default(false);
+            $table->enum('role', ['super admin','penanggung jawab','fasilitator','peserta'])->default('peserta');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
             $table->rememberToken();

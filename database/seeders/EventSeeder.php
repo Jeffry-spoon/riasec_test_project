@@ -20,6 +20,7 @@ class EventSeeder extends Seeder
                 'title'=> 'Test event (FK)',
                 'is_active' => true,
                 'cut_off_date' => '2024-02-16 14:02:21',
+                'user_id' => 1,
                 'created_at' => date('Y-m-d H:i:s', time()),
                 'updated_at' => date('Y-m-d H:i:s', time())
             ],
@@ -28,6 +29,7 @@ class EventSeeder extends Seeder
                 'slug' => 'test-event-kedua-(ftik)',
                 'title'=> 'Test event kedua (FTIK)',
                 'is_active' => true,
+                'user_id' => 1,
                 'cut_off_date' => '2024-02-16 14:02:21',
                 'created_at' => date('Y-m-d H:i:s', time()),
                 'updated_at' => date('Y-m-d H:i:s', time())
@@ -37,6 +39,7 @@ class EventSeeder extends Seeder
                 'slug' => 'test-event-',
                 'title'=> 'Test event (FK)',
                 'is_active' => true,
+                'user_id' => 1,
                 'cut_off_date' => '2024-02-16 14:02:21',
                 'created_at' => date('Y-m-d H:i:s', time()),
                 'updated_at' => date('Y-m-d H:i:s', time())

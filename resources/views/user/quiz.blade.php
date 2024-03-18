@@ -1,5 +1,10 @@
 @extends('layouts.app')
 @section('content')
+    <div id="loader" class="spinner-wrapper">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
     <script>
         // Define a global variable to hold your data
         var quizData = @json($chunkedQuestions);
@@ -442,5 +447,31 @@
                 }
             });
         }
+
+        // Wait for all resources to be loaded
+        window.addEventListener('load', () => {
+            console.log('All resources loaded');
+
+            // Hide the spinner
+            const spinnerWrapperEl = document.querySelector('.spinner-wrapper');
+            if (spinnerWrapperEl) {
+                spinnerWrapperEl.style.opacity = '0';
+
+                setTimeout(() => {
+                    spinnerWrapperEl.style.display = 'none';
+                    console.log('Spinner hidden');
+                }, 200);
+            } else {
+                console.error('Spinner wrapper element not found');
+            }
+        });
+
+        const spinnerWrapperEl = document.querySelector('.spinner-wrapper');
+
+        // Tampilkan spinner saat halaman dimuat ulang
+        window.addEventListener('beforeunload', () => {
+            spinnerWrapperEl.style.display = 'flex';
+            spinnerWrapperEl.style.opacity = '100';
+        });
     </script>
 @endsection

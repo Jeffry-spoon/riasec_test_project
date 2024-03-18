@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('slug');
             $table->timestamp('cut_off_date');
             $table->boolean('is_active');
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
             $table->softDeletes();
         });

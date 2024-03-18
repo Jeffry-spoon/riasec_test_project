@@ -1,6 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+    <!-- Loader -->
+    <div id="loader" class="spinner-wrapper">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
     @php
         $unsortedScore = $unsort;
         arsort($unsort);
@@ -15,15 +21,15 @@
             <div class="row">
                 <div clas s="title text-light mt-sm-1">
                     <div class="col align-self-center text-light" style="margin-top: 40px;">
-                        <h4>Hasil RIASEC TEST kamu - <strong>{{$event->title }}</strong></h4>
+                        <h4>Hasil RIASEC TEST kamu - <strong>{{ $event->title }}</strong></h4>
                         <h1 class="fw-bolder">{{ $userName }}</h1>
                     </div>
                 </div>
             </div>
-            <a href="{{ route('view.pdf', $result->id) }}" class="btn btn-primary text-decoration-none border-0 mt-2"
+            {{-- <a href="{{ route('view.pdf', $result->id) }}" class="btn btn-primary text-decoration-none border-0 mt-2"
                 style="padding: 12px 36px; background: #f72585" target="_blank">
                 Unduh hasil tes mu !!!
-            </a>
+            </a> --}}
         </div>
 
         <div class="container">
@@ -64,17 +70,16 @@
                             class="category-image" style="border-radius: 6px;">
                         <div class="card-body">
                             <h3>{{ $top['category']['category_text'] }}</h3>
-                            <p class="card-text">{!! nl2br(e ($top['category']['description'])) !!}</p>
+                            <p class="card-text">{!! nl2br(e($top['category']['description'])) !!}</p>
 
                         </div>
                     </div>
                 </div>
             @endforeach
         </div>
+
+        @include('components.footer')
     </div>
-
-    @include('components.footer')
-
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         const ctx = document.getElementById('myChart');
@@ -123,6 +128,50 @@
                         display: false
                     }
                 }
-            }        });
+            }
+        });
+        // Wait for the DOM content to be fully loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('DOM content loaded');
+
+            // Get the spinner wrapper element
+            const spinnerWrapperEl = document.querySelector('.spinner-wrapper');
+
+            // Display the spinner
+            if (spinnerWrapperEl) {
+                spinnerWrapperEl.style.display = 'flex';
+                spinnerWrapperEl.style.opacity = '100';
+                console.log('Spinner displayed');
+            } else {
+                console.error('Spinner wrapper element not found');
+            }
+        });
+
+        // Wait for all resources to be loaded
+        window.addEventListener('load', () => {
+            console.log('All resources loaded');
+
+            // Hide the spinner
+            const spinnerWrapperEl = document.querySelector('.spinner-wrapper');
+            if (spinnerWrapperEl) {
+                spinnerWrapperEl.style.opacity = '0';
+
+                setTimeout(() => {
+                    spinnerWrapperEl.style.display = 'none';
+                    console.log('Spinner hidden');
+                }, 200);
+            } else {
+                console.error('Spinner wrapper element not found');
+            }
+        });
+
+        const spinnerWrapperEl = document.querySelector('.spinner-wrapper');
+
+        // Tampilkan spinner saat halaman dimuat ulang
+        window.addEventListener('beforeunload', () => {
+            spinnerWrapperEl.style.display = 'flex';
+            spinnerWrapperEl.style.opacity = '100';
+        });
+    </script>
     </script>
 @endsection

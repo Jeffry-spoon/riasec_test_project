@@ -3,14 +3,14 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Mail\MailNotify;
 use App\Models\Categories;
 use App\Models\Event;
 use App\Models\ExportDump;
 use App\Models\Results;
 use App\Models\User;
-use App\Models\Jobs;
+use Illuminate\Support\Facades\Mail;
 use App\Models\UsersDetail;
-use PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
@@ -46,20 +46,22 @@ class ResultController extends Controller
      */
     public function show ($slug)
     {
+
         $result = Results::where('slug', $slug)->first();
         $categoriesResult = Categories::all();
-
         // Memastikan hasil ditemukan
         if ($result) {
             //mengakses nama pengguna terkait
             $userId = $result->user_id;
+
             $eventId = $result->event_id;
             $score = json_decode($result->score);
             $unsort = $score;
             $userData = User::where('id', $userId)->first();
+
             $userDetailData = UsersDetail::where('user_id', $userId)
-                                    ->select('school_name', 'education_level')
-                                    ->first();
+                                ->select('school_name', 'education_level')
+                                ->first();
 
             $event = Event::where('id', $eventId)->first();
             $userName = $userData->name;
@@ -88,16 +90,28 @@ class ResultController extends Controller
             ];
         }
 
+        $userEmail = $userData->email;
+
+
         // Simpan data ke dalam table export_dump
-        $exportDump = ExportDump::create([
-            'result_id' => $result->id,
+        // $exportDump = ExportDump::create([
+        //     'result_id' => $result->id,
+        //     'name' => $userName,
+        //     'school_name' => $userDetailData->school_name,
+        //     'grade' => $userDetailData->education_level,
+        //     'event' => $event->title,
+        //     'score' => json_encode($unsort),
+        //     'description' => json_encode($mergetArray),
+        // ]);
+
+        // Kirim email
+         Mail::to($userEmail)->send(new MailNotify([
+            'subject' => 'Test Result',
             'name' => $userName,
-            'school_name' => $userDetailData->school_name,
-            'grade' => $userDetailData->education_level,
             'event' => $event->title,
             'score' => json_encode($unsort),
-            'description' => json_encode($mergetArray),
-        ]);
+        ]));
+
 
         return view('/user/result', compact('result', 'userName', 'unsort', 'mergetArray', 'event'));
     }
