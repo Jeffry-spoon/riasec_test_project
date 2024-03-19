@@ -23,8 +23,7 @@
     <form method="post" action="{{ route('register.store') }}">
         @csrf
         <div class="title-form">
-            <p class="fs-5 text-center">Sebelum Anda memulai tes, kami ingin mengenal Anda lebih baik. Kami tidak akan pernah
-                membagikan data Anda kepada orang lain.</p>
+            <p class="fs-5 text-center">Hasil tes ini bersifat konfidensial dan hanya akan digunakan untuk keperluan penelitian/studi ilmiah.</p>
         </div>
         <div class="register-form mb-5">
             <div class="mb-3">
@@ -109,7 +108,7 @@
             <div class="mb-3">
                 <label for="event" class="form-label required">Event</label>
                 <select class="form-select bg-transparent text-light" name="event" style="height: 50px" required>
-                    <option value="" class="glass-option" >Pilih Event</option>
+                    <option value="" class="glass-option">Pilih Event</option>
                     @foreach ($events as $event)
                         <option value="{{ $event->id }}" class="glass-option">{{ $event->title }}</option>
                     @endforeach
@@ -122,6 +121,15 @@
                     </div>
                 @enderror
             </div>
+            <div class="my-3">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="1" id="flexCheckIndeterminate">
+                    <label class="form-check-label ps-1" for="flexCheckIndeterminate">
+                        Saya bersedia menerima informasi tambahan dari UKRIDA berkaitan dengan beasiswa, dan informasi
+                        lainnya.
+                    </label>
+                </div>
+            </div>
         </div>
         </div>
         <button type="submit" class="btn btn-primary border-0 d-grid" style="padding: 12px 36px; background: #f72585"
@@ -130,16 +138,15 @@
 
     @include('components.footer')
 
-    <!-- Include JavaScript to handle button state -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
-        // Get all input fields
-        const formInputs = document.querySelectorAll('form input, form select');
+        // Get all input fields except the checkbox
+        const formInputs = document.querySelectorAll('form input:not([type="checkbox"]), form select');
 
         // Get the submit button
         const submitButton = document.querySelector('form button');
 
-        // Function to check if all input fields, including radio buttons, are filled
+        // Function to check if all input fields, excluding the checkbox, are filled
         function checkFormInputs() {
             const allFilled = Array.from(formInputs).every(input => {
                 if (input.type === 'radio') {

@@ -37,7 +37,6 @@ Route::middleware('registered')->group(function () {
     Route::get('pdf-export/{slug}', [ResultController::class, 'viewPDF'])->name('view.pdf');
     //  Route::get('result/{id}/download/pdf', [ResultController::class, 'downloadPDF'])->name('download.pdf');
 
-
 });
 
 require __DIR__.'/auth.php';

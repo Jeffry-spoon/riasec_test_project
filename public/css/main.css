@@ -539,7 +539,7 @@
 
   .required:after {
     content: " *";
-    color: red;
+    color: yellow;
   }
 
   .radio-button {
