@@ -18,7 +18,7 @@ return new class extends Migration
             $table->enum('gender', ['male', 'female'])->nullable();
             $table->string('phone_number')->nullable();
             $table->string('school_name')->nullable();
-            $table->boolean('newslatter')->default(false);
+            $table->boolean('newsletter')->default(false);
             $table->string('occupation_desc')->nullable();
             $table->timestamps(); // Use timestamps without arguments
             $table->softDeletes();

@@ -123,7 +123,7 @@
             </div>
             <div class="my-3">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="1" id="flexCheckIndeterminate" name="newslatter">
+                    <input class="form-check-input" type="checkbox" value="1" id="flexCheckIndeterminate" name="newsletter">
                     <label class="form-check-label ps-1" for="flexCheckIndeterminate">
                         Saya bersedia menerima informasi tambahan dari UKRIDA berkaitan dengan beasiswa, dan informasi
                         lainnya.
