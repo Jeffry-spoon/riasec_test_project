@@ -74,6 +74,7 @@ class RegisteredUserController extends Controller
             'grade' => $request['grade'],
             'school-name' => $request['school-name'],
             'occupation' => $request['occupation'],
+            'newslatter' => isset($request['newslatter']) ? 1 : 0
         ];
 
         $user = User::create([
@@ -87,6 +88,7 @@ class RegisteredUserController extends Controller
             'education_level' => $userDetailData['grade'],
             'school_name' => $userDetailData['school-name'],
             'occupation_desc' => $userDetailData['occupation'],
+            'newslatter'=> $userDetailData['newslatter'],
         ]);
 
         // Ambil data event dari request

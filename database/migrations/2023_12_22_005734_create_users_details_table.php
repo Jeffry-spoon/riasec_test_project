@@ -15,11 +15,10 @@ return new class extends Migration
            $table->id();
             $table->foreignId('user_id')->constrained();
             $table->string('education_level');
-            // $table->timestamp('birth_date')->nullable();
             $table->enum('gender', ['male', 'female'])->nullable();
             $table->string('phone_number')->nullable();
             $table->string('school_name')->nullable();
-            // $table->string('major_name')->nullable();
+            $table->boolean('newslatter')->default(false);
             $table->string('occupation_desc')->nullable();
             $table->timestamps(); // Use timestamps without arguments
             $table->softDeletes();

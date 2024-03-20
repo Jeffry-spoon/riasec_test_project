@@ -586,3 +586,12 @@
     height: 60px !important;
     width: 60px !important;
   }
+
+  .invalid-feedback{
+    color: yellow !important;
+  }
+
+
+  .form-control.is-invalid{
+    border-color: yellow !important;
+  }

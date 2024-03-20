@@ -19,7 +19,6 @@ return new class extends Migration
             $table->enum('role', ['super admin','penanggung jawab','fasilitator','peserta'])->default('peserta');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
-            $table->boolean('newslatter')->default(false);
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
