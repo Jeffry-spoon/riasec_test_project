@@ -82,73 +82,71 @@ class QuizController extends Controller
      */
     public function store(Request $request)
     {
+
         $user_tz = 'Asia/Jakarta';
 
-    // Mendapatkan tipe yang aktif sebagai koleksi
-    $typesCollection = Types::where('is_active', 1)->get();
+        // Mendapatkan tipe yang aktif sebagai koleksi
+        $typesCollection = Types::where('is_active', 1)->get();
 
-    // Ambil data jawaban dari request
-    $userAnswers = $request->input('userAnswers');
+        // Ambil data jawaban dari request
+        $userAnswers = $request->input('userAnswers');
 
-    // Ambil data waktu dari request
-    $startTime = Carbon::parse($request['startTime'])->tz('Asia/Jakarta');
-    $endTime = Carbon::parse($request['endTime'])->tz('Asia/Jakarta');
-    $durationInSeconds = $request['durationInSeconds'];
-    // dd($startTime, $endTime, $durationInSeconds);
+        // Ambil data waktu dari request
+        $startTime = Carbon::parse($request['startTime'])->tz($user_tz);
+        $endTime = Carbon::parse($request['endTime'])->tz($user_tz);
+        $durationInSeconds = $request['durationInSeconds'];
+        $durationFormatted = gmdate('H:i:s', $durationInSeconds);
 
-    // Menghitung durasi jika tidak disediakan
-    if (!$durationInSeconds) {
-        $durationInSeconds = $endTime->diffInSeconds($startTime);
-    }
+        // Menghitung durasi jika tidak disediakan
+        if (!$durationInSeconds) {
+            $durationInSeconds = $endTime->diffInSeconds($startTime);
+        }
 
-    // Inisialisasi array untuk menyimpan hasil per kategori
-    $categoryResults = [];
+        // Inisialisasi array untuk menyimpan hasil per kategori
+        $categoryResults = [];
 
-    // Mendapatkan type_id
-    $typeId = $request->input('type_id');
+        // Loop melalui setiap kategori pada jawaban pengguna
+        foreach ($userAnswers as $category => $answers) {
+            // Hitung jumlah jawaban yang memiliki nilai tertentu (misalnya, "6")
+            $totalAnswers = array_sum($answers);
 
+            // Simpan hasil per kategori
+            $categoryResults[$category] = $totalAnswers;
+        }
 
-    // Loop melalui setiap kategori pada jawaban pengguna
-      foreach ($userAnswers as $category => $answers) {
-          // Hitung jumlah jawaban yang memiliki nilai tertentu (misalnya, "6")
-          $totalAnswers = array_sum($answers);
+        // Mendapatkan type_id dari koleksi Types
+        $typeId = $typesCollection->pluck('id')->first();
 
-          // Simpan hasil per kategori
-          $categoryResults[$category] = $totalAnswers;
-      }
+        // Mendapatkan ID pengguna yang sedang masuk
+        $user = Auth::user();
+        $userID = $user->id;
 
-      // Mendapatkan type_id dari koleksi Types
-    $typeId = $typesCollection->pluck('id')->first();
+        // Mendapatkan kembali data event dari session
+        $temporaryEvent = Session::get('temporary_event');
 
-     $user = Auth::user();
-     $userID = $user->id;
+        try {
+            // Insert ke database
+            $result = Results::create([
+                'user_id' => $userID,
+                'types_id' => $typeId,
+                'score' => json_encode($categoryResults),
+                'start_time' => $startTime,
+                'end_time' => $endTime,
+                'difference' => $durationFormatted,
+                'event_id' => $temporaryEvent,
+            ]);
 
-     // Mendapatkan kembali data event dari session
-    $temporaryEvent = Session::get('temporary_event');
-
-    $slug = Str::random(10);
-    // Insert ke database
-
-
-    $result = Results::create([
-        'user_id' => $userID,
-        'types_id' => $typeId,
-        'score' => json_encode($categoryResults),
-        'start_time' => $startTime,
-        'end_time' => $endTime,
-        'difference' => $durationInSeconds,
-        'event_id' => $temporaryEvent,
-        'slug' => $slug,
-    ]);
-
-    // $newlyCreatedSlug = $result->slug;
-
-      session(['quiz_completed' => true]);
-
-    // Redirect ke ResultController dengan membawa data hasil
-    return response()->json([
-        'slug' => $slug,
-    ]);
+            // Mengembalikan ID hasil yang baru saja dimasukkan
+            return response()->json([
+                'id' => $result->id,
+            ]);
+        } catch (\Exception $e) {
+            // Jika terjadi kesalahan saat memasukkan data, Anda dapat menangani kasus tersebut sesuai kebutuhan
+            return response()->json([
+                'error' => 'Failed to create result',
+                'message' => $e->getMessage(), // Mengirim pesan kesalahan untuk tujuan debug
+            ], 500); // Menyertakan kode status 500 untuk menunjukkan kesalahan server
+        }
 
 }
 

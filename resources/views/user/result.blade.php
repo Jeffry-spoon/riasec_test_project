@@ -26,17 +26,17 @@
                     </div>
                 </div>
             </div>
-            {{-- <a href="{{ route('view.pdf', $result->id) }}" class="btn btn-primary text-decoration-none border-0 mt-2"
+            <a href="{{ route('view.pdf', $result->id) }}" class="btn btn-primary text-decoration-none border-0 mt-2"
                 style="padding: 12px 36px; background: #f72585" target="_blank">
                 Unduh hasil tes mu !!!
-            </a> --}}
+            </a>
         </div>
 
         <div class="container">
             <div class="row d-flex align-items-center">
                 <div class="col-lg-6 col-md-6 col-sm-12 mt-5">
                     <!-- Bar Chart -->
-                    <div class="h-100 mb-3 bar-chart">
+                    <div class="mb-3 bar-chart" style="height: 287px;">
                         <canvas id="myChart" class="shadow-lg bg-light p-4 rounded"></canvas>
                     </div>
                 </div>
@@ -118,6 +118,7 @@
                 }]
             },
             options: {
+                maintainAspectRatio: false,
                 scales: {
                     y: {
                         beginAtZero: true

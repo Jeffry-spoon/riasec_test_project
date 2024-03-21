@@ -33,8 +33,8 @@ Route::middleware('registered')->group(function () {
     Route::post('quiz', [QuizController::class, 'store'])->name('quiz.store');
 
     // Result
-    Route::get('result/{slug}', [ResultController::class, 'show'])->name('result.show');
-    Route::get('pdf-export/{slug}', [ResultController::class, 'viewPDF'])->name('view.pdf');
+    Route::get('result/{id}', [ResultController::class, 'show'])->name('result.show');
+    Route::get('pdf-export/{id}', [ResultController::class, 'viewPDF'])->name('view.pdf');
     //  Route::get('result/{id}/download/pdf', [ResultController::class, 'downloadPDF'])->name('download.pdf');
 
 });

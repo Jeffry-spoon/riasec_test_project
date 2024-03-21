@@ -345,8 +345,8 @@
 
                     // Check if 'id' is present
                     //var newlyCreatedId = result.id;
-                    let url = "{{ route('result.show', ['slug' => ':slug']) }}";
-                    window.location.href = url.replace(':slug', result.slug);
+                    let url = "{{ route('result.show', ['id' => ':id']) }}";
+                    window.location.href = url.replace(':id', result.id);
 
                 },
                 error: function(xhr, status, error) {

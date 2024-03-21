@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('export_dumps', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('result_id')->constrained();
+            $table->uuid('result_id'); // Mengganti kolom result_id menjadi UUID
+            $table->foreign('result_id')->references('id')->on('results')->onDelete('cascade'); // Mengubah keterkaitan menjadi UUID
             $table->string('name');
             $table->string('school_name');
             $table->string('grade');

@@ -12,6 +12,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use App\Models\UsersDetail;
 use Illuminate\Http\Request;
+use PDF;
 use Illuminate\Support\Facades\Cache;
 
 class ResultController extends Controller
@@ -44,10 +45,9 @@ class ResultController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show ($slug)
+    public function show ($id)
     {
-
-        $result = Results::where('slug', $slug)->first();
+        $result = Results::where('id', $id)->first();
         $categoriesResult = Categories::all();
         // Memastikan hasil ditemukan
         if ($result) {
@@ -94,23 +94,23 @@ class ResultController extends Controller
 
 
         // Simpan data ke dalam table export_dump
-        // $exportDump = ExportDump::create([
-        //     'result_id' => $result->id,
-        //     'name' => $userName,
-        //     'school_name' => $userDetailData->school_name,
-        //     'grade' => $userDetailData->education_level,
-        //     'event' => $event->title,
-        //     'score' => json_encode($unsort),
-        //     'description' => json_encode($mergetArray),
-        // ]);
-
-        // Kirim email
-         Mail::to($userEmail)->send(new MailNotify([
-            'subject' => 'Test Result',
+        $exportDump = ExportDump::create([
+            'result_id' => $result->id,
             'name' => $userName,
+            'school_name' => $userDetailData->school_name,
+            'grade' => $userDetailData->education_level,
             'event' => $event->title,
             'score' => json_encode($unsort),
-        ]));
+            'description' => json_encode($mergetArray),
+        ]);
+
+        // Kirim email
+        //  Mail::to($userEmail)->send(new MailNotify([
+        //     'subject' => 'Test Result',
+        //     'name' => $userName,
+        //     'event' => $event->title,
+        //     'score' => json_encode($unsort),
+        // ]));
 
 
         return view('/user/result', compact('result', 'userName', 'unsort', 'mergetArray', 'event'));
