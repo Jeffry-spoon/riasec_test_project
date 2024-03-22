@@ -91,15 +91,19 @@ class QuizController extends Controller
         // Ambil data jawaban dari request
         $userAnswers = $request->input('userAnswers');
 
-        // Ambil data waktu dari request
+        // Parsing waktu mulai dan waktu selesai dengan zona waktu pengguna
         $startTime = Carbon::parse($request['startTime'])->tz($user_tz);
         $endTime = Carbon::parse($request['endTime'])->tz($user_tz);
-        $durationInSeconds = $request['durationInSeconds'];
-        $durationFormatted = gmdate('H:i:s', $durationInSeconds);
+
+        // Menghitung selisih waktu antara waktu mulai dan waktu selesai
+        $duration = $endTime->diff($startTime);
+
+        // Format hasil selisih waktu
+        $durationFormatted = $duration->format('%H:%I:%S');
 
         // Menghitung durasi jika tidak disediakan
-        if (!$durationInSeconds) {
-            $durationInSeconds = $endTime->diffInSeconds($startTime);
+        if (!$duration) {
+            $duration = $endTime->diffInSeconds($startTime);
         }
 
         // Inisialisasi array untuk menyimpan hasil per kategori
