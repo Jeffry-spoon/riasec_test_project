@@ -152,7 +152,8 @@ class QuizController extends Controller
             ], 500); // Menyertakan kode status 500 untuk menunjukkan kesalahan server
         }
 
-}
+    }
+
 
 
     /**

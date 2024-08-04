@@ -42,10 +42,22 @@ class RegisteredUserController extends Controller
     {
 
         $request->validate([
-            'name' => 'required|string',
-            'email' => 'required|email:dns',
+            'name' => [
+                'required',
+                'string',
+                'min:2',
+                'max:50',
+                'regex:/^[a-zA-Z\s]+$/',
+                'regex:/^\S*$/'
+            ],
+            'email' => [
+                'required',
+                'email:dns',
+                'regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/',
+                'regex:/^\S*$/'
+            ],
             'gender' => 'required|in:Male,Female',
-            'phone-number' => 'required|min:12|max:13',
+            'phone-number' => 'required|string|regex:/^\+?\d{11,12}$/',
             'grade' => 'required|string',
             'school-name' => 'required|string',
             'occupation' => 'required|string',

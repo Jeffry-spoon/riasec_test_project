@@ -19,7 +19,7 @@
         <!-- Main -->
         <div class="container text-center">
             <div class="row">
-                <div clas s="title text-light mt-sm-1">
+                <div class="title text-light mt-sm-1">
                     <div class="col align-self-center text-light" style="margin-top: 40px;">
                         <h4>Hasil RIASEC TEST kamu - <strong>{{ $event->title }}</strong></h4>
                         <h1 class="fw-bolder">{{ $userName }}</h1>
@@ -80,21 +80,47 @@
 
         @include('components.footer')
     </div>
+
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        const ctx = document.getElementById('myChart');
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set a cookie to indicate that the result page has been viewed
+            document.cookie = "hasViewedResult=true; path=/";
 
+            // Display the spinner
+            const spinnerWrapperEl = document.querySelector('.spinner-wrapper');
+            if (spinnerWrapperEl) {
+                spinnerWrapperEl.style.display = 'flex';
+                spinnerWrapperEl.style.opacity = '100';
+            } else {
+                console.error('Spinner wrapper element not found');
+            }
+        });
+
+        window.addEventListener('load', () => {
+            // Hide the spinner
+            const spinnerWrapperEl = document.querySelector('.spinner-wrapper');
+            if (spinnerWrapperEl) {
+                spinnerWrapperEl.style.opacity = '0';
+                setTimeout(() => {
+                    spinnerWrapperEl.style.display = 'none';
+                }, 200);
+            } else {
+                console.error('Spinner wrapper element not found');
+            }
+        });
+
+        const ctx = document.getElementById('myChart');
         const labels = {!! json_encode(array_keys($unsortedScore)) !!};
         const data = {!! json_encode(array_values($unsortedScore)) !!};
+
         new Chart(ctx, {
             type: 'bar',
             data: {
                 labels: labels,
                 datasets: [{
-
-                    // Title
                     label: 'Total',
-                    // Data
                     data: data,
                     backgroundColor: [
                         'rgba(115, 152, 15)',
@@ -131,48 +157,14 @@
                 }
             }
         });
-        // Wait for the DOM content to be fully loaded
-        document.addEventListener('DOMContentLoaded', () => {
-            console.log('DOM content loaded');
 
-            // Get the spinner wrapper element
+        // Handle beforeunload event to show spinner
+        window.addEventListener('beforeunload', () => {
             const spinnerWrapperEl = document.querySelector('.spinner-wrapper');
-
-            // Display the spinner
             if (spinnerWrapperEl) {
                 spinnerWrapperEl.style.display = 'flex';
                 spinnerWrapperEl.style.opacity = '100';
-                console.log('Spinner displayed');
-            } else {
-                console.error('Spinner wrapper element not found');
             }
         });
-
-        // Wait for all resources to be loaded
-        window.addEventListener('load', () => {
-            console.log('All resources loaded');
-
-            // Hide the spinner
-            const spinnerWrapperEl = document.querySelector('.spinner-wrapper');
-            if (spinnerWrapperEl) {
-                spinnerWrapperEl.style.opacity = '0';
-
-                setTimeout(() => {
-                    spinnerWrapperEl.style.display = 'none';
-                    console.log('Spinner hidden');
-                }, 200);
-            } else {
-                console.error('Spinner wrapper element not found');
-            }
-        });
-
-        const spinnerWrapperEl = document.querySelector('.spinner-wrapper');
-
-        // Tampilkan spinner saat halaman dimuat ulang
-        window.addEventListener('beforeunload', () => {
-            spinnerWrapperEl.style.display = 'flex';
-            spinnerWrapperEl.style.opacity = '100';
-        });
-    </script>
     </script>
 @endsection

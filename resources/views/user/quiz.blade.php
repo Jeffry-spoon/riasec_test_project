@@ -82,7 +82,7 @@
                     @endforeach
                     @if ($loop->last)
                         <button type="button" class="btn btn-primary d-flex justify-content-center mx-auto "
-                            onclick="handleSubmitButtonClick()" style="width: 300px;">
+                            id="submitButton" onclick="handleSubmitButtonClick()" style="width: 300px;">
                             Submit
                         </button>
                     @else
@@ -238,6 +238,12 @@
                 document.getElementById('alertText').innerText = alertText;
                 document.getElementById('alertMessage').style.display = 'block';
 
+                // Scroll ke atas halaman saat alert muncul
+                window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+                });
+
                 setTimeout(function() {
                     // Cek apakah alert masih terbuka
                     var alertMessage = document.getElementById('alertMessage');
@@ -267,6 +273,12 @@
                 // Tampilkan kategori berikutnya
                 showNextCategory();
 
+                 // Scroll ke atas halaman
+                window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+                });
+
             } else {
                 submitQuizAnswers();
             }
@@ -277,11 +289,17 @@
             var unansweredCount = setValueQuestion(currentCategory);
 
             if (unansweredCount > 0) {
+                // Scroll ke atas halaman
+                window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+                });
                 var alertText =
                     `Anda belum menjawab ${unansweredCount} pertanyaan di kategori ini. Silakan jawab semua pertanyaan sebelum melanjutkan.`;
 
                 document.getElementById('alertText').innerText = alertText;
                 document.getElementById('alertMessage').style.display = 'block';
+
 
                 setTimeout(function() {
                     // Cek apakah alert masih terbuka
@@ -410,6 +428,15 @@
         // Fungsi yang dipanggil Setiap soal dikerjakan
 
         function handleSubmitButtonClick() {
+            var button = document.getElementById('submitButton');
+            button.disabled = true;  // Disable the button
+             button.innerHTML = '<div class="spinner-border spinner-border-sm text-light" style="width: 1rem; height: 1rem;" role="status"><span class="sr-only"></span></div>';  // Change the button text to a spinner
+            // Simulate form submission delay
+            setTimeout(() => {
+                // Re-enable the button after some time (for demo purposes)
+                button.disabled = false;
+                button.innerHTML = 'Submit';
+            }, 3000);  // Change the delay time as needed
             // Simpan jawaban pengguna ke backend atau lakukan tindakan lainnya
 
             if (showFeedback()) {
@@ -473,5 +500,23 @@
             spinnerWrapperEl.style.display = 'flex';
             spinnerWrapperEl.style.opacity = '100';
         });
+
+        document.addEventListener('DOMContentLoaded', () => {
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+
+        // Check if the user has viewed the result page
+        const hasViewedResult = getCookie('hasViewedResult');
+        if (hasViewedResult === 'true') {
+            // Delete the cookie
+            document.cookie = "hasViewedResult=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+
+            // Redirect to the registration page
+            window.location.href = "{{ route('register') }}";
+        }
+    });
     </script>
 @endsection

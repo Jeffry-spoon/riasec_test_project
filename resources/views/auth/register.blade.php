@@ -62,12 +62,17 @@
             <!-- End Gender -->
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label required">Nomor Handphone</label>
-                <input type="number"
-                    class="form-control bg-transparent text-light @error('phone-number')is-invalid @enderror"
-                    placeholder="Input your phone number" name="phone-number" required value="{{ old('phone-number') }}" />
+                <input type="tel"
+                       id="phone-number"
+                       class="form-control bg-transparent text-light @error('phone-number')is-invalid @enderror"
+                       placeholder="Masukkan nomor telepon tanpa format +62 atau tanda -"
+                       name="phone-number"
+                       required
+                       value="{{ old('phone-number') }}"
+                       oninput="validatePhoneNumber(this)" />
                 @error('phone-number')
                     <div class="invalid-feedback">
-                        {{ $message }}
+                        Nomor telepon harus berupa angka dan terdiri dari 10 hingga 13 digit tanpa format +62 atau tanda -.
                     </div>
                 @enderror
             </div>
@@ -102,7 +107,7 @@
                 @error('occupation')
                     <div class="invalid-feedback">
                         {{ $message }}
-                    </div>
+                    </div>`
                 @enderror
             </div>
             <div class="mb-3">
@@ -164,5 +169,9 @@
         formInputs.forEach(input => {
             input.addEventListener('input', checkFormInputs);
         });
+
+        function validatePhoneNumber(input) {
+            input.value = input.value.replace(/[^0-9]/g, '');
+        }
     </script>
 @endsection

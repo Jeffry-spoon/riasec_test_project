@@ -583,8 +583,8 @@
 }
 
   .spinner-border {
-    height: 60px !important;
-    width: 60px !important;
+    height: 1rem ;
+    width: 1rem ;
   }
 
   .invalid-feedback{
